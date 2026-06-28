@@ -1,0 +1,198 @@
+{
+  "$schema": "https://design.linkup.studio/schemas/animations.json",
+  "name": "LinkUp Studio Animation System",
+  "version": "1.0.0",
+  "description": "Motion design tokens inspired by Apple HIG",
+  "duration": {
+    "instant": {
+      "value": "50ms",
+      "css": "var(--duration-instant)",
+      "usage": "Hover states, immediate feedback"
+    },
+    "fast": {
+      "value": "150ms",
+      "css": "var(--duration-fast)",
+      "usage": "Small transitions, button states"
+    },
+    "normal": {
+      "value": "250ms",
+      "css": "var(--duration-normal)",
+      "usage": "Panel transitions, modals"
+    },
+    "slow": {
+      "value": "400ms",
+      "css": "var(--duration-slow)",
+      "usage": "Major state changes"
+    },
+    "slower": {
+      "value": "600ms",
+      "css": "var(--duration-slower)",
+      "usage": "Page transitions, complex animations"
+    }
+  },
+  "easing": {
+    "linear": {
+      "value": "linear",
+      "css": "var(--ease-linear)",
+      "usage": "Linear progress bars"
+    },
+    "easeOut": {
+      "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "css": "var(--ease-out)",
+      "usage": "Natural deceleration, most transitions"
+    },
+    "easeInOut": {
+      "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+      "css": "var(--ease-in-out)",
+      "usage": "Balanced transitions"
+    },
+    "easeIn": {
+      "value": "cubic-bezier(0.32, 0, 0.67, 0)",
+      "css": "var(--ease-in)",
+      "usage": "Natural acceleration"
+    },
+    "easeSpring": {
+      "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "css": "var(--ease-spring)",
+      "usage": "Bouncy, playful emphasis"
+    },
+    "easeBounce": {
+      "value": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+      "css": "var(--ease-bounce)",
+      "usage": "Bouncy overshoot"
+    }
+  },
+  "animations": {
+    "fadeIn": {
+      "keyframe": {
+        "from": { "opacity": 0 },
+        "to": { "opacity": 1 }
+      },
+      "duration": "250ms",
+      "easing": "ease-out"
+    },
+    "fadeOut": {
+      "keyframe": {
+        "from": { "opacity": 1 },
+        "to": { "opacity": 0 }
+      },
+      "duration": "150ms",
+      "easing": "ease-in"
+    },
+    "fadeInUp": {
+      "keyframe": {
+        "from": { "opacity": 0, transform": "translateY(10px)" },
+        "to": { "opacity": 1, transform": "translateY(0)" }
+      },
+      "duration": "250ms",
+      "easing": "ease-out"
+    },
+    "fadeInDown": {
+      "keyframe": {
+        "from": { "opacity": 0, transform": "translateY(-10px)" },
+        "to": { "opacity": 1, transform": "translateY(0)" }
+      },
+      "duration": "250ms",
+      "easing": "ease-out"
+    },
+    "fadeInScale": {
+      "keyframe": {
+        "from": { "opacity": 0, transform": "scale(0.95)" },
+        "to": { "opacity": 1, transform": "scale(1)" }
+      },
+      "duration": "250ms",
+      "easing": "ease-spring"
+    },
+    "slideInRight": {
+      "keyframe": {
+        "from": { "opacity": 0, transform": "translateX(20px)" },
+        "to": { "opacity": 1, transform": "translateX(0)" }
+      },
+      "duration": "250ms",
+      "easing": "ease-out"
+    },
+    "slideInLeft": {
+      "keyframe": {
+        "from": { "opacity": 0, transform": "translateX(-20px)" },
+        "to": { "opacity": 1, transform": "translateX(0)" }
+      },
+      "duration": "250ms",
+      "easing": "ease-out"
+    },
+    "bounceIn": {
+      "keyframe": {
+        "0%": { "opacity": 0, transform": "scale(0.3)" },
+        "50%": { "transform": "scale(1.05)" },
+        "70%": { "transform": "scale(0.9)" },
+        "100%": { "opacity": 1, transform": "scale(1)" }
+      },
+      "duration": "400ms",
+      "easing": "ease-spring"
+    },
+    "pulse": {
+      "keyframe": {
+        "0%, 100%": { "opacity": 1 },
+        "50%": { "opacity": 0.5 }
+      },
+      "duration": "2s",
+      "easing": "ease-in-out",
+      "iteration": "infinite"
+    },
+    "spin": {
+      "keyframe": {
+        "from": { "transform": "rotate(0deg)" },
+        "to": { "transform": "rotate(360deg)" }
+      },
+      "duration": "1s",
+      "easing": "linear",
+      "iteration": "infinite"
+    },
+    "blink": {
+      "keyframe": {
+        "0%, 100%": { "opacity": 1 },
+        "50%": { "opacity": 0 }
+      },
+      "duration": "1s",
+      "easing": "step-end",
+      "iteration": "infinite"
+    }
+  },
+  "transitions": {
+    "hover": {
+      "duration": "150ms",
+      "easing": "ease-out",
+      "properties": ["background-color", "border-color", "color", "box-shadow"]
+    },
+    "focus": {
+      "duration": "150ms",
+      "easing": "ease-out",
+      "properties": ["box-shadow", "border-color"]
+    },
+    "active": {
+      "duration": "50ms",
+      "easing": "ease-in",
+      "properties": ["transform", "background-color"]
+    },
+    "transform": {
+      "duration": "250ms",
+      "easing": "ease-out",
+      "properties": ["transform"]
+    },
+    "opacity": {
+      "duration": "250ms",
+      "easing": "ease-out",
+      "properties": ["opacity"]
+    },
+    "all": {
+      "duration": "150ms",
+      "easing": "ease-out",
+      "properties": ["all"]
+    }
+  },
+  "delay": {
+    "none": "0ms",
+    "small": "50ms",
+    "medium": "100ms",
+    "large": "200ms"
+  }
+}

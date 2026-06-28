@@ -1,0 +1,223 @@
+{
+  "$schema": "https://design.linkup.studio/schemas/typography.json",
+  "name": "LinkUp Studio Typography System",
+  "version": "1.0.0",
+  "fonts": {
+    "sans": {
+      "family": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+    },
+    "mono": {
+      "family": "'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace",
+      "fallback": "'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace"
+    }
+  },
+  "scale": {
+    "2xs": {
+      "size": "0.625rem",
+      "pixels": "10px",
+      "lineHeight": "1.4",
+      "letterSpacing": "0"
+    },
+    "xs": {
+      "size": "0.6875rem",
+      "pixels": "11px",
+      "lineHeight": "1.4",
+      "letterSpacing": "0"
+    },
+    "sm": {
+      "size": "0.75rem",
+      "pixels": "12px",
+      "lineHeight": "1.5",
+      "letterSpacing": "0"
+    },
+    "base": {
+      "size": "0.875rem",
+      "pixels": "14px",
+      "lineHeight": "1.5",
+      "letterSpacing": "0"
+    },
+    "md": {
+      "size": "0.9375rem",
+      "pixels": "15px",
+      "lineHeight": "1.5",
+      "letterSpacing": "0"
+    },
+    "lg": {
+      "size": "1rem",
+      "pixels": "16px",
+      "lineHeight": "1.5",
+      "letterSpacing": "0"
+    },
+    "xl": {
+      "size": "1.25rem",
+      "pixels": "20px",
+      "lineHeight": "1.25",
+      "letterSpacing": "-0.01em"
+    },
+    "2xl": {
+      "size": "1.5rem",
+      "pixels": "24px",
+      "lineHeight": "1.25",
+      "letterSpacing": "-0.02em"
+    },
+    "3xl": {
+      "size": "1.875rem",
+      "pixels": "30px",
+      "lineHeight": "1.2",
+      "letterSpacing": "-0.02em"
+    },
+    "4xl": {
+      "size": "2.25rem",
+      "pixels": "36px",
+      "lineHeight": "1.1",
+      "letterSpacing": "-0.03em"
+    },
+    "5xl": {
+      "size": "3rem",
+      "pixels": "48px",
+      "lineHeight": "1",
+      "letterSpacing": "-0.03em"
+    }
+  },
+  "weights": {
+    "normal": {
+      "value": 400,
+      "css": "var(--font-weight-normal)"
+    },
+    "medium": {
+      "value": 500,
+      "css": "var(--font-weight-medium)"
+    },
+    "semibold": {
+      "value": 600,
+      "css": "var(--font-weight-semibold)"
+    },
+    "bold": {
+      "value": 700,
+      "css": "var(--font-weight-bold)"
+    }
+  },
+  "lineHeights": {
+    "none": {
+      "value": 1,
+      "description": "Headings"
+    },
+    "tight": {
+      "value": 1.25,
+      "description": "Headings, titles"
+    },
+    "normal": {
+      "value": 1.5,
+      "description": "Body text"
+    },
+    "relaxed": {
+      "value": 1.625,
+      "description": "Long-form content"
+    },
+    "mono": {
+      "value": 1.4,
+      "description": "Code, terminal"
+    }
+  },
+  "letterSpacing": {
+    "tight": {
+      "value": "-0.02em",
+      "usage": "Large headings"
+    },
+    "normal": {
+      "value": "0",
+      "usage": "Body text"
+    },
+    "wide": {
+      "value": "0.02em",
+      "usage": "Uppercase labels"
+    }
+  },
+  "usage": {
+    "h1": {
+      "fontFamily": "sans",
+      "fontSize": "2xl",
+      "fontWeight": 700,
+      "lineHeight": "tight",
+      "letterSpacing": "tight"
+    },
+    "h2": {
+      "fontFamily": "sans",
+      "fontSize": "xl",
+      "fontWeight": 600,
+      "lineHeight": "tight",
+      "letterSpacing": "tight"
+    },
+    "h3": {
+      "fontFamily": "sans",
+      "fontSize": "lg",
+      "fontWeight": 600,
+      "lineHeight": "tight"
+    },
+    "h4": {
+      "fontFamily": "sans",
+      "fontSize": "md",
+      "fontWeight": 500,
+      "lineHeight": "normal"
+    },
+    "subtitle": {
+      "fontFamily": "sans",
+      "fontSize": "base",
+      "fontWeight": 500,
+      "lineHeight": "normal",
+      "color": "text-secondary"
+    },
+    "body": {
+      "fontFamily": "sans",
+      "fontSize": "base",
+      "fontWeight": 400,
+      "lineHeight": "normal"
+    },
+    "bodySmall": {
+      "fontFamily": "sans",
+      "fontSize": "sm",
+      "fontWeight": 400,
+      "lineHeight": "normal"
+    },
+    "caption": {
+      "fontFamily": "sans",
+      "fontSize": "xs",
+      "fontWeight": 400,
+      "lineHeight": "normal",
+      "color": "text-tertiary"
+    },
+    "button": {
+      "fontFamily": "sans",
+      "fontSize": "sm",
+      "fontWeight": 500,
+      "lineHeight": 1,
+      "letterSpacing": "normal"
+    },
+    "terminal": {
+      "fontFamily": "mono",
+      "fontSize": "sm",
+      "fontWeight": 400,
+      "lineHeight": "mono"
+    },
+    "code": {
+      "fontFamily": "mono",
+      "fontSize": "sm",
+      "fontWeight": 400,
+      "lineHeight": "mono"
+    },
+    "codeBlock": {
+      "fontFamily": "mono",
+      "fontSize": "sm",
+      "fontWeight": 400,
+      "lineHeight": "mono"
+    },
+    "kbd": {
+      "fontFamily": "sans",
+      "fontSize": "xs",
+      "fontWeight": 500,
+      "lineHeight": 1,
+      "letterSpacing": "normal"
+    }
+  }
+}

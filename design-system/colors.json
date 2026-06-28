@@ -1,0 +1,243 @@
+{
+  "$schema": "https://design.linkup.studio/schemas/colors.json",
+  "name": "LinkUp Studio Color System",
+  "version": "1.0.0",
+  "colors": {
+    "background": {
+      "canvas": {
+        "value": "#0d1117",
+        "description": "Deepest layer - main canvas"
+      },
+      "surface": {
+        "value": "#161b22",
+        "description": "Elevated surfaces - cards, panels"
+      },
+      "elevated": {
+        "value": "#21262d",
+        "description": "Highest elevation - modals, dropdowns"
+      },
+      "overlay": {
+        "value": "#30363d",
+        "description": "Overlays - tooltips, hover states"
+      },
+      "inset": {
+        "value": "#010409",
+        "description": "Inset areas - terminal, code blocks"
+      },
+      "scrim": {
+        "value": "rgba(0, 0, 0, 0.6)",
+        "description": "Modal overlay backdrop"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "#30363d",
+        "description": "Standard borders"
+      },
+      "muted": {
+        "value": "#21262d",
+        "description": "Subtle dividers"
+      },
+      "subtle": {
+        "value": "#21262d",
+        "description": "Very subtle borders"
+      },
+      "accent": {
+        "value": "rgba(56, 139, 253, 0.4)",
+        "description": "Focus rings, active states"
+      },
+      "active": {
+        "value": "#58a6ff",
+        "description": "Active/focused borders"
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#e6edf3",
+        "description": "Primary content"
+      },
+      "secondary": {
+        "value": "#8b949e",
+        "description": "Secondary, labels"
+      },
+      "tertiary": {
+        "value": "#6e7681",
+        "description": "Disabled, hints"
+      },
+      "disabled": {
+        "value": "#484f58",
+        "description": "Disabled text"
+      },
+      "inverse": {
+        "value": "#0d1117",
+        "description": "Text on accent color"
+      },
+      "link": {
+        "value": "#58a6ff",
+        "description": "Link text"
+      },
+      "placeholder": {
+        "value": "#6e7681",
+        "description": "Input placeholders"
+      }
+    },
+    "accent": {
+      "fg": {
+        "value": "#58a6ff",
+        "description": "Primary accent - foreground"
+      },
+      "emphasis": {
+        "value": "#1f6feb",
+        "description": "Emphasis, buttons"
+      },
+      "muted": {
+        "value": "rgba(56, 139, 253, 0.15)",
+        "description": "Backgrounds with accent"
+      },
+      "subtle": {
+        "value": "rgba(56, 139, 253, 0.1)",
+        "description": "Very subtle accent"
+      }
+    },
+    "semantic": {
+      "success": {
+        "fg": {
+          "value": "#3fb950",
+          "description": "Success foreground"
+        },
+        "emphasis": {
+          "value": "#238636",
+          "description": "Success background"
+        },
+        "muted": {
+          "value": "rgba(63, 185, 80, 0.15)",
+          "description": "Success subtle"
+        }
+      },
+      "warning": {
+        "fg": {
+          "value": "#d29922",
+          "description": "Warning foreground"
+        },
+        "emphasis": {
+          "value": "#9e6a03",
+          "description": "Warning background"
+        },
+        "muted": {
+          "value": "rgba(210, 153, 34, 0.15)",
+          "description": "Warning subtle"
+        }
+      },
+      "danger": {
+        "fg": {
+          "value": "#f85149",
+          "description": "Danger foreground"
+        },
+        "emphasis": {
+          "value": "#da3633",
+          "description": "Danger background"
+        },
+        "muted": {
+          "value": "rgba(248, 81, 73, 0.15)",
+          "description": "Danger subtle"
+        }
+      },
+      "done": {
+        "fg": {
+          "value": "#a371f7",
+          "description": "Done/Complete foreground"
+        },
+        "emphasis": {
+          "value": "#8957e5",
+          "description": "Done background"
+        },
+        "muted": {
+          "value": "rgba(163, 113, 247, 0.15)",
+          "description": "Done subtle"
+        }
+      },
+      "info": {
+        "fg": {
+          "value": "#39c5cf",
+          "description": "Info foreground"
+        },
+        "emphasis": {
+          "value": "#1f6feb",
+          "description": "Info background"
+        },
+        "muted": {
+          "value": "rgba(57, 197, 207, 0.15)",
+          "description": "Info subtle"
+        }
+      }
+    },
+    "special": {
+      "purple": {
+        "value": "#a371f7",
+        "description": "Purple accent"
+      },
+      "orange": {
+        "value": "#f0883e",
+        "description": "Orange accent - notifications"
+      },
+      "pink": {
+        "value": "#db61a2",
+        "description": "Pink accent"
+      },
+      "cyan": {
+        "value": "#39c5cf",
+        "description": "Cyan accent"
+      }
+    },
+    "terminal": {
+      "black": {
+        "value": "#484f58"
+      },
+      "brightBlack": {
+        "value": "#6e7681"
+      },
+      "red": {
+        "value": "#f85149"
+      },
+      "brightRed": {
+        "value": "#ff7b72"
+      },
+      "green": {
+        "value": "#3fb950"
+      },
+      "brightGreen": {
+        "value": "#56d364"
+      },
+      "yellow": {
+        "value": "#d29922"
+      },
+      "brightYellow": {
+        "value": "#e3b341"
+      },
+      "blue": {
+        "value": "#58a6ff"
+      },
+      "brightBlue": {
+        "value": "#79c0ff"
+      },
+      "purple": {
+        "value": "#a371f7"
+      },
+      "brightPurple": {
+        "value": "#bc8cff"
+      },
+      "cyan": {
+        "value": "#39c5cf"
+      },
+      "brightCyan": {
+        "value": "#56d4dd"
+      },
+      "white": {
+        "value": "#b1bac4"
+      },
+      "brightWhite": {
+        "value": "#e6edf3"
+      }
+    }
+  }
+}

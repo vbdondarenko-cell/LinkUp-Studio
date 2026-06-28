@@ -443,4 +443,24 @@ Based on 4px grid:
 
 ---
 
+## 9. Design System Files
+
+The complete design system is maintained in the `design-system/` directory:
+
+| File | Description |
+|------|-------------|
+| `design-system/colors.json` | Complete color token definitions |
+| `design-system/typography.json` | Font families, sizes, weights |
+| `design-system/spacing.json` | 4px-based spacing scale |
+| `design-system/radius.json` | Border radius specifications |
+| `design-system/animations.json` | Motion and easing tokens |
+| `design-system/icons.md` | Icon system documentation |
+| `design-system/design-tokens.json` | Combined design tokens |
+| `design-system/DESIGN_SYSTEM.md` | Comprehensive design documentation |
+| `design-system/FIGMA_STYLE_GUIDE.md` | Figma-specific style guide |
+
+All UI components must follow these design tokens. See `design-system/DESIGN_SYSTEM.md` for implementation guidelines.
+
+---
+
 *This specification serves as the single source of truth for LinkUp Studio's design and implementation.*

@@ -1,0 +1,184 @@
+{
+  "$schema": "https://design.linkup.studio/schemas/spacing.json",
+  "name": "LinkUp Studio Spacing System",
+  "version": "1.0.0",
+  "description": "4px-based spacing scale for consistent layouts",
+  "scale": {
+    "0": {
+      "value": "0",
+      "pixels": "0px",
+      "css": "var(--space-0)"
+    },
+    "px": {
+      "value": "1px",
+      "pixels": "1px",
+      "css": "var(--space-px)"
+    },
+    "0-5": {
+      "value": "2px",
+      "pixels": "2px",
+      "css": "var(--space-0-5)"
+    },
+    "1": {
+      "value": "4px",
+      "pixels": "4px",
+      "css": "var(--space-1)"
+    },
+    "1-5": {
+      "value": "6px",
+      "pixels": "6px",
+      "css": "var(--space-1-5)"
+    },
+    "2": {
+      "value": "8px",
+      "pixels": "8px",
+      "css": "var(--space-2)"
+    },
+    "2-5": {
+      "value": "10px",
+      "pixels": "10px",
+      "css": "var(--space-2-5)"
+    },
+    "3": {
+      "value": "12px",
+      "pixels": "12px",
+      "css": "var(--space-3)"
+    },
+    "3-5": {
+      "value": "14px",
+      "pixels": "14px",
+      "css": "var(--space-3-5)"
+    },
+    "4": {
+      "value": "16px",
+      "pixels": "16px",
+      "css": "var(--space-4)"
+    },
+    "5": {
+      "value": "20px",
+      "pixels": "20px",
+      "css": "var(--space-5)"
+    },
+    "6": {
+      "value": "24px",
+      "pixels": "24px",
+      "css": "var(--space-6)"
+    },
+    "7": {
+      "value": "28px",
+      "pixels": "28px",
+      "css": "var(--space-7)"
+    },
+    "8": {
+      "value": "32px",
+      "pixels": "32px",
+      "css": "var(--space-8)"
+    },
+    "9": {
+      "value": "36px",
+      "pixels": "36px",
+      "css": "var(--space-9)"
+    },
+    "10": {
+      "value": "40px",
+      "pixels": "40px",
+      "css": "var(--space-10)"
+    },
+    "11": {
+      "value": "44px",
+      "pixels": "44px",
+      "css": "var(--space-11)"
+    },
+    "12": {
+      "value": "48px",
+      "pixels": "48px",
+      "css": "var(--space-12)"
+    },
+    "14": {
+      "value": "56px",
+      "pixels": "56px",
+      "css": "var(--space-14)"
+    },
+    "16": {
+      "value": "64px",
+      "pixels": "64px",
+      "css": "var(--space-16)"
+    },
+    "20": {
+      "value": "80px",
+      "pixels": "80px",
+      "css": "var(--space-20)"
+    },
+    "24": {
+      "value": "96px",
+      "pixels": "96px",
+      "css": "var(--space-24)"
+    },
+    "32": {
+      "value": "128px",
+      "pixels": "128px",
+      "css": "var(--space-32)"
+    }
+  },
+  "usage": {
+    "iconGap": {
+      "value": "4px",
+      "description": "Gap between icon and text"
+    },
+    "inputPadding": {
+      "value": "8px 12px",
+      "description": "Input field padding"
+    },
+    "buttonPadding": {
+      "value": "8px 12px",
+      "description": "Button padding"
+    },
+    "buttonPaddingSm": {
+      "value": "4px 8px",
+      "description": "Small button padding"
+    },
+    "buttonPaddingLg": {
+      "value": "12px 16px",
+      "description": "Large button padding"
+    },
+    "cardPadding": {
+      "value": "16px",
+      "description": "Card internal padding"
+    },
+    "sectionGap": {
+      "value": "24px",
+      "description": "Gap between sections"
+    },
+    "dialogPadding": {
+      "value": "24px",
+      "description": "Dialog padding"
+    },
+    "sidebarPadding": {
+      "value": "8px",
+      "description": "Sidebar item padding"
+    },
+    "panelPadding": {
+      "value": "12px",
+      "description": "Panel internal padding"
+    }
+  },
+  "layout": {
+    "titlebar": {
+      "height": "32px"
+    },
+    "sidebar": {
+      "collapsed": "56px",
+      "expanded": "240px",
+      "itemHeight": "40px"
+    },
+    "statusbar": {
+      "height": "24px"
+    },
+    "tabbar": {
+      "height": "36px"
+    },
+    "panel": {
+      "activityWidth": "320px"
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "$schema": "https://design.linkup.studio/schemas/radius.json",
+  "name": "LinkUp Studio Border Radius System",
+  "version": "1.0.0",
+  "description": "Consistent border radius values for all UI elements",
+  "radius": {
+    "none": {
+      "value": "0px",
+      "css": "var(--radius-none)",
+      "usage": "Full-bleed elements"
+    },
+    "sm": {
+      "value": "4px",
+      "css": "var(--radius-sm)",
+      "usage": "Badges, tags, small elements"
+    },
+    "md": {
+      "value": "6px",
+      "css": "var(--radius-md)",
+      "usage": "Buttons, inputs, dropdowns"
+    },
+    "lg": {
+      "value": "8px",
+      "css": "var(--radius-lg)",
+      "usage": "Cards, panels, modals"
+    },
+    "xl": {
+      "value": "12px",
+      "css": "var(--radius-xl)",
+      "usage": "Large dialogs, command palette"
+    },
+    "2xl": {
+      "value": "16px",
+      "css": "var(--radius-2xl)",
+      "usage": "Large containers"
+    },
+    "full": {
+      "value": "9999px",
+      "css": "var(--radius-full)",
+      "usage": "Pills, avatars, toggles"
+    }
+  },
+  "usage": {
+    "button": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "buttonIcon": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "input": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "searchInput": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "textarea": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "card": {
+      "value": "8px",
+      "css": "var(--radius-lg)"
+    },
+    "dialog": {
+      "value": "12px",
+      "css": "var(--radius-xl)"
+    },
+    "modal": {
+      "value": "12px",
+      "css": "var(--radius-xl)"
+    },
+    "commandPalette": {
+      "value": "12px",
+      "css": "var(--radius-xl)"
+    },
+    "dropdown": {
+      "value": "8px",
+      "css": "var(--radius-lg)"
+    },
+    "tooltip": {
+      "value": "6px",
+      "css": "var(--radius-md)"
+    },
+    "badge": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "avatar": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "checkbox": {
+      "value": "4px",
+      "css": "var(--radius-sm)"
+    },
+    "radio": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "toggle": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "progress": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "spinner": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    },
+    "sidebar": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "sidebarItem": {
+      "value": "8px",
+      "css": "var(--radius-lg)"
+    },
+    "tab": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "fileTab": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "window": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "titlebar": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "statusbar": {
+      "value": "0px",
+      "css": "var(--radius-none)"
+    },
+    "scrollbar": {
+      "value": "9999px",
+      "css": "var(--radius-full)"
+    }
+  }
+}
