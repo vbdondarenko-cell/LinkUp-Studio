@@ -1,0 +1,134 @@
+Windows Registry Editor Version 5.00
+
+; ============================================
+; GitHub Dark Theme - System-Wide Dark Mode
+; LinkUp Studio - Premium Windows Theme
+; ============================================
+
+; Enable Dark Mode for Windows 10/11
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"AppsUseLightTheme"=dword:00000000
+"SystemUsesLightTheme"=dword:00000000
+
+; Enable Color Previews
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"ColorPrevalence"=dword:00000001
+"EnableTransparency"=dword:00000001
+
+; Accent Colors
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"AccentColor"=dword:00feb61f
+"AccentColorManual"=dword:00feb61f
+"ColorizationColor"=dword:00feb61f
+"ColorizationColorBalance"=dword:00000046
+"ColorizationAfterglow"=dword:00feb61f
+"ColorizationAfterglowBalance"=dword:00000032
+
+; ============================================
+; Windows 11 Specific Settings
+; ============================================
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"IlluminationPreference"="Dark"
+
+; ============================================
+; Explorer Dark Mode
+; ============================================
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AccentColors]
+"AccentColor"=dword:00feb61f
+"ColorSet1"=dword:00e6edf3
+"ColorSet2"=dword:00000000
+"ColorSet3"=dword:00000000
+"ColorSet4"=dword:00000000
+"HighContrastAccent"=dword:00feb61f
+"NeutralColor"=dword:00e6edf3
+"Pre valence"=dword:00000001
+
+; ============================================
+; Window Borders and Frame
+; ============================================
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM]
+"AccentColor"=dword:00feb61f
+"ColorizationColor"=dword:00feb61f
+"ColorizationColorBalance"=dword:00000046
+"EnableWindowColorization"=dword:00000001
+"AlwaysHibernateApps"=dword:00000000
+
+; ============================================
+; Taskbar Settings
+; ============================================
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"TaskbarAcrylicOpacity"=dword:00000000
+"UseOLEDTaskbarTransparency"=dword:00000001
+"TaskbarShowDesktopButton"=dword:00000001
+
+; ============================================
+; Control Panel Colors
+; ============================================
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"ActiveBorder"="48 54 61"
+"ActiveTitle"="22 27 34"
+"AppWorkspace"="13 17 23"
+"Background"="13 17 23"
+"ButtonAlternateFace"="33 38 45"
+"ButtonDkShadow"="27 31 36"
+"ButtonFace"="33 38 45"
+"ButtonHilight"="48 54 61"
+"ButtonLight"="48 54 61"
+"ButtonShadow"="27 31 36"
+"ButtonText"="230 237 243"
+"ComboBoxText"="230 237 243"
+"GradientActiveTitle"="22 27 34"
+"GradientInactiveTitle"="22 27 34"
+"GrayText"="110 118 129"
+"Hilight"="31 111 235"
+"HilightText"="230 237 243"
+"InactiveBorder"="33 38 45"
+"InactiveTitle"="22 27 34"
+"InactiveTitleText"="139 148 158"
+"InfoText"="230 237 243"
+"InfoWindow"="33 38 45"
+"Menu"="22 27 34"
+"MenuBar"="22 27 34"
+"MenuHilight"="31 111 235"
+"MenuText"="230 237 243"
+"Scrollbar"="48 54 61"
+"TitleText"="230 237 243"
+"Window"="22 27 34"
+"WindowFrame"="48 54 61"
+"WindowText"="230 237 243"
+
+; ============================================
+; Message Box Colors
+; ============================================
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"MessageBox"="22 27 34"
+"MessageBoxText"="230 237 243"
+
+; ============================================
+; Tooltip Colors
+; ============================================
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"Info"="22 27 34"
+"HotTrackingColor"="88 166 255"
+
+; ============================================
+; High Contrast Settings
+; ============================================
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast]
+"HighContrastScheme"=""
+"Flags"="0"
+
+; ============================================
+; Immersive Control Panel
+; ============================================
+
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\DefaultAccount\Current\default$windows.data.shell.appsfolder\themes\windows.ui.shell.theme]
+"Data"=hex:00

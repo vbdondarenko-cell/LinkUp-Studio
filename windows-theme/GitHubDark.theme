@@ -1,0 +1,128 @@
+; LinkUp Studio - GitHub Dark Windows Theme
+; Based on GitHub's Dark Color Palette
+; Compatible with Windows 10/11
+
+[Theme]
+DisplayName=GitHub Dark
+Company=LinkUp Studio
+Copyright=Copyright © 2024 LinkUp Studio
+Version=1.0.0
+
+[Slideshow]
+Interval=1800000
+Shuffle=1
+
+[Control Panel\Colors]
+ActiveBorderColor=48 54 61
+ActiveTitleBarColor=22 27 34
+ActiveTitleTextColor=230 237 243
+AppWorkspaceColor=13 17 23
+BackgroundColor=13 17 23
+ButtonAlternateFaceColor=33 38 45
+ButtonFaceColor=33 38 45
+ButtonHilightColor=48 54 61
+ButtonLightColor=48 54 61
+ButtonShadowColor=27 31 36
+ButtonTextColor=230 237 243
+ComboBoxButtonArrowColor=139 148 158
+ComboBoxButtonBackgroundColor=33 38 45
+ComboBoxButtonHilightColor=48 54 61
+ComboBoxButtonInactiveArrowColor=110 118 129
+ComboBoxTextColor=230 237 243
+DesktopColor=13 17 23
+GradientActiveTitleBarColor=22 27 34
+GradientInactiveTitleBarColor=22 27 34
+HilightColor=31 111 235
+HilightTextColor=230 237 243
+HotTrackingColor=88 166 255
+InactiveBorderColor=33 38 45
+InactiveTitleBarColor=22 27 34
+InactiveTitleTextColor=139 148 158
+InfoColor=48 54 61
+InfoTextColor=230 237 243
+MenuBarColor=22 27 34
+MenuHighlightColor=31 111 235
+MenuTextColor=230 237 243
+MSThemeActiveTitleColor=22 27 34
+MSThemeInactiveTitleColor=22 27 34
+MSThemeTitleTextColor=230 237 243
+NongreyGradientActiveTitle=0
+NongreyGradientInactiveTitle=0
+PrintQuality=96
+ScrollbarArrowColor=139 148 158
+ScrollbarBackgroundColor=22 27 34
+ScrollbarGreyColor=48 54 61
+ScrollbarHilightColor=88 166 255
+ScrollbarInactiveColor=33 38 45
+TitleTextColor=230 237 243
+WindowColor=22 27 34
+WindowTextColor=230 237 243
+
+[Control Panel\Desktop]
+WallpaperStyle=10
+TileWallpaper=0
+
+[Desktop]
+Directory=%SystemRoot%\Web\4K\Wallpaper\Windows\GitHubDark.png
+Pattern=
+
+[VisualStyles]
+Path=%SystemRoot%\Resources\Themes\GitHubDark\GitHubDark.msstyles
+ColorStyle=DarkMode
+Size=NormalSize
+AutoColorization=0
+ColorizationColor=0x006feb
+SystemMode=Dark
+AccentColorTaskbar=0x00dafb
+
+[MasterThemeSelector]
+ThemeActive=d7ff3bf
+
+[MasterThemeSelector\Accents]
+Accent1=0x001f6feb
+Accent2=0x003fb950
+Accent3=0x00f85149
+Accent4=0x00d29922
+Accent5=0x00a371f7
+Accent6=0x00f0883e
+Accent7=0x0058a6ff
+Accent8=0x00db61a2
+
+[Information]
+Id={8d0c1c4a-7b6f-4c4e-9f3a-1b2c3d4e5f6a}
+Name=GitHub Dark
+Description=A complete Windows theme based on GitHub's dark color palette
+Author=LinkUp Studio
+Version=1.0.0
+
+[CLSID\{4D36E96D-E325-11CE-BFC1-08002BE10318}\Default]
+Data=Display
+
+[CLSID\{4D36E96E-E325-11CE-BFC1-08002BE10318}\Default]
+Data=Display
+
+[CLSID\{6C5D1678-4FC7-4B5E-A0C8-9D8B2E8F8F8F}\Default]
+Data=Display
+
+[CLSID\{BA126AE5-2166-11D1-C1E4-00C04FC32595}\Default]
+Data=NetConfig
+
+[Boot]
+BootAnimation=0
+
+[WindowMetrics]
+MinAnimate=1
+BorderWidth=8
+ScrollBorder=16
+CaptionWidth=24
+CaptionHeight=24
+SmallCaptionWidth=18
+SmallCaptionHeight=18
+MenuWidth=24
+MenuHeight=24
+PaddedBorderWidth=8
+
+[Sounds]
+DefaultValue=Windows Default
+SchemeClass=Application
+SystemDefault=Windows Default

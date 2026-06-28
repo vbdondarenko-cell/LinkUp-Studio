@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Dark Theme - Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-surface: #161b22;
+      --bg-elevated: #21262d;
+      --bg-overlay: #30363d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-tertiary: #6e7681;
+      --accent-fg: #58a6ff;
+      --accent-emphasis: #1f6feb;
+      --accent-muted: rgba(56, 139, 253, 0.15);
+      --success-fg: #3fb950;
+      --warning-fg: #d29922;
+      --danger-fg: #f85149;
+      --done-fg: #a371f7;
+      --border-default: #30363d;
+      --border-muted: #21262d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 40px;
+    }
+
+    .preview-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-muted);
+    }
+
+    /* Color Swatches */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .color-swatch {
+      background: var(--bg-surface);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-muted);
+    }
+
+    .color-preview {
+      height: 80px;
+    }
+
+    .color-info {
+      padding: 12px;
+    }
+
+    .color-name {
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .color-hex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* UI Components Preview */
+    .ui-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ui-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .ui-card-title {
+      font-weight: 600;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent-emphasis);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2d7ff9;
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-default);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-overlay);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .btn-danger {
+      background: #da3633;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #f85149;
+    }
+
+    /* Input */
+    .input {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: 6px;
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--accent-fg);
+      box-shadow: 0 0 0 3px rgba(56, 139, 253, 0.3);
+    }
+
+    .input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    /* Context Menu */
+    .context-menu {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 8px;
+      padding: 4px;
+      min-width: 200px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .context-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .context-item:hover {
+      background: var(--bg-elevated);
+    }
+
+    .context-item-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+    }
+
+    .context-divider {
+      height: 1px;
+      background: var(--border-muted);
+      margin: 4px 0;
+    }
+
+    .context-shortcut {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Checkbox */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--border-default);
+      border-radius: 4px;
+      background: var(--bg-elevated);
+      cursor: pointer;
+      appearance: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkbox:checked {
+      background: var(--accent-emphasis);
+      border-color: var(--accent-emphasis);
+    }
+
+    .checkbox:checked::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+    }
+
+    /* Toggle */
+    .toggle {
+      width: 44px;
+      height: 24px;
+      background: var(--bg-overlay);
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: var(--text-primary);
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .toggle.active {
+      background: var(--accent-emphasis);
+    }
+
+    .toggle.active::after {
+      transform: translateX(20px);
+    }
+
+    /* Progress */
+    .progress {
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--accent-emphasis);
+      border-radius: 4px;
+    }
+
+    .progress-bar.success {
+      background: var(--success-fg);
+    }
+
+    .progress-bar.warning {
+      background: var(--warning-fg);
+    }
+
+    .progress-bar.danger {
+      background: var(--danger-fg);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--bg-elevated);
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab:hover {
+      color: var(--text-primary);
+    }
+
+    .tab.active {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .badge-default {
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+    }
+
+    .badge-primary {
+      background: var(--accent-muted);
+      color: var(--accent-fg);
+    }
+
+    .badge-success {
+      background: rgba(63, 185, 80, 0.15);
+      color: var(--success-fg);
+    }
+
+    .badge-warning {
+      background: rgba(210, 153, 34, 0.15);
+      color: var(--warning-fg);
+    }
+
+    .badge-danger {
+      background: rgba(248, 81, 73, 0.15);
+      color: var(--danger-fg);
+    }
+
+    /* Taskbar Preview */
+    .taskbar-preview {
+      background: rgba(22, 27, 34, 0.9);
+      border-top: 1px solid var(--border-default);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .taskbar-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-elevated);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .taskbar-icon:hover {
+      background: var(--bg-overlay);
+      color: var(--text-primary);
+    }
+
+    .taskbar-icon.active {
+      color: var(--accent-fg);
+    }
+
+    .taskbar-spacer {
+      flex: 1;
+    }
+
+    .taskbar-clock {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Window Frame Preview */
+    .window-frame {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 400px;
+    }
+
+    .titlebar {
+      background: var(--bg-elevated);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .titlebar-title {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .titlebar-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .titlebar-btn.minimize { background: var(--success-fg); }
+    .titlebar-btn.maximize { background: var(--warning-fg); }
+    .titlebar-btn.close { background: var(--danger-fg); }
+
+    .window-content {
+      padding: 20px;
+    }
+
+    /* Semantic Colors */
+    .semantic-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .semantic-item {
+      flex: 1;
+      background: var(--bg-surface);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .semantic-color {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin: 0 auto 8px;
+    }
+
+    .semantic-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-container">
+    <h1>🎨 GitHub Dark Theme</h1>
+    <p class="subtitle">Complete Windows 10/11 dark theme based on GitHub's design language</p>
+
+    <!-- Base Colors -->
+    <div class="section">
+      <h2 class="section-title">Base Colors</h2>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #0d1117;"></div>
+          <div class="color-info">
+            <div class="color-name">Canvas</div>
+            <div class="color-hex">#0d1117</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #161b22;"></div>
+          <div class="color-info">
+            <div class="color-name">Surface</div>
+            <div class="color-hex">#161b22</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #21262d;"></div>
+          <div class="color-info">
+            <div class="color-name">Elevated</div>
+            <div class="color-hex">#21262d</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #30363d;"></div>
+          <div class="color-info">
+            <div class="color-name">Overlay</div>
+            <div class="color-hex">#30363d</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text Colors -->
+    <div class="section">
+      <h2 class="section-title">Text Colors</h2>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-preview" style="background: linear-gradient(#0d1117, #0d1117);">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #e6edf3; font-size: 24px; font-weight: 600;">Aa</div>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Primary</div>
+            <div class="color-hex">#e6edf3</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: linear-gradient(#0d1117, #0d1117);">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #8b949e; font-size: 24px; font-weight: 600;">Aa</div>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Secondary</div>
+            <div class="color-hex">#8b949e</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: linear-gradient(#0d1117, #0d1117);">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #6e7681; font-size: 24px; font-weight: 600;">Aa</div>
+          </div>
+          <div class="color-info">
+            <div class="color-name">Tertiary</div>
+            <div class="color-hex">#6e7681</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic Colors -->
+    <div class="section">
+      <h2 class="section-title">Semantic Colors</h2>
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #1f6feb;"></div>
+          <div class="color-info">
+            <div class="color-name">Accent</div>
+            <div class="color-hex">#1f6feb</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #3fb950;"></div>
+          <div class="color-info">
+            <div class="color-name">Success</div>
+            <div class="color-hex">#3fb950</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #d29922;"></div>
+          <div class="color-info">
+            <div class="color-name">Warning</div>
+            <div class="color-hex">#d29922</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #f85149;"></div>
+          <div class="color-info">
+            <div class="color-name">Danger</div>
+            <div class="color-hex">#f85149</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #a371f7;"></div>
+          <div class="color-info">
+            <div class="color-name">Done</div>
+            <div class="color-hex">#a371f7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UI Components -->
+    <div class="section">
+      <h2 class="section-title">UI Components</h2>
+      <div class="ui-grid">
+        <!-- Buttons -->
+        <div class="ui-card">
+          <div class="ui-card-title">Buttons</div>
+          <div class="button-group">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-danger">Danger</button>
+          </div>
+        </div>
+
+        <!-- Inputs -->
+        <div class="ui-card">
+          <div class="ui-card-title">Input Fields</div>
+          <input type="text" class="input" placeholder="Enter text...">
+          <input type="text" class="input" value="Filled input" readonly>
+        </div>
+
+        <!-- Context Menu -->
+        <div class="ui-card">
+          <div class="ui-card-title">Context Menu</div>
+          <div class="context-menu">
+            <div class="context-item">
+              <span class="context-item-icon">📋</span>
+              <span>Copy</span>
+              <span class="context-shortcut">Ctrl+C</span>
+            </div>
+            <div class="context-item">
+              <span class="context-item-icon">📝</span>
+              <span>Paste</span>
+              <span class="context-shortcut">Ctrl+V</span>
+            </div>
+            <div class="context-divider"></div>
+            <div class="context-item">
+              <span class="context-item-icon">🔄</span>
+              <span>Refresh</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkboxes & Toggles -->
+        <div class="ui-card">
+          <div class="ui-card-title">Controls</div>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox" checked>
+              <span>Enable dark mode</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" class="checkbox">
+              <span>Show notifications</span>
+            </label>
+          </div>
+          <div style="margin-top: 16px; display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 14px;">Notifications</span>
+            <div class="toggle active"></div>
+          </div>
+        </div>
+
+        <!-- Progress Bars -->
+        <div class="ui-card">
+          <div class="ui-card-title">Progress Bars</div>
+          <div class="progress" style="margin-bottom: 12px;">
+            <div class="progress-bar" style="width: 75%;"></div>
+          </div>
+          <div class="progress" style="margin-bottom: 12px;">
+            <div class="progress-bar success" style="width: 100%;"></div>
+          </div>
+          <div class="progress" style="margin-bottom: 12px;">
+            <div class="progress-bar warning" style="width: 50%;"></div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar danger" style="width: 25%;"></div>
+          </div>
+        </div>
+
+        <!-- Tabs & Badges -->
+        <div class="ui-card">
+          <div class="ui-card-title">Tabs & Badges</div>
+          <div class="tabs" style="margin-bottom: 16px;">
+            <div class="tab active">Overview</div>
+            <div class="tab">Repositories</div>
+            <div class="tab">Settings</div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="badge badge-default">Default</span>
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-danger">Danger</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Window Frame -->
+    <div class="section">
+      <h2 class="section-title">Window Frame</h2>
+      <div class="window-frame">
+        <div class="titlebar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="#58a6ff">
+            <path d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.1 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.71 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"/>
+          </svg>
+          <span class="titlebar-title">GitHubDark - Preview Window</span>
+          <div class="titlebar-btn minimize"></div>
+          <div class="titlebar-btn maximize"></div>
+          <div class="titlebar-btn close"></div>
+        </div>
+        <div class="window-content">
+          <p style="color: var(--text-secondary); font-size: 14px;">This is how windows appear with the GitHub Dark theme. Title bars, borders, and window controls all use the theme's color palette.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Taskbar Preview -->
+    <div class="section">
+      <h2 class="section-title">Taskbar Preview</h2>
+      <div class="taskbar-preview" style="border-radius: 8px;">
+        <div class="taskbar-icon active">🔍</div>
+        <div class="taskbar-icon">📁</div>
+        <div class="taskbar-icon">⚙️</div>
+        <div class="taskbar-icon">💻</div>
+        <div class="taskbar-spacer"></div>
+        <div class="taskbar-clock">10:30 AM</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
