@@ -133,7 +133,7 @@ function Register-WindowsStartup {
     $sourceStartup = Join-Path $scriptDir "installer\startup\startup.ps1"
     if (Test-Path $sourceStartup) {
         Copy-Item $sourceStartup $startupScript -Force
-        $batchContent = "@echo off`npowershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File \"$startupScript\"`nexit"
+        $batchContent = "@echo off`n" + "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$startupScript`"`n" + "exit"
         $batchPath = Join-Path $startupDir "LinkUp-Studio.bat"
         Set-Content -Path $batchPath -Value $batchContent -Encoding ASCII
         Write-Success "Startup configured"
