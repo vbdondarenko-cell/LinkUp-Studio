@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Icon Pack
+  Folder Closed - GitHub Dark + Fluent + Minimal Style
+  
+  Style: Flat design with subtle depth, rounded corners, GitHub-inspired colors
+  ViewBox: 128x128 for source, scalable to any size
+-->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient for depth -->
+    <linearGradient id="folderBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+    
+    <!-- Tab gradient -->
+    <linearGradient id="folderTab" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#388bfd"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    
+    <!-- Subtle inner shadow -->
+    <linearGradient id="folderInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    
+    <!-- Highlight for Fluent effect -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Folder body - main shape -->
+  <path d="M12 38 L12 102 C12 106 15 108 19 108 L109 108 C113 108 116 106 116 102 L116 50 L56 50 L50 38 L12 38 Z" 
+        fill="url(#folderBody)" 
+        filter="url(#shadow)"/>
+  
+  <!-- Folder tab -->
+  <path d="M12 38 L12 50 C12 52 14 54 16 54 L44 54 L50 38 L12 38 Z" 
+        fill="url(#folderTab)"/>
+  
+  <!-- Inner folder opening (depth illusion) -->
+  <path d="M19 54 L109 54 L109 100 C109 103 106 105 103 105 L25 105 C22 105 19 103 19 100 L19 54 Z" 
+        fill="url(#folderInner)"/>
+  
+  <!-- Top highlight for Fluent depth -->
+  <path d="M12 38 L12 50 C12 52 14 54 16 54 L44 54 L50 38 L12 38 Z" 
+        fill="url(#highlight)"/>
+  
+  <!-- Subtle border -->
+  <path d="M12 38 L12 102 C12 106 15 108 19 108 L109 108 C113 108 116 106 116 102 L116 50 L56 50 L50 38 L12 38 Z" 
+        fill="none" 
+        stroke="#484f58" 
+        stroke-width="1"
+        stroke-opacity="0.5"/>
+</svg>

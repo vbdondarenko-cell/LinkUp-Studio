@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Icon Pack
+  Folder Open - GitHub Dark + Fluent + Minimal Style
+  
+  Style: Flat design with subtle depth, rounded corners, GitHub-inspired colors
+  ViewBox: 128x128 for source, scalable to any size
+-->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient for depth -->
+    <linearGradient id="folderBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+    
+    <!-- Tab gradient -->
+    <linearGradient id="folderTab" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#388bfd"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    
+    <!-- Inner gradient -->
+    <linearGradient id="folderInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    
+    <!-- Highlight for Fluent effect -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    
+    <!-- Back panel gradient -->
+    <linearGradient id="backPanel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#21262d"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Back panel (inside of folder) -->
+  <path d="M14 40 L14 56 L114 56 L114 98 C114 102 111 105 107 105 L21 105 C17 105 14 102 14 98 L14 40 Z" 
+        fill="url(#backPanel)"
+        filter="url(#shadow)"/>
+  
+  <!-- Back panel highlight -->
+  <path d="M14 40 L14 56 L114 56 L114 50 L58 50 L52 40 L14 40 Z" 
+        fill="url(#highlight)"/>
+  
+  <!-- Front flap (open position) -->
+  <path d="M10 54 L10 96 C10 100 13 103 17 103 L111 103 C115 103 118 100 118 96 L118 54 L62 54 L56 46 L10 54 Z" 
+        fill="url(#folderBody)"
+        filter="url(#shadow)"/>
+  
+  <!-- Front flap inner shadow -->
+  <path d="M17 58 L111 58 L111 95 C111 97 109 99 106 99 L22 99 C19 99 17 97 17 95 L17 58 Z" 
+        fill="url(#folderInner)"/>
+  
+  <!-- Top highlight for Fluent depth -->
+  <path d="M10 54 L10 60 C10 62 12 64 14 64 L46 64 L52 54 L10 54 Z" 
+        fill="url(#highlight)"/>
+  
+  <!-- Subtle border -->
+  <path d="M10 54 L10 96 C10 100 13 103 17 103 L111 103 C115 103 118 100 118 96 L118 54 L62 54 L56 46 L10 54 Z" 
+        fill="none" 
+        stroke="#484f58" 
+        stroke-width="1"
+        stroke-opacity="0.4"/>
+</svg>

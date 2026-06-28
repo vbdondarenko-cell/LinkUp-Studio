@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkUp Studio Icon Pack - Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-surface: #161b22;
+      --bg-elevated: #21262d;
+      --bg-overlay: #30363d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-tertiary: #6e7681;
+      --accent-fg: #58a6ff;
+      --accent-emphasis: #1f6feb;
+      --border-default: #30363d;
+      --border-muted: #21262d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #e6edf3 0%, #58a6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent-fg);
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .icon-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .icon-card:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-default);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .icon-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding: 20px;
+      background: var(--bg-canvas);
+      border-radius: 8px;
+    }
+
+    .icon-preview img {
+      transition: transform 0.2s ease;
+    }
+
+    .icon-card:hover .icon-preview img {
+      transform: scale(1.1);
+    }
+
+    .icon-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .icon-sizes {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Size comparison grid */
+    .size-grid {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 24px;
+      padding: 40px;
+      background: var(--bg-surface);
+      border-radius: 12px;
+      border: 1px solid var(--border-muted);
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .size-item span {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .size-grid-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 40px;
+      background: var(--bg-surface);
+      border-radius: 12px;
+      border: 1px solid var(--border-muted);
+    }
+
+    /* Dark background preview */
+    .dark-preview {
+      background: var(--bg-canvas);
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border-muted);
+      margin-bottom: 40px;
+    }
+
+    .dark-preview h3 {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .preview-row {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-muted);
+    }
+
+    .preview-row:last-child {
+      border-bottom: none;
+    }
+
+    .preview-label {
+      width: 120px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .preview-icons {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .preview-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .preview-icon:hover {
+      transform: scale(1.2);
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-fg);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Download section */
+    .download-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .download-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .download-desc {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-emphasis);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2d7ff9;
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-default);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-overlay);
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--border-muted);
+      color: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LinkUp Studio Icon Pack</h1>
+      <p class="subtitle">Premium Windows icons with GitHub Dark + Fluent + Minimal design</p>
+      <span class="badge">13 Icons • SVG + PNG + ICO • GitHub Dark Theme</span>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number">13</div>
+        <div class="stat-label">Unique Icons</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">91</div>
+        <div class="stat-label">PNG Files</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">13</div>
+        <div class="stat-label">ICO Files</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Sizes</div>
+      </div>
+    </div>
+
+    <!-- Dark Theme Preview -->
+    <div class="dark-preview">
+      <h3>Icons in Context</h3>
+      
+      <div class="preview-row">
+        <span class="preview-label">Folder</span>
+        <div class="preview-icons">
+          <img class="preview-icon" src="png/64/folder-closed.png" alt="Folder" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-open.png" alt="Folder Open" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-shared.png" alt="Shared Folder" width="48" height="48">
+        </div>
+      </div>
+
+      <div class="preview-row">
+        <span class="preview-label">System</span>
+        <div class="preview-icons">
+          <img class="preview-icon" src="png/64/desktop.png" alt="Desktop" width="48" height="48">
+          <img class="preview-icon" src="png/64/drive-harddisk.png" alt="Hard Drive" width="48" height="48">
+        </div>
+      </div>
+
+      <div class="preview-row">
+        <span class="preview-label">Recycle Bin</span>
+        <div class="preview-icons">
+          <img class="preview-icon" src="png/64/recycle-bin-empty.png" alt="Empty" width="48" height="48">
+          <img class="preview-icon" src="png/64/recycle-bin-full.png" alt="Full" width="48" height="48">
+        </div>
+      </div>
+
+      <div class="preview-row">
+        <span class="preview-label">Special</span>
+        <div class="preview-icons">
+          <img class="preview-icon" src="png/64/folder-documents.png" alt="Documents" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-downloads.png" alt="Downloads" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-pictures.png" alt="Pictures" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-music.png" alt="Music" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-videos.png" alt="Videos" width="48" height="48">
+          <img class="preview-icon" src="png/64/folder-home.png" alt="Home" width="48" height="48">
+        </div>
+      </div>
+    </div>
+
+    <!-- Size Comparison -->
+    <div class="section">
+      <h2 class="section-title">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M0 1.75A.75.75 0 01.75 1h14.5a.75.75 0 010 1.5H.75A.75.75 0 010 1.75zM0 8.75A.75.75 0 01.75 8h14.5a.75.75 0 010 1.5H.75A.75.75 0 010 8.75zM0 15.5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H.75a.75.75 0 01-.75-.75z"/>
+        </svg>
+        Size Variations
+      </h2>
+      
+      <div class="size-grid">
+        <div class="size-item">
+          <img src="png/16/folder-closed.png" alt="16px">
+          <span>16px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/24/folder-closed.png" alt="24px">
+          <span>24px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/32/folder-closed.png" alt="32px">
+          <span>32px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/48/folder-closed.png" alt="48px">
+          <span>48px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/64/folder-closed.png" alt="64px">
+          <span>64px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/128/folder-closed.png" alt="128px">
+          <span>128px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/256/folder-closed.png" alt="256px">
+          <span>256px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Folder Icons -->
+    <div class="section">
+      <h2 class="section-title">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M1 3.5A1.5 1.5 0 012.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0115 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0112.733 15H3.266a2.5 2.5 0 01-2.481-2.19l-.64-5.124A1.5 1.5 0 011 3.5V3.5z"/>
+        </svg>
+        Folder Icons
+      </h2>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-closed.png" alt="Folder Closed" width="64" height="64">
+          </div>
+          <div class="icon-name">Folder Closed</div>
+          <div class="icon-sizes">folder-closed.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-open.png" alt="Folder Open" width="64" height="64">
+          </div>
+          <div class="icon-name">Folder Open</div>
+          <div class="icon-sizes">folder-open.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-shared.png" alt="Folder Shared" width="64" height="64">
+          </div>
+          <div class="icon-name">Folder Shared</div>
+          <div class="icon-sizes">folder-shared.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-documents.png" alt="Documents" width="64" height="64">
+          </div>
+          <div class="icon-name">Documents</div>
+          <div class="icon-sizes">folder-documents.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-downloads.png" alt="Downloads" width="64" height="64">
+          </div>
+          <div class="icon-name">Downloads</div>
+          <div class="icon-sizes">folder-downloads.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-pictures.png" alt="Pictures" width="64" height="64">
+          </div>
+          <div class="icon-name">Pictures</div>
+          <div class="icon-sizes">folder-pictures.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-music.png" alt="Music" width="64" height="64">
+          </div>
+          <div class="icon-name">Music</div>
+          <div class="icon-sizes">folder-music.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-videos.png" alt="Videos" width="64" height="64">
+          </div>
+          <div class="icon-name">Videos</div>
+          <div class="icon-sizes">folder-videos.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/folder-home.png" alt="Home" width="64" height="64">
+          </div>
+          <div class="icon-name">Home</div>
+          <div class="icon-sizes">folder-home.png</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Icons -->
+    <div class="section">
+      <h2 class="section-title">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M0 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H2a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v1h14V4a1 1 0 00-1-1H2zm13 4H1v5a1 1 0 001 1h12a1 1 0 001-1V7z"/>
+        </svg>
+        System Icons
+      </h2>
+      <div class="icon-grid">
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/desktop.png" alt="Desktop" width="64" height="64">
+          </div>
+          <div class="icon-name">Desktop</div>
+          <div class="icon-sizes">desktop.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/drive-harddisk.png" alt="Hard Drive" width="64" height="64">
+          </div>
+          <div class="icon-name">Hard Drive</div>
+          <div class="icon-sizes">drive-harddisk.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/recycle-bin-empty.png" alt="Recycle Bin Empty" width="64" height="64">
+          </div>
+          <div class="icon-name">Recycle Bin (Empty)</div>
+          <div class="icon-sizes">recycle-bin-empty.png</div>
+        </div>
+        <div class="icon-card">
+          <div class="icon-preview">
+            <img src="png/64/recycle-bin-full.png" alt="Recycle Bin Full" width="64" height="64">
+          </div>
+          <div class="icon-name">Recycle Bin (Full)</div>
+          <div class="icon-sizes">recycle-bin-full.png</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download -->
+    <div class="download-section">
+      <div class="download-title">Get the Complete Icon Pack</div>
+      <p class="download-desc">
+        All icons are available in SVG (source), PNG (7 sizes), and ICO (Windows) formats.
+      </p>
+      <div class="download-buttons">
+        <a href="source/" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3.5 2A1.5 1.5 0 002 3.5v9A1.5 1.5 0 003.5 14h9a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0012.5 2h-9zM5 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zM5.5 8a.5.5 0 000 1h5a.5.5 0 000-1h-5z"/>
+          </svg>
+          Browse Source Files
+        </a>
+        <a href="png/256/" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M6.002 5.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+            <path d="M2.002 1a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V3a2 2 0 00-2-2h-12zm12 1a1 1 0 011 1v6.5l-3.777-1.947a.5.5 0 00-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 00-.63.062L1.002 12V3a1 1 0 011-1h12z"/>
+          </svg>
+          Download PNG (256px)
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <p>LinkUp Studio Icon Pack • GitHub Dark + Fluent + Minimal Design</p>
+      <p style="margin-top: 8px;">Part of <strong>LinkUp Studio</strong> - Premium Windows Developer Environment</p>
+    </footer>
+  </div>
+</body>
+</html>

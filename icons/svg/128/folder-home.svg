@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Icon Pack
+  Home Folder - GitHub Dark + Fluent + Minimal Style
+  Features home icon overlay
+-->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="folderBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+    
+    <linearGradient id="folderTab" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#388bfd"/>
+      <stop offset="100%" stop-color="#1f6feb"/>
+    </linearGradient>
+    
+    <linearGradient id="folderInner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Folder body -->
+  <path d="M12 38 L12 102 C12 106 15 108 19 108 L109 108 C113 108 116 106 116 102 L116 50 L56 50 L50 38 L12 38 Z" 
+        fill="url(#folderBody)" 
+        filter="url(#shadow)"/>
+  
+  <!-- Folder tab -->
+  <path d="M12 38 L12 50 C12 52 14 54 16 54 L44 54 L50 38 L12 38 Z" 
+        fill="url(#folderTab)"/>
+  
+  <!-- Inner folder opening -->
+  <path d="M19 54 L109 54 L109 100 C109 103 106 105 103 105 L25 105 C22 105 19 103 19 100 L19 54 Z" 
+        fill="url(#folderInner)"/>
+  
+  <!-- Home icon overlay -->
+  <g transform="translate(76, 58)">
+    <!-- Background circle -->
+    <circle cx="18" cy="22" r="20" fill="#21262d" stroke="#30363d" stroke-width="1.5"/>
+    
+    <!-- House shape -->
+    <path d="M18 8 L6 20 L10 20 L10 32 L26 32 L26 20 L30 20 Z" fill="#3fb950"/>
+    
+    <!-- Door -->
+    <rect x="14" y="22" width="8" height="10" rx="1" fill="#238636"/>
+    
+    <!-- Window -->
+    <rect x="20" y="14" width="6" height="6" rx="1" fill="#161b22"/>
+  </g>
+  
+  <!-- Top highlight -->
+  <path d="M12 38 L12 50 C12 52 14 54 16 54 L44 54 L50 38 L12 38 Z" 
+        fill="url(#highlight)"/>
+  
+  <!-- Border -->
+  <path d="M12 38 L12 102 C12 106 15 108 19 108 L109 108 C113 108 116 106 116 102 L116 50 L56 50 L50 38 L12 38 Z" 
+        fill="none" 
+        stroke="#484f58" 
+        stroke-width="1"
+        stroke-opacity="0.5"/>
+</svg>

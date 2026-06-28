@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Icon Pack
+  Desktop - GitHub Dark + Fluent + Minimal Style
+-->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="screenBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+    
+    <linearGradient id="screenFrame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+    
+    <linearGradient id="stand" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="100%" stop-color="#21262d"/>
+    </linearGradient>
+    
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    
+    <!-- Monitor glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Monitor frame -->
+  <rect x="8" y="12" width="112" height="76" rx="6" fill="url(#screenFrame)" filter="url(#shadow)"/>
+  
+  <!-- Screen -->
+  <rect x="12" y="16" width="104" height="64" rx="4" fill="url(#screenBg)"/>
+  
+  <!-- Screen content - desktop icons grid -->
+  <g fill="#8b949e">
+    <!-- Row 1 -->
+    <rect x="22" y="24" width="18" height="18" rx="3"/>
+    <rect x="46" y="24" width="18" height="18" rx="3"/>
+    <rect x="70" y="24" width="18" height="18" rx="3"/>
+    
+    <!-- Row 2 -->
+    <rect x="22" y="48" width="18" height="18" rx="3"/>
+    <rect x="46" y="48" width="18" height="18" rx="3"/>
+  </g>
+  
+  <!-- Active icon highlight -->
+  <rect x="22" y="48" width="18" height="18" rx="3" fill="#58a6ff" opacity="0.8"/>
+  
+  <!-- Stand -->
+  <path d="M52 88 L52 100 C52 102 54 104 56 104 L72 104 C74 104 76 102 76 100 L76 88 L52 88 Z" 
+        fill="url(#stand)"/>
+  
+  <!-- Stand base -->
+  <ellipse cx="64" cy="108" rx="24" ry="6" fill="url(#screenFrame)"/>
+  
+  <!-- Screen highlight -->
+  <rect x="12" y="16" width="104" height="32" rx="4" fill="url(#highlight)"/>
+  
+  <!-- Webcam dot -->
+  <circle cx="64" cy="13" r="2" fill="#21262d"/>
+  <circle cx="64" cy="13" r="1" fill="#3fb950" filter="url(#glow)">
+    <animate attributeName="opacity" values="1;0.6;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Subtle border -->
+  <rect x="8" y="12" width="112" height="76" rx="6" fill="none" stroke="#484f58" stroke-width="1" stroke-opacity="0.3"/>
+</svg>
