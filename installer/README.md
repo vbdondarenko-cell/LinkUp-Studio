@@ -12,6 +12,7 @@ A comprehensive one-click installer for the LinkUp Studio premium developer envi
 - ✅ **Configure VS Code** - Dark theme and editor settings
 - ✅ **Create Desktop Shortcut** - Quick launch from desktop
 - ✅ **Create Start Menu Shortcut** - Easy access from Start Menu
+- ✅ **Configure Windows Startup** - Auto-launch after login (< 10 seconds)
 - ✅ **Backup Previous Settings** - Automatic backup before installation
 - ✅ **One-Click Uninstall** - Complete removal with optional restore
 

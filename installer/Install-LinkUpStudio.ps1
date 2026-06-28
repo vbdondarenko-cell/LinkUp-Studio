@@ -13,6 +13,7 @@ param(
     [switch]$SkipTerminal,
     [switch]$SkipVSCode,
     [switch]$SkipShortcuts,
+    [switch]$SkipStartup,
     [switch]$SkipBackup,
     [switch]$Silent,
     [switch]$Verbose
@@ -707,6 +708,144 @@ function New-StartMenuShortcut {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
+# Startup Configuration
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+function Register-WindowsStartup {
+    param(
+        [string]$BrowserURL = "https://app.all-hands.dev",
+        [string]$ProjectPath = ""
+    )
+    
+    if ($SkipStartup) {
+        Write-Info "Skipping startup configuration"
+        return
+    }
+    
+    Write-Step "Configuring Windows startup..."
+    
+    # Create startup script
+    $startupScript = @"
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# LinkUp Studio Fast Startup
+# Runs automatically after Windows login
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+`$ErrorActionPreference = "SilentlyContinue"
+`$StartTime = Get-Date
+
+`$LogDir = "`$env:LOCALAPPDATA`\LinkUpStudio"
+if (-not (Test-Path `$LogDir)) { New-Item -ItemType Directory -Path `$LogDir -Force | Out-Null }
+`$LogFile = "`$LogDir`\startup.log"
+
+function Write-Log {
+    param([string]`$Message)
+    `"`$(Get-Date -Format 'HH:mm:ss.fff') | `$Message`" | Add-Content -Path `$LogFile -Encoding UTF8
+}
+
+Write-Log "=== LinkUp Studio Startup ==="
+
+# Load config
+`$ConfigFile = "`$env:LOCALAPPDATA`\LinkUpStudio`\startup_config.json"
+`$Config = @{
+    BrowserURL = "$BrowserURL"
+    ProjectPath = "$ProjectPath"
+}
+
+if (Test-Path `$ConfigFile) {
+    try {
+        `$LoadedConfig = Get-Content `$ConfigFile -Raw | ConvertFrom-Json -AsHashtable
+        foreach (`$key in `$LoadedConfig.Keys) { `$Config[`$key] = `$LoadedConfig[`$key] }
+    } catch {}
+}
+
+# Detect OpenHands
+`$OpenHandsPaths = @(
+    "`$env:LOCALAPPDATA`\Programs\open-hands\openhands.exe",
+    "`$env:LOCALAPPDATA`\open-hands\openhands.exe",
+    "`$env:ProgramFiles`\OpenHands\openhands.exe"
+)
+`$OpenHandsPath = `$null
+foreach (`$path in `$OpenHandsPaths) {
+    if (Test-Path `$path) { `$OpenHandsPath = `$path; break }
+}
+
+# Stage 1: Windows Terminal (immediate)
+Start-Process -FilePath "wt.exe" -ArgumentList "-p `"Developer Dashboard`" --maximized" -WindowStyle Normal
+Write-Log "Terminal launched"
+
+# Stage 2: OpenHands (parallel)
+if (`$OpenHandsPath) {
+    Start-Process -FilePath `$OpenHandsPath -WindowStyle Normal
+    Write-Log "OpenHands launched"
+}
+
+# Stage 3: Wait for services
+Start-Sleep -Milliseconds 500
+Write-Log "Services ready"
+
+# Stage 4: Browser
+`$BrowserURL = if (`$Config.BrowserURL) { `$Config.BrowserURL } else { "https://app.all-hands.dev" }
+Start-Process -FilePath `$BrowserURL -WindowStyle Normal
+Write-Log "Browser launched: `$BrowserURL"
+
+# Stage 5: Project (if configured)
+if (`$Config.ProjectPath -and (Test-Path `$Config.ProjectPath)) {
+    Start-Sleep -Milliseconds 200
+    Start-Process -FilePath "wt.exe" -ArgumentList "new-tab; cd `"`$(`$Config.ProjectPath)`"" -WindowStyle Normal
+    Write-Log "Project opened"
+}
+
+`$Elapsed = ((Get-Date) - `$StartTime).TotalSeconds
+Write-Log "Startup complete: `$(`$Elapsed.ToString('0.0'))s"
+exit 0
+"@
+    
+    # Save startup script
+    $startupScriptPath = "$($Config.InstallDir)\LinkUp-Studio-Startup.ps1"
+    if (-not (Test-Path $Config.InstallDir)) {
+        New-Item -ItemType Directory -Path $Config.InstallDir -Force | Out-Null
+    }
+    $startupScript | Set-Content -Path $startupScriptPath -Encoding UTF8
+    
+    # Save config
+    $startupConfig = @{
+        Enabled = $true
+        BrowserURL = $BrowserURL
+        ProjectPath = $ProjectPath
+        ConfiguredAt = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
+    } | ConvertTo-Json -Depth 3
+    Set-Content -Path "$($Config.InstallDir)\startup_config.json" -Value $startupConfig -Encoding UTF8
+    
+    # Create startup shortcut
+    $startupPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+    $startupShortcut = "$startupPath\LinkUp Studio.lnk"
+    
+    $WshShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WshShell.CreateShortcut($startupShortcut)
+    $Shortcut.TargetPath = "powershell.exe"
+    $Shortcut.Arguments = "-ExecutionPolicy Bypass -WindowStyle Hidden -File `"$startupScriptPath`""
+    $Shortcut.Description = "LinkUp Studio - Fast Startup"
+    $Shortcut.WorkingDirectory = $env:LOCALAPPDATA
+    $Shortcut.Save()
+    
+    Write-Success "Windows startup configured"
+    Write-Info "LinkUp Studio will launch automatically after login"
+}
+
+function Unregister-WindowsStartup {
+    Write-Step "Removing Windows startup..."
+    
+    $startupShortcut = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\LinkUp Studio.lnk"
+    if (Test-Path $startupShortcut) {
+        Remove-Item $startupShortcut -Force
+        Write-Info "Removed startup shortcut"
+    }
+    
+    Write-Success "Windows startup removed"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
 # Uninstallation Functions
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
@@ -850,6 +989,9 @@ function Uninstall-LinkUpStudio {
         Write-Info "Removed: Start Menu folder"
     }
     
+    # Remove Windows startup
+    Unregister-WindowsStartup
+    
     # Remove installation directory
     if (Test-Path $Config.InstallDir) {
         # Keep backups, remove other files
@@ -923,6 +1065,9 @@ function Install-LinkUpStudio {
         New-StartMenuShortcut
     }
     
+    # Configure Windows startup
+    Register-WindowsStartup -BrowserURL "https://app.all-hands.dev" -ProjectPath ""
+    
     # Save installation info
     $installInfo = @{
         InstalledAt = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
@@ -935,6 +1080,7 @@ function Install-LinkUpStudio {
             if (-not $SkipTerminal) { "terminal" }
             if (-not $SkipVSCode) { "vscode" }
             if (-not $SkipShortcuts) { "shortcuts" }
+            if (-not $SkipStartup) { "startup" }
         )
     } | ConvertTo-Json -Depth 3
     
