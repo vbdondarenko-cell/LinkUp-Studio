@@ -5,20 +5,27 @@ param(
     [switch]$Uninstall,
     [switch]$SkipTerminal,
     [switch]$SkipIcons,
-    [switch]$SkipCursors,
     [switch]$SkipVSCode,
     [switch]$SkipShortcuts,
     [switch]$SkipStartup,
-    [switch]$Silent,
     [switch]$Minimal
 )
 
 $ErrorActionPreference = "Stop"
 
+# Get script directory (works when run with -File parameter)
+$ScriptDir = if ($MyInvocation.MyCommand.Path) {
+    Split-Path -Parent $MyInvocation.MyCommand.Path
+} else {
+    $PSScriptRoot
+}
+
+# Go up two levels from installer folder to get repo root
+$RepoRoot = Split-Path -Parent (Split-Path -Parent $ScriptDir)
+
 $Config = @{
     AppName = "LinkUp Studio"
     Version = "2.0.0"
-    RepoURL = "https://github.com/vbdondarenko-cell/LinkUp-Studio"
     InstallDir = "$env:LOCALAPPDATA\LinkUpStudio"
 }
 
@@ -33,27 +40,23 @@ function Write-Header {
 
 function Write-Step {
     param([string]$Message)
-    if (-not $Silent) { Write-Host "[>>>] $Message" -ForegroundColor Cyan }
+    Write-Host "[>>>] $Message" -ForegroundColor Cyan
 }
 
 function Write-Success {
     param([string]$Message)
-    if (-not $Silent) { Write-Host "[OK] $Message" -ForegroundColor Green }
+    Write-Host "[OK] $Message" -ForegroundColor Green
 }
 
 function Write-Warning {
     param([string]$Message)
-    if (-not $Silent) { Write-Host "[!!] $Message" -ForegroundColor Yellow }
+    Write-Host "[!!] $Message" -ForegroundColor Yellow
 }
 
 function Test-Administrator {
     return ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole(
         [Security.Principal.WindowsBuiltInRole]::Administrator
     )
-}
-
-function Get-InstallerPath {
-    return Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 }
 
 function Install-WindowsTerminal {
@@ -63,9 +66,8 @@ function Install-WindowsTerminal {
         Write-Warning "Windows Terminal not found"
         return
     }
-    $scriptDir = Get-InstallerPath
-    $sourceSettings = Join-Path $scriptDir "windows-terminal\settings.json"
-    $sourceProfile = Join-Path $scriptDir "windows-terminal\Microsoft.PowerShell_profile.ps1"
+    $sourceSettings = Join-Path $RepoRoot "windows-terminal\settings.json"
+    $sourceProfile = Join-Path $RepoRoot "windows-terminal\Microsoft.PowerShell_profile.ps1"
     if (Test-Path $sourceSettings) {
         Copy-Item $sourceSettings $wtSettingsPath -Force
         Write-Success "Terminal settings installed"
@@ -84,8 +86,7 @@ function Install-WindowsTerminal {
 function Install-IconPack {
     Write-Step "Installing icons..."
     $iconsDir = Join-Path $Config.InstallDir "icons"
-    $scriptDir = Get-InstallerPath
-    $sourceIcons = Join-Path $scriptDir "windows-experience\icons"
+    $sourceIcons = Join-Path $RepoRoot "windows-experience\icons"
     if (Test-Path $sourceIcons) {
         if (-not (Test-Path $iconsDir)) {
             New-Item -ItemType Directory -Path $iconsDir -Force | Out-Null
@@ -129,11 +130,10 @@ function Register-WindowsStartup {
     Write-Step "Configuring startup..."
     $startupDir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
     $startupScript = Join-Path $Config.InstallDir "startup.ps1"
-    $scriptDir = Get-InstallerPath
-    $sourceStartup = Join-Path $scriptDir "installer\startup\startup.ps1"
+    $sourceStartup = Join-Path $RepoRoot "installer\startup\startup.ps1"
     if (Test-Path $sourceStartup) {
         Copy-Item $sourceStartup $startupScript -Force
-        $batchContent = "@echo off`n" + "powershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$startupScript`"`n" + "exit"
+        $batchContent = "@echo off`npowershell -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$startupScript`"`nexit"
         $batchPath = Join-Path $startupDir "LinkUp-Studio.bat"
         Set-Content -Path $batchPath -Value $batchContent -Encoding ASCII
         Write-Success "Startup configured"
@@ -141,7 +141,7 @@ function Register-WindowsStartup {
 }
 
 function Uninstall-LinkUpStudio {
-    Write-Header "Uninstalling"
+    Write-Header "Uninstalling LinkUp Studio"
     $desktop = [Environment]::GetFolderPath("Desktop")
     Remove-Item (Join-Path $desktop "LinkUp Studio.lnk") -Force -ErrorAction SilentlyContinue
     $startupDir = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -152,13 +152,14 @@ function Uninstall-LinkUpStudio {
     Write-Success "Uninstall complete"
 }
 
+# Main
 if ($Uninstall) {
     Uninstall-LinkUpStudio
     exit 0
 }
 
 if (-not (Test-Administrator)) {
-    Write-Host "Run as Administrator!" -ForegroundColor Yellow
+    Write-Host "Please run as Administrator!" -ForegroundColor Yellow
     exit 1
 }
 
