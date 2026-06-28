@@ -1,0 +1,211 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": false,
+  "console_title": true,
+  "console_title_template": "{{ .UserName }}@{{ .HostName }} | {{ .PWD }}",
+  "blocks": [
+    {
+      "type": "newline",
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "plain",
+          "foreground": "#8b949e",
+          "background": "transparent",
+          "template": " ",
+          "display_distro": false
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#8b949e",
+          "background": "transparent",
+          "template": "{{ .UserName }}",
+          "display_host": false,
+          "display_distro": false
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#e6edf3",
+          "background": "transparent",
+          "template": " {{ path .Path .Location }}",
+          "home_icon": "~",
+          "folder_separator_icon": "/",
+          "mixed_path": false,
+          "mapped_locations_enabled": false,
+          "properties": {
+            "folder_separator_icon": ">",
+            "home_icon": "~",
+            "windows_registry_icon": "⚙",
+            "folder_separator_template": "",
+            "enable_hyperlink": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": []
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#58a6ff",
+          "background": "transparent",
+          "template": "   {{ .HEAD }}{{ if .Working }} {{ .Working.String }}{{ end }}{{ if .Staging }} {{ .Staging.String }}{{ end }}",
+          "branch_icon": " ",
+          "branch_identical_icon": "",
+          "branch_ahead_icon": " ↑",
+          "branch_behind_icon": " ↓",
+          "branch_gone_icon": " ✗",
+          "branch_name_color": "#58a6ff",
+          "status_colors_enabled": true,
+          "local_working_color": "#d29922",
+          "local_staged_color": "#a371f7",
+          "status_separator_color": "#30363d",
+          "behind_and_ahead_color": "#8b949e",
+          "ahead_and_behind_color": "#8b949e",
+          "working_color": "#d29922",
+          "staging_color": "#a371f7",
+          "new_operation_color": "#3fb950",
+          "properties": {
+            "display_status_hierarchy": true,
+            "display_stash_count": false,
+            "display_worktree_count": false,
+            "display_branch_status": true,
+            "display_status_detail": false,
+            "branch_status_separator": " |",
+            "branch_ahead_suffix": " ↑",
+            "branch_behind_suffix": " ↓",
+            "branch_gone": " ✗ "
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#3fb950",
+          "background": "transparent",
+          "template": "{{ if .UpstreamIcon }}{{ .UpstreamIcon }}{{ end }}",
+          "properties": {
+            "display_status": true,
+            "display_stash_count": false,
+            "status_separator": " |"
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "#6e7681",
+          "background": "transparent",
+          "template": " {{ .Duration .Ms }}",
+          "show_milliseconds": false,
+          "threshold": 100,
+          "style_pixels": false,
+          "properties": {
+            "display_execution_time": true,
+            "threshold": 100,
+            "show_milliseconds": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#3fb950",
+          "background": "transparent",
+          "template": "❯",
+          "doge_var": "@",
+          "doge_text": "not"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "exit",
+          "style": "diamond",
+          "foreground": "#0d1117",
+          "background": "#f85149",
+          "template": "{{ if eq .Code 0 }}✓{{ else }}✗{{ end }}",
+          "error_background": "#f85149",
+          "error_foreground": "#0d1117",
+          "evaluate": false,
+          "properties": {
+            "display_exit_code": true,
+            "always_enabled": true,
+            "error_format": "#f85149",
+            "success_format": "#3fb950"
+          }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "#6e7681",
+          "background": "transparent",
+          "template": "{{ .CurrentDate | date .Format }}",
+          "format": "15:04",
+          "properties": {
+            "display_time": true,
+            "time_format": "15:04"
+          }
+        }
+      ]
+    }
+  ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "#e6edf3",
+    "template": "❯ "
+  },
+  "valid_line": {
+    "background": "transparent",
+    "foreground": "#e6edf3",
+    "template": ""
+  },
+  "error_line": {
+    "background": "transparent",
+    "foreground": "#f85149",
+    "template": ""
+  },
+  "palette": {
+    "foreground": "#e6edf3",
+    "background": "#0d1117",
+    "black": "#484f58",
+    "red": "#f85149",
+    "green": "#3fb950",
+    "yellow": "#d29922",
+    "blue": "#58a6ff",
+    "purple": "#a371f7",
+    "cyan": "#39c5cf",
+    "white": "#b1bac4",
+    "brightBlack": "#6e7681",
+    "brightRed": "#ff7b72",
+    "brightGreen": "#56d364",
+    "brightYellow": "#e3b341",
+    "brightBlue": "#79c0ff",
+    "brightPurple": "#bc8cff",
+    "brightCyan": "#56d4dd",
+    "brightWhite": "#e6edf3"
+  }
+}
