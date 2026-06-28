@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Launcher</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">⬡</span>
+                    <span class="logo-text">LinkUp</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">◈</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-view="apps">
+                    <span class="nav-icon">◇</span>
+                    <span>Apps</span>
+                </a>
+                <a href="#" class="nav-item" data-view="projects">
+                    <span class="nav-icon">◉</span>
+                    <span>Projects</span>
+                </a>
+                <a href="#" class="nav-item" data-view="github">
+                    <span class="nav-icon">◐</span>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="nav-item" data-view="ai">
+                    <span class="nav-icon">◑</span>
+                    <span>AI</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item" data-view="settings">
+                    <span class="nav-icon">◎</span>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-container">
+                    <span class="search-icon">⌕</span>
+                    <input type="text" class="search-input" placeholder="Search apps, files, projects..." id="searchInput">
+                    <span class="search-shortcut">Ctrl+K</span>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn" id="terminalBtn" title="Terminal">
+                        <span>⌥</span>
+                    </button>
+                    <button class="action-btn" id="githubBtn" title="GitHub">
+                        <span>◐</span>
+                    </button>
+                    <button class="action-btn" id="openhandsBtn" title="OpenHands">
+                        <span>◎</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard View -->
+                <section class="view active" id="dashboard-view">
+                    <div class="dashboard-grid">
+                        <!-- Quick Actions -->
+                        <div class="card quick-actions">
+                            <h3 class="card-title">Quick Actions</h3>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action" data-action="terminal">
+                                    <span class="qa-icon">⌥</span>
+                                    <span>Terminal</span>
+                                </button>
+                                <button class="quick-action" data-action="github">
+                                    <span class="qa-icon">◐</span>
+                                    <span>GitHub</span>
+                                </button>
+                                <button class="quick-action" data-action="openhands">
+                                    <span class="qa-icon">◎</span>
+                                    <span>OpenHands</span>
+                                </button>
+                                <button class="quick-action" data-action="vscode">
+                                    <span class="qa-icon">◇</span>
+                                    <span>VS Code</span>
+                                </button>
+                                <button class="quick-action" data-action="browser">
+                                    <span class="qa-icon">○</span>
+                                    <span>Browser</span>
+                                </button>
+                                <button class="quick-action" data-action="files">
+                                    <span class="qa-icon">▤</span>
+                                    <span>Files</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Recent Projects -->
+                        <div class="card recent-projects">
+                            <h3 class="card-title">Recent Projects</h3>
+                            <div class="project-list" id="recentProjects">
+                                <div class="empty-state">
+                                    <span>No recent projects</span>
+                                    <small>Open a project to see it here</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Status -->
+                        <div class="card system-status">
+                            <h3 class="card-title">System Status</h3>
+                            <div class="status-list">
+                                <div class="status-item">
+                                    <span class="status-indicator online"></span>
+                                    <span>Windows Terminal</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-indicator online"></span>
+                                    <span>Git</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-indicator online"></span>
+                                    <span>VS Code</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-indicator online"></span>
+                                    <span>OpenHands</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Git Activity -->
+                        <div class="card git-activity">
+                            <h3 class="card-title">Git Activity</h3>
+                            <div class="git-info" id="gitInfo">
+                                <div class="git-branch">
+                                    <span class="git-icon">⎇</span>
+                                    <span id="currentBranch">main</span>
+                                </div>
+                                <div class="git-stats">
+                                    <span class="stat">+<span id="added">0</span></span>
+                                    <span class="stat">~<span id="modified">0</span></span>
+                                    <span class="stat">-<span id="deleted">0</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Apps View -->
+                <section class="view" id="apps-view">
+                    <div class="apps-grid" id="appsGrid">
+                        <div class="app-item" data-app="terminal">
+                            <div class="app-icon">⌥</div>
+                            <span class="app-name">Terminal</span>
+                        </div>
+                        <div class="app-item" data-app="github">
+                            <div class="app-icon">◐</div>
+                            <span class="app-name">GitHub</span>
+                        </div>
+                        <div class="app-item" data-app="vscode">
+                            <div class="app-icon">◇</div>
+                            <span class="app-name">VS Code</span>
+                        </div>
+                        <div class="app-item" data-app="browser">
+                            <div class="app-icon">○</div>
+                            <span class="app-name">Browser</span>
+                        </div>
+                        <div class="app-item" data-app="explorer">
+                            <div class="app-icon">▤</div>
+                            <span class="app-name">Files</span>
+                        </div>
+                        <div class="app-item" data-app="docker">
+                            <div class="app-icon">🐳</div>
+                            <span class="app-name">Docker</span>
+                        </div>
+                        <div class="app-item" data-app="postman">
+                            <div class="app-icon">◉</div>
+                            <span class="app-name">Postman</span>
+                        </div>
+                        <div class="app-item" data-app="settings">
+                            <div class="app-icon">◎</div>
+                            <span class="app-name">Settings</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects View -->
+                <section class="view" id="projects-view">
+                    <div class="projects-header">
+                        <h2>Projects</h2>
+                        <button class="btn-primary" id="addProjectBtn">+ Add Project</button>
+                    </div>
+                    <div class="projects-grid" id="projectsGrid">
+                        <div class="project-card add-new">
+                            <span>+</span>
+                            <span>New Project</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GitHub View -->
+                <section class="view" id="github-view">
+                    <div class="github-dashboard">
+                        <div class="card">
+                            <h3 class="card-title">Repositories</h3>
+                            <div class="repo-list">
+                                <div class="repo-item">
+                                    <span class="repo-name">LinkUp Studio</span>
+                                    <span class="repo-lang">PowerShell</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Recent Activity</h3>
+                            <div class="activity-list">
+                                <p class="empty-state">No recent activity</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI View -->
+                <section class="view" id="ai-view">
+                    <div class="ai-dashboard">
+                        <div class="card ai-welcome">
+                            <h3>OpenHands AI Assistant</h3>
+                            <p>Your AI-powered development assistant is ready.</p>
+                            <button class="btn-primary btn-large" id="launchOpenHands">
+                                Launch OpenHands
+                            </button>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title">Quick Actions</h3>
+                            <div class="ai-actions">
+                                <button class="ai-action-btn">Code Review</button>
+                                <button class="ai-action-btn">Bug Detection</button>
+                                <button class="ai-action-btn">Documentation</button>
+                                <button class="ai-action-btn">Testing</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings View -->
+                <section class="view" id="settings-view">
+                    <div class="settings-container">
+                        <h2>Settings</h2>
+                        
+                        <div class="settings-section">
+                            <h3>Appearance</h3>
+                            <div class="setting-item">
+                                <label>Theme</label>
+                                <select id="themeSelect">
+                                    <option value="dark">GitHub Dark</option>
+                                    <option value="light">Light</option>
+                                    <option value="system">System</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Startup</h3>
+                            <div class="setting-item">
+                                <label>Launch on startup</label>
+                                <input type="checkbox" id="launchOnStartup" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>Open last project</label>
+                                <input type="checkbox" id="openLastProject" checked>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>Terminal</h3>
+                            <div class="setting-item">
+                                <label>Default shell</label>
+                                <select id="defaultShell">
+                                    <option value="pwsh">PowerShell</option>
+                                    <option value="cmd">CMD</option>
+                                    <option value="bash">Bash (WSL)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Command Palette -->
+    <div class="command-palette" id="commandPalette">
+        <div class="palette-header">
+            <input type="text" class="palette-input" placeholder="Type a command..." id="paletteInput">
+        </div>
+        <div class="palette-results" id="paletteResults"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
