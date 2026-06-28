@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - AI Workspace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ai-app">
+        <!-- Sidebar -->
+        <aside class="ai-sidebar">
+            <div class="ai-sidebar-header">
+                <div class="ai-logo">
+                    <span class="logo-icon">◎</span>
+                    <span class="logo-text">AI Workspace</span>
+                </div>
+            </div>
+
+            <nav class="ai-nav">
+                <a href="#" class="ai-nav-item active" data-view="chat">
+                    <span class="nav-icon">◈</span>
+                    <span>Chat</span>
+                    <span class="nav-badge">3</span>
+                </a>
+                <a href="#" class="ai-nav-item" data-view="agents">
+                    <span class="nav-icon">◉</span>
+                    <span>Agents</span>
+                </a>
+                <a href="#" class="ai-nav-item" data-view="tasks">
+                    <span class="nav-icon">◐</span>
+                    <span>Tasks</span>
+                    <span class="nav-badge warning">2</span>
+                </a>
+                <a href="#" class="ai-nav-item" data-view="memory">
+                    <span class="nav-icon">◑</span>
+                    <span>Memory</span>
+                </a>
+                <a href="#" class="ai-nav-item" data-view="logs">
+                    <span class="nav-icon">◒</span>
+                    <span>Logs</span>
+                </a>
+                <a href="#" class="ai-nav-item" data-view="settings">
+                    <span class="nav-icon">◎</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="ai-sidebar-footer">
+                <div class="ai-status">
+                    <span class="status-dot online"></span>
+                    <span>OpenHands Connected</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ai-main">
+            <!-- Chat View -->
+            <section class="ai-view active" id="chat-view">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <h2>OpenHands Chat</h2>
+                            <span class="chat-status">● Online</span>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button class="btn-icon" id="newChatBtn" title="New Chat">
+                                <span>+</span>
+                            </button>
+                            <button class="btn-icon" id="clearChatBtn" title="Clear">
+                                <span>🗑</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot">
+                            <div class="message-avatar">◎</div>
+                            <div class="message-content">
+                                <div class="message-text">
+                                    Hello! I'm OpenHands, your AI development assistant. 
+                                    I can help you with coding, debugging, code review, 
+                                    and many other development tasks.
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <textarea 
+                                class="chat-input" 
+                                id="chatInput" 
+                                placeholder="Ask OpenHands anything..."
+                                rows="1"
+                            ></textarea>
+                            <div class="chat-input-actions">
+                                <button class="btn-attachment" title="Attach file">
+                                    <span>📎</span>
+                                </button>
+                                <button class="btn-send" id="sendBtn" title="Send">
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chat-suggestions">
+                            <button class="suggestion-btn">Code a REST API</button>
+                            <button class="suggestion-btn">Debug my code</button>
+                            <button class="suggestion-btn">Review pull request</button>
+                            <button class="suggestion-btn">Write documentation</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Agents View -->
+            <section class="ai-view" id="agents-view">
+                <div class="agents-container">
+                    <div class="agents-header">
+                        <h2>AI Agents</h2>
+                        <button class="btn-primary" id="createAgentBtn">+ New Agent</button>
+                    </div>
+
+                    <div class="agents-grid" id="agentsGrid">
+                        <div class="agent-card">
+                            <div class="agent-avatar">🤖</div>
+                            <div class="agent-info">
+                                <h3>Coder Agent</h3>
+                                <p>Writes and refactors code</p>
+                                <div class="agent-stats">
+                                    <span>Tasks: 24</span>
+                                    <span>Success: 98%</span>
+                                </div>
+                            </div>
+                            <div class="agent-status active">Active</div>
+                        </div>
+
+                        <div class="agent-card">
+                            <div class="agent-avatar">🔍</div>
+                            <div class="agent-info">
+                                <h3>Review Agent</h3>
+                                <p>Code review and analysis</p>
+                                <div class="agent-stats">
+                                    <span>Tasks: 15</span>
+                                    <span>Success: 95%</span>
+                                </div>
+                            </div>
+                            <div class="agent-status">Idle</div>
+                        </div>
+
+                        <div class="agent-card">
+                            <div class="agent-avatar">🐛</div>
+                            <div class="agent-info">
+                                <h3>Debugger Agent</h3>
+                                <p>Finds and fixes bugs</p>
+                                <div class="agent-stats">
+                                    <span>Tasks: 8</span>
+                                    <span>Success: 92%</span>
+                                </div>
+                            </div>
+                            <div class="agent-status">Idle</div>
+                        </div>
+
+                        <div class="agent-card">
+                            <div class="agent-avatar">📝</div>
+                            <div class="agent-info">
+                                <h3>Docs Agent</h3>
+                                <p>Generates documentation</p>
+                                <div class="agent-stats">
+                                    <span>Tasks: 12</span>
+                                    <span>Success: 100%</span>
+                                </div>
+                            </div>
+                            <div class="agent-status">Idle</div>
+                        </div>
+
+                        <div class="agent-card add-new" id="addAgentCard">
+                            <span class="add-icon">+</span>
+                            <span>Create Agent</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks View -->
+            <section class="ai-view" id="tasks-view">
+                <div class="tasks-container">
+                    <div class="tasks-header">
+                        <h2>AI Tasks</h2>
+                        <div class="tasks-filters">
+                            <select class="filter-select" id="taskFilter">
+                                <option value="all">All Tasks</option>
+                                <option value="pending">Pending</option>
+                                <option value="running">Running</option>
+                                <option value="completed">Completed</option>
+                                <option value="failed">Failed</option>
+                            </select>
+                            <button class="btn-primary" id="newTaskBtn">+ New Task</button>
+                        </div>
+                    </div>
+
+                    <div class="tasks-list" id="tasksList">
+                        <div class="task-item">
+                            <div class="task-status running">
+                                <span class="status-icon">◐</span>
+                            </div>
+                            <div class="task-info">
+                                <h4>Refactor authentication module</h4>
+                                <p>Agent: Coder Agent • Started 5 min ago</p>
+                            </div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                                <span>65%</span>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon-small" title="Stop">■</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item">
+                            <div class="task-status pending">
+                                <span class="status-icon">○</span>
+                            </div>
+                            <div class="task-info">
+                                <h4>Review PR #42</h4>
+                                <p>Agent: Review Agent • Queued</p>
+                            </div>
+                            <div class="task-progress">
+                                <span class="pending-text">Waiting...</span>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon-small" title="Run">▶</button>
+                                <button class="btn-icon-small" title="Delete">×</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item">
+                            <div class="task-status completed">
+                                <span class="status-icon">●</span>
+                            </div>
+                            <div class="task-info">
+                                <h4>Write API docs</h4>
+                                <p>Agent: Docs Agent • Completed 2 hours ago</p>
+                            </div>
+                            <div class="task-progress">
+                                <span class="completed-text">Completed</span>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon-small" title="View">👁</button>
+                            </div>
+                        </div>
+
+                        <div class="task-item">
+                            <div class="task-status completed">
+                                <span class="status-icon">●</span>
+                            </div>
+                            <div class="task-info">
+                                <h4>Fix login bug</h4>
+                                <p>Agent: Debugger Agent • Completed yesterday</p>
+                            </div>
+                            <div class="task-progress">
+                                <span class="completed-text">Completed</span>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn-icon-small" title="View">👁</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Memory View -->
+            <section class="ai-view" id="memory-view">
+                <div class="memory-container">
+                    <div class="memory-header">
+                        <h2>AI Memory</h2>
+                        <div class="memory-stats">
+                            <div class="stat-card">
+                                <span class="stat-value">256</span>
+                                <span class="stat-label">Memories</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">1.2 MB</span>
+                                <span class="stat-label">Storage</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">98%</span>
+                                <span class="stat-label">Relevance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="memory-search">
+                        <input type="text" class="search-input" placeholder="Search memories...">
+                    </div>
+
+                    <div class="memory-categories">
+                        <div class="category-item active" data-category="all">All</div>
+                        <div class="category-item" data-category="code">Code</div>
+                        <div class="category-item" data-category="docs">Documents</div>
+                        <div class="category-item" data-category="projects">Projects</div>
+                        <div class="category-item" data-category="concepts">Concepts</div>
+                    </div>
+
+                    <div class="memory-list" id="memoryList">
+                        <div class="memory-item">
+                            <div class="memory-type code">Code</div>
+                            <div class="memory-content">
+                                <h4>Authentication module structure</h4>
+                                <p>JWT-based auth with refresh tokens. Includes middleware for route protection and role-based access control.</p>
+                                <div class="memory-meta">
+                                    <span>Last accessed: 2 hours ago</span>
+                                    <span>Relevance: High</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="memory-item">
+                            <div class="memory-type docs">Docs</div>
+                            <div class="memory-content">
+                                <h4>API endpoint conventions</h4>
+                                <p>RESTful API design patterns. Uses plural nouns for resources, standard HTTP methods, and consistent response formats.</p>
+                                <div class="memory-meta">
+                                    <span>Last accessed: Yesterday</span>
+                                    <span>Relevance: Medium</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="memory-item">
+                            <div class="memory-type projects">Project</div>
+                            <div class="memory-content">
+                                <h4>LinkUp Studio architecture</h4>
+                                <p>Multi-module structure with launcher, shell, and AI workspace components. Uses GitHub Dark theme.</p>
+                                <div class="memory-meta">
+                                    <span>Last accessed: Just now</span>
+                                    <span>Relevance: High</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="memory-item">
+                            <div class="memory-type concepts">Concept</div>
+                            <div class="memory-content">
+                                <h4>Git workflow</h4>
+                                <p>Feature branches → PR → Review → Merge to main. Squash commits on merge. Semantic versioning.</p>
+                                <div class="memory-meta">
+                                    <span>Last accessed: 3 days ago</span>
+                                    <span>Relevance: Medium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logs View -->
+            <section class="ai-view" id="logs-view">
+                <div class="logs-container">
+                    <div class="logs-header">
+                        <h2>AI Logs</h2>
+                        <div class="logs-actions">
+                            <select class="filter-select" id="logLevel">
+                                <option value="all">All Levels</option>
+                                <option value="info">Info</option>
+                                <option value="warning">Warning</option>
+                                <option value="error">Error</option>
+                            </select>
+                            <button class="btn-icon" id="downloadLogsBtn" title="Download">
+                                <span>↓</span>
+                            </button>
+                            <button class="btn-icon" id="clearLogsBtn" title="Clear">
+                                <span>🗑</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="logs-filters">
+                        <input type="text" class="search-input" placeholder="Filter logs...">
+                        <div class="log-tags">
+                            <span class="log-tag active">All</span>
+                            <span class="log-tag">Chat</span>
+                            <span class="log-tag">Agent</span>
+                            <span class="log-tag">Task</span>
+                            <span class="log-tag">System</span>
+                        </div>
+                    </div>
+
+                    <div class="logs-list" id="logsList">
+                        <div class="log-item info">
+                            <span class="log-time">14:32:15</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">Chat</span>
+                            <span class="log-message">New chat session started</span>
+                        </div>
+
+                        <div class="log-item info">
+                            <span class="log-time">14:32:18</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">Agent</span>
+                            <span class="log-message">Coder Agent activated</span>
+                        </div>
+
+                        <div class="log-item info">
+                            <span class="log-time">14:32:45</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">Task</span>
+                            <span class="log-message">Task "Refactor auth" started</span>
+                        </div>
+
+                        <div class="log-item warning">
+                            <span class="log-time">14:33:12</span>
+                            <span class="log-level">WARN</span>
+                            <span class="log-source">Agent</span>
+                            <span class="log-message">High memory usage detected: 85%</span>
+                        </div>
+
+                        <div class="log-item info">
+                            <span class="log-time">14:34:00</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">Task</span>
+                            <span class="log-message">Task progress: 45%</span>
+                        </div>
+
+                        <div class="log-item error">
+                            <span class="log-time">14:34:30</span>
+                            <span class="log-level">ERROR</span>
+                            <span class="log-source">System</span>
+                            <span class="log-message">Connection timeout to API endpoint</span>
+                        </div>
+
+                        <div class="log-item info">
+                            <span class="log-time">14:34:32</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">System</span>
+                            <span class="log-message">Reconnection successful</span>
+                        </div>
+
+                        <div class="log-item info">
+                            <span class="log-time">14:35:00</span>
+                            <span class="log-level">INFO</span>
+                            <span class="log-source">Task</span>
+                            <span class="log-message">Task "Refactor auth" completed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section class="ai-view" id="settings-view">
+                <div class="settings-container">
+                    <h2>AI Settings</h2>
+
+                    <div class="settings-section">
+                        <h3>OpenHands Connection</h3>
+                        <div class="setting-item">
+                            <label>API Endpoint</label>
+                            <input type="text" class="setting-input" value="https://app.all-hands.dev" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <label>API Key</label>
+                            <input type="password" class="setting-input" value="••••••••••••" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <label>Status</label>
+                            <span class="status-badge online">Connected</span>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Model Configuration</h3>
+                        <div class="setting-item">
+                            <label>AI Model</label>
+                            <select class="setting-select">
+                                <option value="claude">Claude 3.5 Sonnet</option>
+                                <option value="gpt4">GPT-4</option>
+                                <option value="gemini">Gemini Pro</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Temperature</label>
+                            <input type="range" class="setting-range" min="0" max="100" value="70">
+                            <span>0.7</span>
+                        </div>
+                        <div class="setting-item">
+                            <label>Max Tokens</label>
+                            <input type="number" class="setting-input small" value="4096">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Agent Settings</h3>
+                        <div class="setting-item">
+                            <label>Auto-start agents</label>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Agent timeout (minutes)</label>
+                            <input type="number" class="setting-input small" value="30">
+                        </div>
+                        <div class="setting-item">
+                            <label>Max concurrent agents</label>
+                            <input type="number" class="setting-input small" value="3">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Memory Settings</h3>
+                        <div class="setting-item">
+                            <label>Enable memory</label>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Memory retention (days)</label>
+                            <input type="number" class="setting-input small" value="30">
+                        </div>
+                        <div class="setting-item">
+                            <label>Auto-save interval</label>
+                            <select class="setting-select">
+                                <option value="5">Every 5 minutes</option>
+                                <option value="15" selected>Every 15 minutes</option>
+                                <option value="30">Every 30 minutes</option>
+                                <option value="60">Every hour</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        <div class="setting-item">
+                            <label>Task notifications</label>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Error notifications</label>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <label>Sound alerts</label>
+                            <input type="checkbox">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Command Palette -->
+        <div class="command-palette" id="commandPalette">
+            <div class="palette-header">
+                <input type="text" class="palette-input" placeholder="Search commands..." id="paletteInput">
+            </div>
+            <div class="palette-results" id="paletteResults">
+                <div class="palette-result" data-action="chat">
+                    <span class="result-icon">◈</span>
+                    <span>New Chat</span>
+                </div>
+                <div class="palette-result" data-action="agent">
+                    <span class="result-icon">◉</span>
+                    <span>Create Agent</span>
+                </div>
+                <div class="palette-result" data-action="task">
+                    <span class="result-icon">◐</span>
+                    <span>New Task</span>
+                </div>
+                <div class="palette-result" data-action="openhands">
+                    <span class="result-icon">◎</span>
+                    <span>Open OpenHands</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
