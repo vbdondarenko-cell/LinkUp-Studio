@@ -244,12 +244,12 @@ Inspired by:
 - [x] Quick App Launch
 
 ### Phase 5 — LinkUp Studio Shell
-- [ ] Custom Windows Shell
-- [ ] Menu
-- [ ] Navigation
-- [ ] Windows Management
-- [ ] Widgets
-- [ ] Control Center
+- [x] Custom Windows Shell
+- [x] Menu
+- [x] Navigation
+- [x] Windows Management
+- [x] Widgets
+- [x] Control Center
 
 ### Phase 6 — AI Workspace
 - [x] OpenHands Integration
