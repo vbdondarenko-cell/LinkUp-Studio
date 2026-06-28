@@ -1,0 +1,71 @@
+; ═══════════════════════════════════════════════════════════════════════════════════════
+; LinkUp Studio Windows Theme
+; GitHub Dark - Premium Developer Experience
+; ═══════════════════════════════════════════════════════════════════════════════════════
+; Installation: Double-click this file or copy to %LOCALAPPDATA%\Microsoft\Windows\Themes\
+; ═══════════════════════════════════════════════════════════════════════════════════════
+
+[Theme]
+DisplayName=LinkUp Studio - GitHub Dark
+Version=1.0.0
+Author=LinkUp Studio
+; ═══════════════════════════════════════════════════════════════════════════════════════
+
+[Control Panel\Desktop]
+Wallpaper=%LOCALAPPDATA%\Microsoft\Windows\Themes\LinkUpStudio\wallpaper.png
+TileWallpaper=0
+WallpaperStyle=10
+Pattern=
+
+[Control Panel\Colors]
+Background=13 17 23
+ActiveTitleBar=22 27 34
+AppWorkspace=22 27 34
+ButtonFace=33 38 45
+ButtonHighlight=56 62 77
+ButtonShadow=33 38 45
+ButtonAlternateFace=0 0 0
+ButtonDkShadow=22 27 34
+ButtonHilight=22 27 34
+ButtonLight=22 27 34
+ButtonRface=33 38 45
+ButtonShadow=22 27 34
+ButtonText=230 237 243
+ClassicStyle=0
+ContrastText=255 255 255
+GrayText=110 118 129
+HiliteText=230 237 243
+HotTrackingColor=88 166 255
+InactiveBorder=48 54 61
+InactiveTitleBar=22 27 34
+InactiveTitleText=139 148 158
+InfoText=230 237 243
+InfoWindow=22 27 34
+Menu=22 27 34
+MenuBar=22 27 34
+MenuFace=33 38 45
+MenuHilight=56 139 253
+MenuSel=33 38 45
+MenuText=230 237 243
+Scrollbar=48 54 61
+TextBorder=48 54 61
+TextSelectBackground=56 139 253
+TextSelectBackgroundDisabled=22 27 34
+TextSelectBorder=22 27 34
+TextSelectTextBackground=56 139 253
+TitleText=230 237 243
+Window=22 27 34
+WindowFrame=48 54 61
+WindowText=230 237 243
+
+[boot]
+DefaultNodecoration=1
+DefaultControlPanelHomePage=0
+SCRNSAVE.EXE=
+; ═══════════════════════════════════════════════════════════════════════════════════════
+
+[MasterThemeSelector]
+MTSM=DAUPSBDN
+
+[MasterThemeSelector.absolute]
+0=%LOCALAPPDATA%\Microsoft\Windows\Themes\LinkUpStudio\GitHubDark.theme

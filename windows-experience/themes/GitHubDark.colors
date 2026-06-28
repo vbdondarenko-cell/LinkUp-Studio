@@ -1,0 +1,95 @@
+; ═══════════════════════════════════════════════════════════════════════════════════════
+; LinkUp Studio - GitHub Dark Color Scheme
+; Premium Developer Windows Color Customization
+; ═══════════════════════════════════════════════════════════════════════════════════════
+
+[Colors]
+AccentColor=88 166 255
+AccentColorDark=31 111 235
+AccentColorLight=121 192 255
+
+; Background Colors
+BackgroundDark=13 17 23
+BackgroundLight=22 27 34
+BackgroundMedium=33 38 45
+BackgroundMediumDark=48 54 61
+
+; Text Colors
+TextPrimary=230 237 243
+TextSecondary=139 148 158
+TextTertiary=110 118 129
+TextDisabled=72 79 88
+
+; Border Colors
+BorderDefault=48 54 61
+BorderMuted=33 38 45
+BorderStrong=63 70 83
+
+; Status Colors
+Success=63 185 80
+Warning=210 153 34
+Danger=248 81 73
+Info=57 197 207
+
+; Accent Colors
+Accent=88 166 255
+AccentBlue=88 166 255
+AccentGreen=63 185 80
+AccentPurple=163 113 247
+AccentOrange=240 136 62
+AccentPink=219 97 162
+
+; Button Colors
+ButtonBackground=33 38 45
+ButtonBackgroundHover=48 54 61
+ButtonBackgroundPressed=22 27 34
+ButtonText=230 237 243
+ButtonBorder=48 54 61
+
+; Input Colors
+InputBackground=22 27 34
+InputBackgroundFocus=22 27 34
+InputBorder=48 54 61
+InputBorderFocus=88 166 255
+InputText=230 237 243
+InputPlaceholder=110 118 129
+
+; Scrollbar
+ScrollbarBackground=22 27 34
+ScrollbarThumb=72 79 88
+ScrollbarThumbHover=88 166 255
+
+; Title Bar
+TitleBarBackground=22 27 34
+TitleBarText=230 237 243
+TitleBarBorder=48 54 61
+TitleBarAccent=88 166 255
+
+; Window Colors
+WindowBackground=22 27 34
+WindowBorder=48 54 61
+WindowText=230 237 243
+
+; Menu Colors
+MenuBackground=33 38 45
+MenuItemBackground=33 38 45
+MenuItemBackgroundHover=48 54 61
+MenuItemText=230 237 243
+MenuItemTextHover=230 237 243
+MenuBorder=48 54 61
+MenuSeparator=48 54 61
+
+; Tooltip
+TooltipBackground=33 38 45
+TooltipText=230 237 243
+TooltipBorder=48 54 61
+
+; Selection
+SelectionBackground=56 139 253
+SelectionText=255 255 255
+
+; Link
+Link=88 166 255
+LinkHover=121 192 255
+LinkVisited=163 113 247
+LinkDisabled=72 79 88
