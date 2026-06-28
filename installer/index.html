@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>LinkUp Studio - Installer</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M8 8h6v6H8V8zm10 0h6v6h-6V8zM8 18h6v6H8v-6zm10 0h6v6h-6v-6z' fill='%2358a6ff'/%3E%3C/svg%3E">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  
+  <style>
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-surface: #161b22;
+      --bg-elevated: #21262d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent-fg: #58a6ff;
+      --accent-emphasis: #1f6feb;
+      --success-fg: #3fb950;
+      --danger-fg: #f85149;
+      --warning-fg: #d29922;
+      --border-default: #30363d;
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .installer-container {
+      max-width: 700px;
+      padding: 48px;
+      text-align: center;
+    }
+    
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 24px;
+    }
+    
+    .logo svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+    }
+    
+    .install-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    
+    .btn-install {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary {
+      background: var(--accent-emphasis);
+      color: #ffffff;
+    }
+    
+    .btn-primary:hover {
+      background: #2d7ff9;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-success {
+      background: var(--success-fg);
+      color: #0d1117;
+    }
+    
+    .btn-success:hover {
+      background: #56d364;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-danger {
+      background: transparent;
+      color: var(--danger-fg);
+      border: 1px solid var(--danger-fg);
+    }
+    
+    .btn-danger:hover {
+      background: rgba(248, 81, 73, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-default);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--bg-surface);
+      border-color: var(--text-secondary);
+      transform: translateY(-2px);
+    }
+    
+    .btn svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 8px;
+    }
+    
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-elevated);
+      border-radius: 6px;
+      color: var(--accent-fg);
+    }
+    
+    .feature-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .feature-text {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+    
+    .warning-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(210, 153, 34, 0.1);
+      border: 1px solid var(--warning-fg);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+    
+    .warning-box svg {
+      width: 20px;
+      height: 20px;
+      color: var(--warning-fg);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .warning-box p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+    
+    .requirements {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .requirements ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .requirements li {
+      padding: 4px 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+    
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 6px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    
+    .code-block code {
+      color: var(--accent-fg);
+    }
+    
+    .footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-default);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    
+    .footer a {
+      color: var(--accent-fg);
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 600px) {
+      .installer-container {
+        padding: 24px;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="installer-container">
+    <!-- Logo -->
+    <div class="logo">
+      <svg viewBox="0 0 80 80" fill="none">
+        <rect width="80" height="80" rx="16" fill="#0d1117"/>
+        <rect x="12" y="12" width="24" height="24" rx="4" fill="#58a6ff" opacity="0.9"/>
+        <rect x="44" y="12" width="24" height="24" rx="4" fill="#58a6ff" opacity="0.7"/>
+        <rect x="12" y="44" width="24" height="24" rx="4" fill="#58a6ff" opacity="0.7"/>
+        <rect x="44" y="44" width="24" height="24" rx="4" fill="#58a6ff" opacity="0.5"/>
+      </svg>
+    </div>
+    
+    <h1>LinkUp Studio Installer</h1>
+    <p class="subtitle">Premium Developer Environment for Windows</p>
+    
+    <!-- Install Buttons -->
+    <div class="install-buttons">
+      <button class="btn-install btn-primary" onclick="downloadInstaller()">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M2.75 14A1.75 1.75 0 011 12.25v-2.5a.75.75 0 011.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25v-2.5a.75.75 0 011.5 0v2.5A1.75 1.75 0 0113.25 14H2.75z"/>
+          <path d="M7.25 7.689V2a.75.75 0 011.5 0v5.689l1.97-1.969a.749.749 0 111.06 1.06l-3.25 3.25a.749.749 0 01-1.06 0L4.22 6.78a.749.749 0 111.06-1.06l1.97 1.969z"/>
+        </svg>
+        Download Installer
+      </button>
+      
+      <button class="btn-install btn-success" onclick="openPowerShell()">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M6 2a2 2 0 00-2 2v8a2 2 0 002 2h4a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h4a1 1 0 000-2H7zm6 7.402V3.598a.536.536 0 00-.56-.507H2.56a.56.56 0 00-.56.507v7.804a.56.56 0 00.56.507h1.08a.56.56 0 01.56.507v1.16a2.5 2.5 0 01-1.22 2.223l-1.362.681a.5.5 0 00-.18.572V14.5a.5.5 0 00.5.5h1.36a.5.5 0 00.5-.5v-.5a.5.5 0 00-.14-.342l-1.068-.642a.5.5 0 01-.14-.372V9.5a.5.5 0 01.5-.5H7.5a.5.5 0 01.5.5v.402a.5.5 0 00-.14.342l.646.774a.5.5 0 00.148.174l.09.054a.5.5 0 00.38.113H12.5a.5.5 0 00.5-.5v-3.004z"/>
+        </svg>
+        Run PowerShell Installer
+      </button>
+      
+      <button class="btn-install btn-secondary" onclick="copyGitClone()">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Copy Git Clone Command
+      </button>
+      
+      <button class="btn-install btn-danger" onclick="uninstall()">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 15A7 7 0 118 1a7 7 0 010 14zm0 1A8 8 0 108 0a8 8 0 000 16z"/>
+          <path d="M4.646 4.646a.5.5 0 01.708 0L8 7.293l2.646-2.647a.5.5 0 01.708.708L8.707 8l2.647 2.646a.5.5 0 01-.708.708L8 8.707l-2.646 2.647a.5.5 0 01-.708-.708L7.293 8 4.646 5.354a.5.5 0 010-.708z"/>
+        </svg>
+        Uninstall LinkUp Studio
+      </button>
+    </div>
+    
+    <!-- Features -->
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M5.5 9.511c.076.954.83 1.601 1.646 1.954v3.085l1.97-1.969a.75.75 0 111.06 1.06l-3.25 3.25a.75.75 0 01-1.06 0l-3.25-3.25a.75.75 0 111.06-1.06l1.97 1.969V8.56a2.5 2.5 0 00-1.646-2.354 2.5 2.5 0 00-1.354 0 2.5 2.5 0 00-1.646 2.354 2.5 2.5 0 000 1.354 2.5 2.5 0 000 1.354A2.5 2.5 0 003 11.46v2.768a2.5 2.5 0 001.646 2.354 2.5 2.5 0 001.354 0 2.5 2.5 0 001.646-2.354v-2.768a2.5 2.5 0 001.646-2.354 2.5 2.5 0 000-1.354 2.5 2.5 0 000-1.354 2.5 2.5 0 000-1.354z"/>
+          </svg>
+        </div>
+        <span class="feature-text">Windows Terminal Theme</span>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M2.75 14A1.75 1.75 0 011 12.25v-2.5a.75.75 0 011.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25v-2.5a.75.75 0 011.5 0v2.5A1.75 1.75 0 0113.25 14H2.75z"/>
+          </svg>
+        </div>
+        <span class="feature-text">JetBrains Mono Font</span>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25z"/>
+          </svg>
+        </div>
+        <span class="feature-text">Git Integration</span>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3 5.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zM3 8a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5A.5.5 0 013 8zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2v-1h1v1a1 1 0 001 1h10a1 1 0 001-1V2a1 1 0 00-1-1H3a1 1 0 00-1 1v1H1V2a2 2 0 012-2z"/>
+          </svg>
+        </div>
+        <span class="feature-text">Custom Cursors</span>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13h-4.507a.75.75 0 01-.75-.75V1.75z"/>
+          </svg>
+        </div>
+        <span class="feature-text">VS Code Settings</span>
+      </div>
+      
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3.5 2A1.5 1.5 0 002 3.5v9A1.5 1.5 0 003.5 14h9a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0012.5 2h-9zM3 3.5a.5.5 0 01.5-.5h9a.5.5 0 01.5.5v9a.5.5 0 01-.5.5h-9a.5.5 0 01-.5-.5v-9z"/>
+          </svg>
+        </div>
+        <span class="feature-text">Icon Pack</span>
+      </div>
+    </div>
+    
+    <!-- Warning Box -->
+    <div class="warning-box">
+      <svg viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"/>
+      </svg>
+      <p>Administrator privileges are required for installation. The installer will automatically request elevation when needed.</p>
+    </div>
+    
+    <!-- Requirements -->
+    <div class="requirements">
+      <strong>Requirements:</strong>
+      <ul>
+        <li>Windows 10+ or Windows 11</li>
+        <li>PowerShell 5.1+</li>
+        <li>Windows Terminal (recommended)</li>
+        <li>VS Code (optional)</li>
+      </ul>
+    </div>
+    
+    <!-- Manual Instructions -->
+    <div class="code-block" style="margin-top: 32px;">
+      <strong>Manual Installation:</strong><br><br>
+      <code>git clone https://github.com/vbdondarenko-cell/LinkUp-Studio.git</code><br>
+      <code>cd LinkUp-Studio\installer</code><br>
+      <code>.\OneClick-Install.bat</code>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <p>LinkUp Studio v1.0.0 • <a href="https://github.com/vbdondarenko-cell/LinkUp-Studio">GitHub Repository</a> • MIT License</p>
+    </div>
+  </div>
+  
+  <script>
+    function downloadInstaller() {
+      // Create a blob with the PowerShell script content
+      const scriptContent = `
+# Download and run LinkUp Studio installer
+$installerUrl = "https://raw.githubusercontent.com/vbdondarenko-cell/LinkUp-Studio/main/installer/Install-LinkUpStudio.ps1"
+$installerPath = "$env:TEMP\\Install-LinkUpStudio.ps1"
+
+Write-Host "Downloading LinkUp Studio Installer..." -ForegroundColor Cyan
+Invoke-WebRequest -Uri $installerUrl -OutFile $installerPath -UseBasicParsing
+
+Write-Host "Starting installer..." -ForegroundColor Cyan
+Start-Process powershell -ArgumentList "-ExecutionPolicy Bypass -File \\"$installerPath\\"" -Verb RunAs
+`;
+      
+      const blob = new Blob([scriptContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Download-LinkUpStudio.ps1';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    
+    function openPowerShell() {
+      const script = `powershell -ExecutionPolicy Bypass -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -Command \\"cd \\\\\\$env:TEMP; Invoke-WebRequest -Uri \\"https://raw.githubusercontent.com/vbdondarenko-cell/LinkUp-Studio/main/installer/Install-LinkUpStudio.ps1\\" -OutFile \\\\\\$env:TEMP\\\\\\\\Install-LinkUpStudio.ps1; cd \\\\\\$env:TEMP; .\\\\\\\\Install-LinkUpStudio.ps1\\"'"`;
+      
+      // Create a temporary textarea to copy the command
+      const textarea = document.createElement('textarea');
+      textarea.value = script;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      
+      alert('Command copied to clipboard!\\n\\nPaste it in PowerShell and press Enter to run the installer with administrator privileges.');
+    }
+    
+    function copyGitClone() {
+      const command = 'git clone https://github.com/vbdondarenko-cell/LinkUp-Studio.git';
+      navigator.clipboard.writeText(command);
+      
+      const button = event.target.closest('.btn-install');
+      const originalText = button.innerHTML;
+      button.innerHTML = `
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"/>
+        </svg>
+        Copied!
+      `;
+      
+      setTimeout(() => {
+        button.innerHTML = originalText;
+      }, 2000);
+    }
+    
+    function uninstall() {
+      const confirmed = confirm('Are you sure you want to uninstall LinkUp Studio?\\n\\nThis will remove all configurations and optionally restore your previous settings.');
+      
+      if (confirmed) {
+        const script = `powershell -ExecutionPolicy Bypass -Command "Start-Process powershell -Verb RunAs -ArgumentList '-ExecutionPolicy Bypass -Command \\"cd \\\\\\$env:TEMP; Invoke-WebRequest -Uri \\"https://raw.githubusercontent.com/vbdondarenko-cell/LinkUp-Studio/main/installer/Install-LinkUpStudio.ps1\\" -OutFile \\\\\\$env:TEMP\\\\\\\\Install-LinkUpStudio.ps1; cd \\\\\\$env:TEMP; .\\\\\\\\Install-LinkUpStudio.ps1 -Uninstall\\"'"`;
+        
+        const textarea = document.createElement('textarea');
+        textarea.value = script;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        
+        alert('Uninstall command copied to clipboard!\\n\\nPaste it in PowerShell and press Enter to run the uninstaller.');
+      }
+    }
+  </script>
+</body>
+</html>
