@@ -237,11 +237,11 @@ Inspired by:
 - [ ] Context Menu
 
 ### Phase 4 — LinkUp Studio Launcher
-- [ ] Fullscreen Launcher
-- [ ] Dashboard
-- [ ] Sidebar
-- [ ] Search
-- [ ] Quick App Launch
+- [x] Fullscreen Launcher
+- [x] Dashboard
+- [x] Sidebar
+- [x] Search
+- [x] Quick App Launch
 
 ### Phase 5 — LinkUp Studio Shell
 - [ ] Custom Windows Shell
