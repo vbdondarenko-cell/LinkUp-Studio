@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Cursor Pack
+  Resize Cursors (4 directions)
+  Inspired by: macOS + GitHub Dark + Linear
+  
+  Style: Clean double-headed arrows
+  Hotspot: 16, 16
+  Size: 32x32
+-->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="0.5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- North-South resize (vertical) -->
+  <g filter="url(#shadow)">
+    <!-- Top arrow -->
+    <path d="M16 4 L20 10 L18 10 L18 14 L14 14 L14 10 L12 10 Z" fill="#e6edf3"/>
+    <!-- Bottom arrow -->
+    <path d="M16 28 L12 22 L14 22 L14 18 L18 18 L18 22 L20 22 Z" fill="#e6edf3"/>
+  </g>
+  
+  <!-- Inner details -->
+  <rect x="15.5" y="12" width="1" height="8" fill="#c9d1d9"/>
+</svg>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Cursor Pack
+  Resize Diagonal (NorthEast-SouthWest)
+  Inspired by: macOS + GitHub Dark + Linear
+  
+  Style: Clean diagonal double-headed arrows
+  Hotspot: 16, 16
+  Size: 32x32
+-->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="0.5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Main line -->
+  <line x1="6" y1="26" x2="26" y2="6" stroke="#e6edf3" stroke-width="2" stroke-linecap="round" filter="url(#shadow)"/>
+  
+  <!-- NE arrow head -->
+  <path d="M26 6 L20 8 L22 10 Z" fill="#e6edf3"/>
+  
+  <!-- SW arrow head -->
+  <path d="M6 26 L10 24 L8 20 Z" fill="#e6edf3"/>
+  
+  <!-- Accent dots -->
+  <circle cx="9" cy="23" r="1.5" fill="#58a6ff"/>
+  <circle cx="23" cy="9" r="1.5" fill="#58a6ff"/>
+</svg>

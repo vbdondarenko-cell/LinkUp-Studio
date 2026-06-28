@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  LinkUp Studio Cursor Pack
+  Text/I-Beam Cursor
+  Inspired by: macOS + Linear + GitHub Dark
+  
+  Style: Classic I-beam with subtle styling
+  Hotspot: 15, 14
+  Size: 32x32
+-->
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="1" stdDeviation="0.5" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+    
+    <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9d1d9"/>
+      <stop offset="50%" stop-color="#e6edf3"/>
+      <stop offset="100%" stop-color="#c9d1d9"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- I-beam main body -->
+  <rect x="14" y="4" width="4" height="24" rx="1" fill="url(#beamGradient)" filter="url(#shadow)"/>
+  
+  <!-- Top serif -->
+  <rect x="10" y="4" width="12" height="3" rx="1" fill="#e6edf3"/>
+  
+  <!-- Bottom serif -->
+  <rect x="10" y="25" width="12" height="3" rx="1" fill="#e6edf3"/>
+  
+  <!-- Subtle shadow on left side -->
+  <rect x="14" y="4" width="1" height="24" fill="#000000" opacity="0.1"/>
+  
+  <!-- Highlight on right side -->
+  <rect x="17" y="5" width="1" height="22" fill="#ffffff" opacity="0.3"/>
+</svg>

@@ -1,0 +1,255 @@
+/**
+ * LinkUp Studio Cursor Pack
+ * CSS Cursor Definitions
+ * 
+ * Usage:
+ *   1. Include this CSS file in your HTML
+ *   2. Use the cursor classes on any element
+ *   3. Or use the CSS custom properties directly
+ * 
+ * Example:
+ *   <div class="cursor-normal">Hover me!</div>
+ *   <a href="#" class="cursor-link">Click me!</a>
+ */
+
+/* ===========================================
+ * CSS Custom Properties (for custom values)
+ * =========================================== */
+:root {
+  /* Base cursor URLs - use your actual paths */
+  --cursor-normal-url: url('../png/32/normal.png');
+  --cursor-busy-url: url('../png/32/busy.png');
+  --cursor-loading-url: url('../png/32/loading.png');
+  --cursor-text-url: url('../png/32/text.png');
+  --cursor-resize-url: url('../png/32/resize.png');
+  --cursor-resize-h-url: url('../png/32/resize-horizontal.png');
+  --cursor-resize-d-url: url('../png/32/resize-diagonal.png');
+  --cursor-move-url: url('../png/32/move.png');
+  --cursor-precision-url: url('../png/32/precision.png');
+  --cursor-link-url: url('../png/32/link.png');
+  --cursor-hand-url: url('../png/32/hand.png');
+  
+  /* Cursor fallback sizes */
+  --cursor-size: 32px;
+  
+  /* Hotspot coordinates */
+  --cursor-hotspot-x: 4px;
+  --cursor-hotspot-y: 2px;
+}
+
+/* ===========================================
+ * Base Cursor Classes
+ * =========================================== */
+
+/* Normal Arrow - Default pointer */
+.cursor-normal {
+  cursor: url('../png/32/normal.png') 4 2, auto;
+}
+
+/* Busy/Wait - System busy */
+.cursor-busy {
+  cursor: url('../png/32/busy.png') 16 16, wait;
+}
+
+/* Loading - Progress indicator */
+.cursor-loading {
+  cursor: url('../png/32/loading.png') 16 16, progress;
+}
+
+/* Text - I-beam for text selection */
+.cursor-text {
+  cursor: url('../png/32/text.png') 15 14, text;
+}
+
+/* Resize Vertical - North-South resize */
+.cursor-resize {
+  cursor: url('../png/32/resize.png') 16 16, ns-resize;
+}
+
+/* Resize Horizontal - East-West resize */
+.cursor-resize-horizontal {
+  cursor: url('../png/32/resize-horizontal.png') 16 16, ew-resize;
+}
+
+/* Resize Diagonal - NE-SW resize */
+.cursor-resize-diagonal {
+  cursor: url('../png/32/resize-diagonal.png') 16 16, nesw-resize;
+}
+
+/* Move - Four-way move */
+.cursor-move {
+  cursor: url('../png/32/move.png') 16 16, move;
+}
+
+/* Precision - Crosshair for precision work */
+.cursor-precision {
+  cursor: url('../png/32/precision.png') 16 16, crosshair;
+}
+
+/* Link - Pointer with link indicator */
+.cursor-link {
+  cursor: url('../png/32/link.png') 4 2, pointer;
+}
+
+/* Hand - Open hand for grabbing */
+.cursor-hand {
+  cursor: url('../png/32/hand.png') 12 4, grab;
+}
+
+/* ===========================================
+ * Size Variants
+ * =========================================== */
+
+/* Small (16px) */
+.cursor-normal-sm {
+  cursor: url('../png/16/normal.png') 2 1, auto;
+}
+.cursor-text-sm {
+  cursor: url('../png/16/text.png') 7 7, text;
+}
+.cursor-link-sm {
+  cursor: url('../png/16/link.png') 2 1, pointer;
+}
+
+/* Large (48px) */
+.cursor-normal-lg {
+  cursor: url('../png/48/normal.png') 6 3, auto;
+}
+.cursor-text-lg {
+  cursor: url('../png/48/text.png') 22 21, text;
+}
+.cursor-link-lg {
+  cursor: url('../png/48/link.png') 6 3, pointer;
+}
+
+/* Extra Large (64px) */
+.cursor-normal-xl {
+  cursor: url('../png/64/normal.png') 8 4, auto;
+}
+.cursor-text-xl {
+  cursor: url('../png/64/text.png') 30 28, text;
+}
+.cursor-link-xl {
+  cursor: url('../png/64/link.png') 8 4, pointer;
+}
+
+/* ===========================================
+ * Semantic Cursor Classes
+ * =========================================== */
+
+/* Pointer (links and buttons) */
+a, button, .clickable {
+  cursor: url('../png/32/normal.png') 4 2, pointer;
+}
+
+/* Text selection */
+textarea, input[type="text"], input[type="email"], 
+input[type="password"], input[type="search"],
+.contenteditable {
+  cursor: url('../png/32/text.png') 15 14, text;
+}
+
+/* Disabled state */
+.disabled, [disabled], .no-drop {
+  cursor: url('../png/32/normal.png') 4 2, not-allowed;
+}
+
+/* Grab/grabbing */
+.draggable, .dragging {
+  cursor: url('../png/32/hand.png') 12 4, grab;
+}
+.dragging {
+  cursor: url('../png/32/hand.png') 12 4, grabbing;
+}
+
+/* Resize handles */
+.resize-n, .resize-s {
+  cursor: url('../png/32/resize.png') 16 16, ns-resize;
+}
+.resize-e, .resize-w {
+  cursor: url('../png/32/resize-horizontal.png') 16 16, ew-resize;
+}
+.resize-ne, .resize-sw {
+  cursor: url('../png/32/resize-diagonal.png') 16 16, nesw-resize;
+}
+.resize-nw, .resize-se {
+  cursor: url('../png/32/resize-diagonal.png') 16 16, nwse-resize;
+}
+
+/* Loading states */
+.loading, .busy {
+  cursor: url('../png/32/busy.png') 16 16, wait;
+}
+
+/* Crosshair for drawing */
+.draw, .crosshair-mode {
+  cursor: url('../png/32/precision.png') 16 16, crosshair;
+}
+
+/* ===========================================
+ * Windows Dark Mode Cursors
+ * =========================================== */
+@media (prefers-color-scheme: dark) {
+  .cursor-normal {
+    cursor: url('../png/32/normal.png') 4 2, auto;
+  }
+  .cursor-text {
+    cursor: url('../png/32/text.png') 15 14, text;
+  }
+  .cursor-link {
+    cursor: url('../png/32/normal.png') 4 2, pointer;
+  }
+}
+
+/* ===========================================
+ * Animation Keyframes (for animated cursors)
+ * =========================================== */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes cursor-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Loading cursor animation */
+.cursor-loading-animated {
+  animation: cursor-pulse 1s ease-in-out infinite;
+}
+
+/* ===========================================
+ * Usage Examples
+ * =========================================== */
+
+/*
+ * Basic usage:
+ * 
+ * <div class="cursor-normal">Hover to see normal cursor</div>
+ * <div class="cursor-busy">System is busy</div>
+ * <div class="cursor-text">Select text here</div>
+ * <div class="cursor-resize">Resize me</div>
+ * <div class="cursor-move">Drag to move</div>
+ * <div class="cursor-precision">Precision mode</div>
+ * <div class="cursor-link">Hover over link</div>
+ * <div class="cursor-hand">Grab and drag</div>
+ */
+
+/*
+ * With size variants:
+ * 
+ * <div class="cursor-normal-sm">Small cursor</div>
+ * <div class="cursor-normal-lg">Large cursor</div>
+ * <div class="cursor-normal-xl">Extra large cursor</div>
+ */
+
+/*
+ * Semantic usage:
+ * 
+ * <a href="#" class="cursor-link">Link</a>
+ * <button class="cursor-pointer">Button</button>
+ * <textarea class="cursor-text">Text area</textarea>
+ * <div class="draggable cursor-hand">Draggable element</div>
+ * <div class="resize-handle resize-n">Vertical resize</div>
+ */

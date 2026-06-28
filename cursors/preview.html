@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkUp Studio Cursor Pack - Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-surface: #161b22;
+      --bg-elevated: #21262d;
+      --bg-overlay: #30363d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-tertiary: #6e7681;
+      --accent-fg: #58a6ff;
+      --accent-emphasis: #1f6feb;
+      --border-default: #30363d;
+      --border-muted: #21262d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #e6edf3 0%, #58a6ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .cursor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .cursor-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .cursor-card:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-default);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .cursor-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 32px;
+      margin-bottom: 20px;
+      background: var(--bg-canvas);
+      border-radius: 12px;
+      min-height: 120px;
+    }
+
+    .cursor-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cursor-display img {
+      transition: transform 0.2s ease;
+    }
+
+    .cursor-display:hover img {
+      transform: scale(1.2);
+    }
+
+    .cursor-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .cursor-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .cursor-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* Interactive cursor demos */
+    .demo-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .demo-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-title svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent-fg);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .demo-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: var(--bg-canvas);
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .demo-item:hover {
+      background: var(--bg-elevated);
+    }
+
+    .demo-normal {
+      cursor: url('png/32/normal.png') 4 2, pointer;
+    }
+
+    .demo-text {
+      cursor: url('png/32/text.png') 15 14, text;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .demo-busy {
+      cursor: url('png/32/busy.png') 16 16, wait;
+    }
+
+    .demo-resize {
+      cursor: url('png/32/resize.png') 16 16, ns-resize;
+    }
+
+    .demo-move {
+      cursor: url('png/32/move.png') 16 16, move;
+    }
+
+    .demo-precision {
+      cursor: url('png/32/precision.png') 16 16, crosshair;
+    }
+
+    .demo-link {
+      cursor: url('png/32/link.png') 4 2, pointer;
+    }
+
+    .demo-hand {
+      cursor: url('png/32/hand.png') 12 4, grab;
+    }
+
+    .demo-loading {
+      cursor: url('png/32/loading.png') 16 16, progress;
+    }
+
+    /* Size comparison */
+    .size-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .size-grid {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+      background: var(--bg-canvas);
+      border-radius: 12px;
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .size-item span {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-muted);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      background: var(--bg-elevated);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--accent-fg);
+    }
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--border-muted);
+      color: var(--text-tertiary);
+    }
+
+    footer a {
+      color: var(--accent-fg);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .size-grid {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>LinkUp Studio Cursor Pack</h1>
+      <p class="subtitle">Premium cursors inspired by Apple, GitHub, and Linear</p>
+      <span class="badge">11 Cursors • SVG + PNG + CUR • GitHub Dark</span>
+    </header>
+
+    <!-- Features -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="feature-title">SVG Source</div>
+        <div class="feature-desc">Vector format for infinite scaling</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <div class="feature-title">Multiple Sizes</div>
+        <div class="feature-desc">16px to 128px for any DPI</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="feature-title">Windows Ready</div>
+        <div class="feature-desc">CUR format for instant installation</div>
+      </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <div class="demo-section">
+      <div class="demo-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Interactive Demo - Hover over elements
+      </div>
+      <div class="demo-grid">
+        <div class="demo-item demo-normal">Normal Pointer</div>
+        <div class="demo-item demo-text">Text Selection</div>
+        <div class="demo-item demo-busy">Busy / Wait</div>
+        <div class="demo-item demo-loading">Loading</div>
+        <div class="demo-item demo-resize">Resize Vertical</div>
+        <div class="demo-item demo-move">Move Cursor</div>
+        <div class="demo-item demo-precision">Precision</div>
+        <div class="demo-item demo-link">Link Hover</div>
+        <div class="demo-item demo-hand">Hand Grab</div>
+      </div>
+    </div>
+
+    <!-- Size Comparison -->
+    <div class="size-section">
+      <div class="demo-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        Size Variations
+      </div>
+      <div class="size-grid">
+        <div class="size-item">
+          <img src="png/16/normal.png" alt="16px">
+          <span>16px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/24/normal.png" alt="24px">
+          <span>24px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/32/normal.png" alt="32px">
+          <span>32px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/48/normal.png" alt="48px">
+          <span>48px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/64/normal.png" alt="64px">
+          <span>64px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/96/normal.png" alt="96px">
+          <span>96px</span>
+        </div>
+        <div class="size-item">
+          <img src="png/128/normal.png" alt="128px">
+          <span>128px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursor Grid -->
+    <h2 style="font-size: 24px; margin-bottom: 24px;">All Cursors</h2>
+    <div class="cursor-grid">
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/normal.png" alt="Normal">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/normal.png" alt="Normal">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Normal</div>
+        <div class="cursor-desc">Standard arrow pointer</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/busy.png" alt="Busy">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/busy.png" alt="Busy">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Busy</div>
+        <div class="cursor-desc">System busy/wait indicator</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/loading.png" alt="Loading">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/loading.png" alt="Loading">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Loading</div>
+        <div class="cursor-desc">Progress indicator cursor</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/text.png" alt="Text">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/text.png" alt="Text">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Text</div>
+        <div class="cursor-desc">I-beam for text selection</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/resize.png" alt="Resize">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/resize.png" alt="Resize">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Resize</div>
+        <div class="cursor-desc">Vertical resize (N/S)</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/resize-horizontal.png" alt="Resize H">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/resize-horizontal.png" alt="Resize H">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Resize Horizontal</div>
+        <div class="cursor-desc">Horizontal resize (E/W)</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/resize-diagonal.png" alt="Resize D">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/resize-diagonal.png" alt="Resize D">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Resize Diagonal</div>
+        <div class="cursor-desc">Diagonal resize</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/move.png" alt="Move">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/move.png" alt="Move">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Move</div>
+        <div class="cursor-desc">Four-way move indicator</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/precision.png" alt="Precision">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/precision.png" alt="Precision">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Precision</div>
+        <div class="cursor-desc">Crosshair for precision work</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/link.png" alt="Link">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/link.png" alt="Link">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Link</div>
+        <div class="cursor-desc">Pointer with link indicator</div>
+      </div>
+
+      <div class="cursor-card">
+        <div class="cursor-preview">
+          <div class="cursor-display">
+            <img src="png/64/hand.png" alt="Hand">
+            <span class="cursor-label">64x64</span>
+          </div>
+          <div class="cursor-display">
+            <img src="png/32/hand.png" alt="Hand">
+            <span class="cursor-label">32x32</span>
+          </div>
+        </div>
+        <div class="cursor-name">Hand</div>
+        <div class="cursor-desc">Open hand for grabbing</div>
+      </div>
+    </div>
+
+    <footer>
+      <p><strong>LinkUp Studio Cursor Pack</strong> • GitHub Dark + Apple + Linear Design</p>
+      <p style="margin-top: 8px;">Part of <a href="#">LinkUp Studio</a> - Premium Windows Developer Environment</p>
+    </footer>
+  </div>
+</body>
+</html>
