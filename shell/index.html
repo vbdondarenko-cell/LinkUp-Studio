@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio Shell</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="shell" id="shell">
+        <!-- Menu Bar -->
+        <header class="menu-bar" id="menuBar">
+            <div class="menu-left">
+                <div class="app-logo">
+                    <span class="logo-icon">⬡</span>
+                    <span class="logo-text">LinkUp Studio</span>
+                </div>
+                
+                <nav class="top-menu">
+                    <div class="menu-item" data-menu="file">
+                        <span>File</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="newWindow">New Window <span class="shortcut">Ctrl+N</span></a>
+                            <a href="#" class="dropdown-item" data-action="newTab">New Tab <span class="shortcut">Ctrl+T</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="openProject">Open Project <span class="shortcut">Ctrl+O</span></a>
+                            <a href="#" class="dropdown-item" data-action="openFolder">Open Folder <span class="shortcut">Ctrl+Shift+O</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="save">Save <span class="shortcut">Ctrl+S</span></a>
+                            <a href="#" class="dropdown-item" data-action="saveAll">Save All <span class="shortcut">Ctrl+Shift+S</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="settings">Settings <span class="shortcut">Ctrl+,</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="exit">Exit <span class="shortcut">Alt+F4</span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-menu="edit">
+                        <span>Edit</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="undo">Undo <span class="shortcut">Ctrl+Z</span></a>
+                            <a href="#" class="dropdown-item" data-action="redo">Redo <span class="shortcut">Ctrl+Y</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="cut">Cut <span class="shortcut">Ctrl+X</span></a>
+                            <a href="#" class="dropdown-item" data-action="copy">Copy <span class="shortcut">Ctrl+C</span></a>
+                            <a href="#" class="dropdown-item" data-action="paste">Paste <span class="shortcut">Ctrl+V</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="selectAll">Select All <span class="shortcut">Ctrl+A</span></a>
+                            <a href="#" class="dropdown-item" data-action="find">Find <span class="shortcut">Ctrl+F</span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-menu="view">
+                        <span>View</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="toggleSidebar">Toggle Sidebar <span class="shortcut">Ctrl+B</span></a>
+                            <a href="#" class="dropdown-item" data-action="toggleTerminal">Toggle Terminal <span class="shortcut">Ctrl+`</span></a>
+                            <a href="#" class="dropdown-item" data-action="toggleFullscreen">Fullscreen <span class="shortcut">F11</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="zoomIn">Zoom In <span class="shortcut">Ctrl++</span></a>
+                            <a href="#" class="dropdown-item" data-action="zoomOut">Zoom Out <span class="shortcut">Ctrl+-</span></a>
+                            <a href="#" class="dropdown-item" data-action="zoomReset">Reset Zoom <span class="shortcut">Ctrl+0</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="reload">Reload <span class="shortcut">Ctrl+R</span></a>
+                            <a href="#" class="dropdown-item" data-action="devTools">Developer Tools <span class="shortcut">F12</span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-menu="terminal">
+                        <span>Terminal</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="newTerminal">New Terminal <span class="shortcut">Ctrl+Shift+`</span></a>
+                            <a href="#" class="dropdown-item" data-action="splitTerminal">Split Terminal</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="clearTerminal">Clear Terminal</a>
+                            <a href="#" class="dropdown-item" data-action="killTerminal">Kill Terminal</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="runTask">Run Task...</a>
+                            <a href="#" class="dropdown-item" data-action="configureTasks">Configure Tasks...</a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-menu="window">
+                        <span>Window</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="minimize">Minimize <span class="shortcut">Alt+F9</span></a>
+                            <a href="#" class="dropdown-item" data-action="maximize">Maximize <span class="shortcut">Alt+F10</span></a>
+                            <a href="#" class="dropdown-item" data-action="closeWindow">Close Window <span class="shortcut">Alt+F4</span></a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="nextWindow">Next Window <span class="shortcut">Ctrl+Tab</span></a>
+                            <a href="#" class="dropdown-item" data-action="prevWindow">Previous Window <span class="shortcut">Ctrl+Shift+Tab</span></a>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item" data-menu="help">
+                        <span>Help</span>
+                        <div class="menu-dropdown">
+                            <a href="#" class="dropdown-item" data-action="about">About LinkUp Studio</a>
+                            <a href="#" class="dropdown-item" data-action="documentation">Documentation</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" data-action="keyboardShortcuts">Keyboard Shortcuts</a>
+                            <a href="#" class="dropdown-item" data-action="checkUpdates">Check for Updates</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="menu-right">
+                <button class="menu-btn" id="minimizeBtn" title="Minimize">─</button>
+                <button class="menu-btn" id="maximizeBtn" title="Maximize">□</button>
+                <button class="menu-btn close" id="closeBtn" title="Close">×</button>
+            </div>
+        </header>
+
+        <!-- Tab Bar -->
+        <div class="tab-bar" id="tabBar">
+            <div class="tabs" id="tabs">
+                <div class="tab active" data-id="dashboard">
+                    <span class="tab-icon">◈</span>
+                    <span class="tab-title">Dashboard</span>
+                    <button class="tab-close">×</button>
+                </div>
+                <div class="tab" data-id="projects">
+                    <span class="tab-icon">◉</span>
+                    <span class="tab-title">Projects</span>
+                    <button class="tab-close">×</button>
+                </div>
+                <div class="tab" data-id="terminal">
+                    <span class="tab-icon">⌥</span>
+                    <span class="tab-title">Terminal</span>
+                    <button class="tab-close">×</button>
+                </div>
+            </div>
+            <div class="tab-actions">
+                <button class="tab-action-btn" id="newTabBtn" title="New Tab">+</button>
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-tabs">
+                        <button class="sidebar-tab active" data-panel="explorer">Explorer</button>
+                        <button class="sidebar-tab" data-panel="search">Search</button>
+                        <button class="sidebar-tab" data-panel="git">Git</button>
+                        <button class="sidebar-tab" data-panel="extensions">Extensions</button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-content">
+                    <!-- Explorer Panel -->
+                    <div class="sidebar-panel active" id="explorer-panel">
+                        <div class="panel-header">
+                            <span>EXPLORER</span>
+                        </div>
+                        <div class="file-tree" id="fileTree">
+                            <div class="folder open">
+                                <span class="folder-icon">▾</span>
+                                <span class="folder-name">LinkUp-Studio</span>
+                            </div>
+                            <div class="folder-content">
+                                <div class="folder">
+                                    <span class="folder-icon">▾</span>
+                                    <span class="folder-name">launcher</span>
+                                </div>
+                                <div class="folder-content">
+                                    <div class="file"><span class="file-icon">◇</span> index.html</div>
+                                    <div class="file"><span class="file-icon">◇</span> styles.css</div>
+                                    <div class="file"><span class="file-icon">◇</span> app.js</div>
+                                </div>
+                                <div class="folder">
+                                    <span class="folder-icon">▾</span>
+                                    <span class="folder-name">shell</span>
+                                </div>
+                                <div class="folder-content">
+                                    <div class="file"><span class="file-icon">◇</span> index.html</div>
+                                    <div class="file"><span class="file-icon">◇</span> styles.css</div>
+                                    <div class="file"><span class="file-icon">◇</span> app.js</div>
+                                </div>
+                                <div class="file"><span class="file-icon">◇</span> README.md</div>
+                                <div class="file"><span class="file-icon">◇</span> SPEC.md</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search Panel -->
+                    <div class="sidebar-panel" id="search-panel">
+                        <div class="panel-header">
+                            <span>SEARCH</span>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search..." class="search-input">
+                        </div>
+                    </div>
+                    
+                    <!-- Git Panel -->
+                    <div class="sidebar-panel" id="git-panel">
+                        <div class="panel-header">
+                            <span>GIT</span>
+                        </div>
+                        <div class="git-changes">
+                            <div class="git-change staged">
+                                <span class="change-icon">M</span>
+                                <span>README.md</span>
+                            </div>
+                            <div class="git-change modified">
+                                <span class="change-icon">D</span>
+                                <span>styles.css</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Extensions Panel -->
+                    <div class="sidebar-panel" id="extensions-panel">
+                        <div class="panel-header">
+                            <span>EXTENSIONS</span>
+                        </div>
+                        <div class="extension-item">
+                            <span class="ext-icon">⬡</span>
+                            <span>LinkUp Studio Theme</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area" id="contentArea">
+                <!-- Dashboard Window -->
+                <div class="window active" id="dashboard-window">
+                    <div class="window-content">
+                        <div class="dashboard">
+                            <div class="dashboard-grid">
+                                <div class="dash-card">
+                                    <h3>Quick Actions</h3>
+                                    <div class="quick-actions">
+                                        <button class="qa-btn" data-action="terminal">⌥ Terminal</button>
+                                        <button class="qa-btn" data-action="github">◐ GitHub</button>
+                                        <button class="qa-btn" data-action="openhands">◎ OpenHands</button>
+                                        <button class="qa-btn" data-action="vscode">◇ VS Code</button>
+                                    </div>
+                                </div>
+                                <div class="dash-card">
+                                    <h3>Recent Projects</h3>
+                                    <div class="recent-list">
+                                        <div class="recent-item">LinkUp Studio</div>
+                                        <div class="recent-item">My Project</div>
+                                    </div>
+                                </div>
+                                <div class="dash-card">
+                                    <h3>System</h3>
+                                    <div class="system-info">
+                                        <div class="sys-item"><span>CPU:</span> <span id="cpuUsage">--</span></div>
+                                        <div class="sys-item"><span>RAM:</span> <span id="ramUsage">--</span></div>
+                                        <div class="sys-item"><span>Disk:</span> <span id="diskUsage">--</span></div>
+                                    </div>
+                                </div>
+                                <div class="dash-card">
+                                    <h3>Git Status</h3>
+                                    <div class="git-status">
+                                        <span class="branch">⎇ main</span>
+                                        <span class="commits">+3 -1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Window -->
+                <div class="window" id="projects-window">
+                    <div class="window-content">
+                        <div class="projects-view">
+                            <div class="projects-header">
+                                <h2>Projects</h2>
+                                <button class="btn" id="addProjectBtn">+ New Project</button>
+                            </div>
+                            <div class="projects-grid" id="projectsGrid">
+                                <div class="project-card add-new" id="addProjectCard">
+                                    <span class="add-icon">+</span>
+                                    <span>Add Project</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Window -->
+                <div class="window" id="terminal-window">
+                    <div class="window-content terminal-content">
+                        <div class="terminal" id="terminal">
+                            <div class="terminal-header">
+                                <span>PowerShell</span>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-output" id="terminalOutput">
+                                    <div class="terminal-line">LinkUp Studio Shell v1.0.0</div>
+                                    <div class="terminal-line">Type 'help' for available commands</div>
+                                    <div class="terminal-line prompt">PS D:\Projects> <span class="cursor">█</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Panel (Terminal/Output) -->
+            <div class="panel" id="panel">
+                <div class="panel-header">
+                    <div class="panel-tabs">
+                        <button class="panel-tab active">Terminal</button>
+                        <button class="panel-tab">Output</button>
+                        <button class="panel-tab">Problems</button>
+                        <button class="panel-tab">Console</button>
+                    </div>
+                    <div class="panel-actions">
+                        <button class="panel-btn" title="Clear">🗑</button>
+                        <button class="panel-btn" title="Maximize">□</button>
+                        <button class="panel-btn" title="Close">×</button>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <div class="panel-terminal">
+                        <div class="terminal-line prompt">$ <span class="cursor">█</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <footer class="status-bar" id="statusBar">
+            <div class="status-left">
+                <span class="status-item" id="gitStatus">
+                    <span class="status-icon">⎇</span>
+                    <span>main</span>
+                </span>
+                <span class="status-item" id="syncStatus">
+                    <span class="status-icon">↻</span>
+                    <span>Synced</span>
+                </span>
+            </div>
+            <div class="status-center">
+                <span class="status-item">Ln 1, Col 1</span>
+            </div>
+            <div class="status-right">
+                <span class="status-item" id="encoding">UTF-8</span>
+                <span class="status-item" id="language">Plain Text</span>
+                <span class="status-item" id="notificationCenter" title="Notifications">🔔</span>
+                <span class="status-item" id="clock"></span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Control Center -->
+    <div class="control-center" id="controlCenter">
+        <div class="cc-header">
+            <span>Control Center</span>
+        </div>
+        <div class="cc-grid">
+            <button class="cc-btn active" id="wifiBtn" title="Wi-Fi">
+                <span class="cc-icon">📶</span>
+                <span>Wi-Fi</span>
+            </button>
+            <button class="cc-btn" id="bluetoothBtn" title="Bluetooth">
+                <span class="cc-icon">📡</span>
+                <span>Bluetooth</span>
+            </button>
+            <button class="cc-btn" id="airplaneBtn" title="Airplane Mode">
+                <span class="cc-icon">✈</span>
+                <span>Airplane</span>
+            </button>
+            <button class="cc-btn" id="nightLightBtn" title="Night Light">
+                <span class="cc-icon">🌙</span>
+                <span>Night</span>
+            </button>
+        </div>
+        <div class="cc-slider-section">
+            <div class="cc-slider-item">
+                <span>🔆</span>
+                <input type="range" class="cc-slider" id="brightnessSlider" min="0" max="100" value="80">
+            </div>
+            <div class="cc-slider-item">
+                <span>🔊</span>
+                <input type="range" class="cc-slider" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+        </div>
+        <div class="cc-quick-actions">
+            <button class="cc-action-btn" id="openHandsBtn">◎ OpenHands</button>
+            <button class="cc-action-btn" id="settingsBtn">⚙ Settings</button>
+        </div>
+    </div>
+
+    <!-- About Dialog -->
+    <div class="dialog" id="aboutDialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <h2>About LinkUp Studio</h2>
+                <button class="dialog-close" id="closeAboutBtn">×</button>
+            </div>
+            <div class="dialog-body">
+                <div class="about-logo">⬡</div>
+                <h3>LinkUp Studio</h3>
+                <p>Version 1.0.0</p>
+                <p class="about-desc">Premium Developer Workspace for Windows</p>
+                <div class="about-links">
+                    <a href="#">Documentation</a>
+                    <a href="#">Report Issue</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
