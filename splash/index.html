@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>LinkUp Studio</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d1117'/%3E%3Cpath d='M8 8h6v6H8V8zm10 0h6v6h-6V8zM8 18h6v6H8v-6zm10 0h6v6h-6v-6z' fill='%2358a6ff'/%3E%3C/svg%3E">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-canvas: #0d1117;
+      --bg-surface: #161b22;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent-blue: #58a6ff;
+      --accent-purple: #a371f7;
+      --border-default: #30363d;
+      
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    
+    /* Logo Animation */
+    .logo-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+    }
+    
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .logo-block {
+      border-radius: 8px;
+      background: var(--accent-blue);
+      opacity: 0;
+      transform: scale(0.5);
+      animation: logoBlock 0.6s var(--ease-spring) forwards;
+    }
+    
+    .logo-block:nth-child(1) { animation-delay: 0.1s; }
+    .logo-block:nth-child(2) { animation-delay: 0.2s; }
+    .logo-block:nth-child(3) { animation-delay: 0.3s; }
+    .logo-block:nth-child(4) { animation-delay: 0.4s; opacity: 0.7; }
+    
+    @keyframes logoBlock {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    /* Glow Effect */
+    .logo-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(88, 166, 255, 0.15) 0%, transparent 70%);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    }
+    
+    /* Title */
+    .title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--ease-out) 0.5s forwards;
+    }
+    
+    .title-accent {
+      color: var(--accent-blue);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Tagline */
+    .tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--ease-out) 0.7s forwards;
+    }
+    
+    /* Loading Bar */
+    .loading-container {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--ease-out) 0.9s forwards;
+    }
+    
+    .loading-bar {
+      height: 4px;
+      background: var(--bg-surface);
+      border-radius: 2px;
+      overflow: hidden;
+      border: 1px solid var(--border-default);
+    }
+    
+    .loading-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 2px;
+      animation: loading 3s var(--ease-out) forwards;
+    }
+    
+    @keyframes loading {
+      0% { width: 0%; }
+      20% { width: 20%; }
+      40% { width: 45%; }
+      60% { width: 65%; }
+      80% { width: 85%; }
+      100% { width: 100%; }
+    }
+    
+    .loading-status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Version */
+    .version {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 11px;
+      color: var(--text-secondary);
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--ease-out) 1.2s forwards;
+    }
+    
+    /* Background Grid */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    
+    /* Corner Decorations */
+    .corner {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      border: 1px solid var(--border-default);
+      opacity: 0;
+      animation: fadeIn 1s var(--ease-out) 1.5s forwards;
+    }
+    
+    .corner-tl {
+      top: 40px;
+      left: 40px;
+      border-right: none;
+      border-bottom: none;
+    }
+    
+    .corner-tr {
+      top: 40px;
+      right: 40px;
+      border-left: none;
+      border-bottom: none;
+    }
+    
+    .corner-bl {
+      bottom: 40px;
+      left: 40px;
+      border-right: none;
+      border-top: none;
+    }
+    
+    .corner-br {
+      bottom: 40px;
+      right: 40px;
+      border-left: none;
+      border-top: none;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 0.5; }
+    }
+    
+    /* Keyboard Shortcuts Preview */
+    .shortcuts {
+      display: flex;
+      gap: 24px;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--ease-out) 1.4s forwards;
+    }
+    
+    .shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .shortcut-keys {
+      display: flex;
+      gap: 4px;
+    }
+    
+    .key {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-secondary);
+    }
+    
+    .shortcut-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+  
+  <div class="splash-container">
+    <div class="logo-container">
+      <div class="logo-glow"></div>
+      <div class="logo-grid">
+        <div class="logo-block"></div>
+        <div class="logo-block"></div>
+        <div class="logo-block"></div>
+        <div class="logo-block"></div>
+      </div>
+    </div>
+    
+    <h1 class="title">
+      Link<span class="title-accent">Up</span> Studio
+    </h1>
+    
+    <p class="tagline">Developer Workspace · GitHub Dark Theme</p>
+    
+    <div class="loading-container">
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="loading-status">
+        <span id="status">Initializing...</span>
+        <span id="progress">0%</span>
+      </div>
+    </div>
+    
+    <div class="shortcuts">
+      <div class="shortcut">
+        <div class="shortcut-keys">
+          <span class="key">Ctrl</span>
+          <span class="key">Shift</span>
+          <span class="key">P</span>
+        </div>
+        <span class="shortcut-label">Command Palette</span>
+      </div>
+      <div class="shortcut">
+        <div class="shortcut-keys">
+          <span class="key">Ctrl</span>
+          <span class="key">`</span>
+        </div>
+        <span class="shortcut-label">Terminal</span>
+      </div>
+      <div class="shortcut">
+        <div class="shortcut-keys">
+          <span class="key">Ctrl</span>
+          <span class="key">B</span>
+        </div>
+        <span class="shortcut-label">Activity Panel</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="version">v1.0.0</div>
+  
+  <script>
+    // Status messages
+    const messages = [
+      { progress: 0, text: 'Initializing...' },
+      { progress: 10, text: 'Loading fonts...' },
+      { progress: 25, text: 'Applying theme...' },
+      { progress: 40, text: 'Configuring terminal...' },
+      { progress: 55, text: 'Loading extensions...' },
+      { progress: 70, text: 'Syncing settings...' },
+      { progress: 85, text: 'Ready!' },
+      { progress: 100, text: 'Launching...' }
+    ];
+    
+    const statusEl = document.getElementById('status');
+    const progressEl = document.getElementById('progress');
+    
+    // Update status
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < messages.length) {
+        statusEl.textContent = messages[index].text;
+        progressEl.textContent = messages[index].progress + '%';
+        index++;
+      } else {
+        clearInterval(interval);
+        // Hide splash after animation
+        setTimeout(() => {
+          document.body.style.opacity = '0';
+          document.body.style.transition = 'opacity 0.5s ease';
+        }, 500);
+      }
+    }, 400);
+    
+    // Prevent animation if no JS (show content)
+    document.body.classList.add('loaded');
+  </script>
+</body>
+</html>

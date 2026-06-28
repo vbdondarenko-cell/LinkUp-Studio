@@ -1,4 +1,4 @@
-# LinkUp Studio Startup Configuration
+# LinkUp Studio Startup v2.0
 
 Configure LinkUp Studio to launch automatically after Windows login in under 10 seconds.
 
@@ -6,9 +6,12 @@ Configure LinkUp Studio to launch automatically after Windows login in under 10 
 
 - ⚡ **Fast Startup** - Optimized for < 10 second startup time
 - 🔄 **Parallel Launch** - Apps launch simultaneously, not sequentially
-- 🎯 **Smart Detection** - Auto-detects OpenHands installation
-- ⚙️ **Configurable** - Customize URLs, project paths, and delays
+- 🎯 **Smart Detection** - Auto-detects OpenHands, VS Code, browsers
+- ⚙️ **Configurable** - Full JSON-based configuration
 - 🔒 **Safe** - Creates backups and logs all actions
+- 🖥️ **GitHub Integration** - Opens GitHub alongside other apps
+- 💻 **VS Code Support** - Auto-launch with project
+- 📊 **Progress Tracking** - Visual feedback with logging
 
 ## Startup Sequence
 

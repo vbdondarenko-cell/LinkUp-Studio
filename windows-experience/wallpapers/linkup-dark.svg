@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="50%" style="stop-color:#0f1419"/>
+      <stop offset="100%" style="stop-color:#0d1117"/>
+    </linearGradient>
+    
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#58a6ff;stop-opacity:0"/>
+    </linearGradient>
+    
+    <radialGradient id="logoGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#58a6ff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#58a6ff;stop-opacity:0"/>
+    </radialGradient>
+    
+    <!-- Grid Pattern -->
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#21262d" stroke-width="0.5"/>
+    </pattern>
+    
+    <!-- Subtle Grid -->
+    <pattern id="subtleGrid" width="240" height="240" patternUnits="userSpaceOnUse">
+      <path d="M 240 0 L 0 0 0 240" fill="none" stroke="#161b22" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
+  
+  <!-- Subtle Grid -->
+  <rect width="1920" height="1080" fill="url(#subtleGrid)"/>
+  
+  <!-- Top Glow -->
+  <rect width="1920" height="400" fill="url(#glowGradient)"/>
+  
+  <!-- Center Glow -->
+  <ellipse cx="960" cy="540" rx="500" ry="400" fill="url(#logoGlow)"/>
+  
+  <!-- Logo -->
+  <g transform="translate(860, 420)">
+    <!-- Logo Grid 2x2 -->
+    <rect x="0" y="0" width="80" height="80" rx="12" fill="#58a6ff" opacity="0.9"/>
+    <rect x="100" y="0" width="80" height="80" rx="12" fill="#58a6ff" opacity="0.7"/>
+    <rect x="0" y="100" width="80" height="80" rx="12" fill="#58a6ff" opacity="0.7"/>
+    <rect x="100" y="100" width="80" height="80" rx="12" fill="#58a6ff" opacity="0.5"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="960" y="680" text-anchor="middle" font-family="Segoe UI, Inter, sans-serif" font-size="48" font-weight="600" fill="#e6edf3" letter-spacing="8">
+    LinkUp Studio
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="960" y="720" text-anchor="middle" font-family="Segoe UI, Inter, sans-serif" font-size="16" fill="#8b949e" letter-spacing="2">
+    Developer Workspace · GitHub Dark Theme
+  </text>
+  
+  <!-- Corner Accents -->
+  <g stroke="#30363d" stroke-width="1" fill="none">
+    <!-- Top Left -->
+    <path d="M 40 80 L 40 40 L 80 40"/>
+    <!-- Top Right -->
+    <path d="M 1880 80 L 1880 40 L 1840 40"/>
+    <!-- Bottom Left -->
+    <path d="M 40 1000 L 40 1040 L 80 1040"/>
+    <!-- Bottom Right -->
+    <path d="M 1880 1000 L 1880 1040 L 1840 1040"/>
+  </g>
+  
+  <!-- Version Badge -->
+  <g transform="translate(1780, 1020)">
+    <rect x="-50" y="-16" width="100" height="32" rx="6" fill="#161b22" stroke="#30363d"/>
+    <text x="0" y="6" text-anchor="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#8b949e">
+      v1.0.0
+    </text>
+  </g>
+</svg>

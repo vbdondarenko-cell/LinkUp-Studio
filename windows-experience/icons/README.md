@@ -4,6 +4,25 @@
 
 This folder contains custom icons for LinkUp Studio Windows experience. These icons replace default Windows icons with a premium GitHub Dark-themed design.
 
+## Included SVG Icons
+
+| Icon | File | Description |
+|------|------|-------------|
+| LinkUp Studio | `linkup-studio.svg` | Main app icon with logo |
+| Folder | `folder.svg` | Custom folder icon |
+| Terminal | `terminal.svg` | Terminal window icon |
+| Code | `code.svg` | Code brackets icon |
+
+## Quick Install
+
+```powershell
+# Run as Administrator
+.\Install-Icons.ps1
+
+# Create desktop shortcuts
+.\Install-Icons.ps1 -Shortcuts
+```
+
 ## Desktop Icons
 
 The following icons are designed for desktop shortcuts:

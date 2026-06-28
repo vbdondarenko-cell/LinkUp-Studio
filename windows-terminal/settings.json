@@ -1,6 +1,12 @@
 {
   "$help": "https://aka.ms/terminal-documentation",
   "$schema": "https://aka.ms/terminal-profiles-schema",
+  "version": "2.0",
+  "linkUpStudio": {
+    "version": "2.0.0",
+    "theme": "GitHub Dark",
+    "description": "LinkUp Studio Developer Workspace - Windows Terminal Configuration"
+  },
   "actions": [
     {
       "command": {

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://linkup.studio/schemas/startup_config.json",
+  "version": "2.0",
+  
+  "comment": "LinkUp Studio Startup Configuration",
+  "comment2": "Edit this file to customize startup behavior",
+  
+  "urls": {
+    "browser": "https://app.all-hands.dev",
+    "github": "https://github.com",
+    "githubRepo": "https://github.com/vbdondarenko-cell/LinkUp-Studio"
+  },
+  
+  "paths": {
+    "projectPath": "",
+    "vsCodePath": ""
+  },
+  
+  "launchOptions": {
+    "launchTerminal": true,
+    "launchOpenHands": true,
+    "launchBrowser": true,
+    "launchGitHub": true,
+    "launchVSCode": true
+  },
+  
+  "timing": {
+    "waitForServices": true,
+    "launchDelay": 300,
+    "browserDelay": 500,
+    "vsCodeDelay": 300
+  },
+  
+  "terminal": {
+    "profile": "Developer Dashboard",
+    "openMaximized": true
+  },
+  
+  "browser": {
+    "preferred": "edge",
+    "fallbackToDefault": true
+  }
+}

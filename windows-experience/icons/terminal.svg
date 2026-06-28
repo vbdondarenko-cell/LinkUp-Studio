@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" rx="32" fill="#0d1117"/>
+  
+  <!-- Terminal Window -->
+  <rect x="32" y="48" width="192" height="160" rx="8" fill="#161b22" stroke="#30363d"/>
+  
+  <!-- Title Bar -->
+  <rect x="32" y="48" width="192" height="32" rx="8" fill="#21262d"/>
+  <rect x="32" y="72" width="192" height="8" fill="#21262d"/>
+  
+  <!-- Window Controls -->
+  <circle cx="56" cy="64" r="6" fill="#f85149"/>
+  <circle cx="80" cy="64" r="6" fill="#d29922"/>
+  <circle cx="104" cy="64" r="6" fill="#3fb950"/>
+  
+  <!-- Terminal Content -->
+  <text x="48" y="120" font-family="JetBrains Mono, Consolas, monospace" font-size="32" fill="#58a6ff">&gt;_</text>
+  <rect x="48" y="130" width="120" height="4" rx="2" fill="#30363d"/>
+  <rect x="48" y="140" width="80" height="4" rx="2" fill="#30363d"/>
+  
+  <!-- Cursor -->
+  <rect x="104" y="108" width="24" height="32" rx="2" fill="#58a6ff" opacity="0.8"/>
+</svg>

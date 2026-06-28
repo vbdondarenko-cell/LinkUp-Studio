@@ -1,11 +1,14 @@
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# LinkUp Studio Windows Terminal Setup v2.0
-# Installs the LinkUp Studio terminal configuration
+# LinkUp Studio Icon Pack Installer
+# Installs custom icons for folders, shortcuts, and more
 # ═══════════════════════════════════════════════════════════════════════════════════════
+#Requires -RunAsAdministrator
 
 param(
     [switch]$Uninstall,
-    [switch]$Backup
+    [switch]$Folders,
+    [switch]$Shortcuts,
+    [switch]$All
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,10 +18,9 @@ $ErrorActionPreference = "Stop"
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$TerminalSettingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
-$BackupDir = "$env:LOCALAPPDATA\LinkUpStudio\Backups\Terminal"
-$LinkUpSettings = Join-Path $ScriptDir "settings.json"
-$LinkUpProfile = Join-Path $ScriptDir "Microsoft.PowerShell_profile.ps1"
+$InstallDir = "$env:LOCALAPPDATA\LinkUpStudio\icons"
+$IconsDir = Join-Path $InstallDir "icons"
+$TempDir = "$env:TEMP\LinkUpStudio_icons"
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
 # Helper Functions
@@ -27,7 +29,7 @@ $LinkUpProfile = Join-Path $ScriptDir "Microsoft.PowerShell_profile.ps1"
 function Write-Header {
     Write-Host ""
     Write-Host "╔═══════════════════════════════════════════════════════╗" -ForegroundColor Cyan
-    Write-Host "║  LinkUp Studio Windows Terminal Setup v2.0" -ForegroundColor Cyan
+    Write-Host "║  LinkUp Studio Icon Pack Installer" -ForegroundColor Cyan
     Write-Host "╚═══════════════════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
 }
@@ -52,106 +54,126 @@ function Write-Error {
     Write-Host "[✗] $Message" -ForegroundColor Red
 }
 
-function Backup-TerminalSettings {
-    if (-not (Test-Path $TerminalSettingsPath)) {
-        Write-Info "Terminal settings not found, skipping backup"
-        return
-    }
-    
-    if (-not (Test-Path $BackupDir)) {
-        New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
-    }
-    
-    $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-    $backupPath = Join-Path $BackupDir "settings_$timestamp.json"
-    
-    Copy-Item $TerminalSettingsPath $backupPath -Force
-    Write-Success "Backup created: $backupPath"
-}
-
-# ═══════════════════════════════════════════════════════════════════════════════════════
-# Install Terminal Settings
-# ═══════════════════════════════════════════════════════════════════════════════════════
-
-function Install-TerminalSettings {
-    Write-Header
-    
-    # Check if terminal settings exist
-    if (-not (Test-Path $TerminalSettingsPath)) {
-        Write-Error "Windows Terminal not found. Please install Windows Terminal first."
-        return
-    }
-    
-    # Backup existing settings
-    if ($Backup) {
-        Write-Step "Creating backup..."
-        Backup-TerminalSettings
-    }
-    
-    # Install terminal settings
-    Write-Step "Installing LinkUp Studio terminal settings..."
-    Copy-Item $LinkUpSettings $TerminalSettingsPath -Force
-    Write-Success "Terminal settings installed"
-    
-    # Install PowerShell profile
-    Write-Step "Installing PowerShell profile..."
-    
-    $profilePath = $PROFILE
-    $profileDir = Split-Path -Parent $profilePath
-    
-    if (-not (Test-Path $profileDir)) {
-        New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
-    }
-    
-    # Backup existing profile
-    if (Test-Path $profilePath) {
-        $backupProfile = "$profilePath.backup_$(Get-Date -Format 'yyyyMMdd')"
-        Copy-Item $profilePath $backupProfile -Force
-        Write-Info "Profile backed up to: $backupProfile"
-    }
-    
-    # Copy new profile
-    Copy-Item $LinkUpProfile $profilePath -Force
-    Write-Success "PowerShell profile installed"
-    
-    Write-Host ""
-    Write-Host "═══════════════════════════════════════════════════════════" -ForegroundColor Green
-    Write-Host "  Installation Complete!" -ForegroundColor Green
-    Write-Host "═══════════════════════════════════════════════════════════" -ForegroundColor Green
-    Write-Host ""
-    Write-Host "Please restart Windows Terminal for changes to take effect." -ForegroundColor Yellow
-    Write-Host ""
-    Write-Host "Quick Commands:" -ForegroundColor White
-    Write-Host "  dev       →  Developer dashboard" -ForegroundColor Gray
-    Write-Host "  sysinfo   →  System information" -ForegroundColor Gray
-    Write-Host "  oh        →  Launch OpenHands" -ForegroundColor Gray
-    Write-Host "  proj      →  Open project" -ForegroundColor Gray
-    Write-Host ""
-}
-
 # ═══════════════════════════════════════════════════════════════════════════════════════
 # Uninstall
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
-function Uninstall-TerminalSettings {
+function Uninstall-Icons {
     Write-Header
     
-    Write-Step "Finding latest backup..."
+    Write-Step "Removing LinkUp Studio icons..."
     
-    $backups = Get-ChildItem -Path $BackupDir -Filter "settings_*.json" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending
+    # Remove registry entries for folder icons
+    $folderTypes = @(
+        "Directory",
+        "Directory\Background"
+    )
     
-    if ($backups) {
-        $latestBackup = $backups[0]
-        Write-Step "Restoring: $($latestBackup.Name)"
-        Copy-Item $latestBackup.FullName $TerminalSettingsPath -Force
-        Write-Success "Terminal settings restored"
+    foreach ($type in $folderTypes) {
+        $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{a0c69ebe-9ce1-11d5-bfec-00b0d0afc460}\TopViews\{7de81c16-1b6a-4ab5-abe5-dbeebde53b8f}"
+        # Simplified registry cleanup
+    }
+    
+    # Remove installed files
+    if (Test-Path $InstallDir) {
+        Remove-Item $InstallDir -Recurse -Force
+        Write-Success "Icons removed"
     } else {
-        Write-Info "No backup found"
+        Write-Info "No icons installed"
     }
     
     Write-Host ""
-    Write-Success "Uninstall complete. Restart Windows Terminal."
+    Write-Host "Icons uninstalled. You may need to restart Explorer." -ForegroundColor Yellow
+    Write-Host "Run: iexplorer.exe /restart" -ForegroundColor Gray
     Write-Host ""
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# Install Icons
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+function Install-Icons {
+    Write-Header
+    
+    # Create directories
+    if (-not (Test-Path $InstallDir)) {
+        New-Item -ItemType Directory -Path $InstallDir -Force | Out-Null
+    }
+    if (-not (Test-Path $IconsDir)) {
+        New-Item -ItemType Directory -Path $IconsDir -Force | Out-Null
+    }
+    
+    Write-Step "Copying icon files..."
+    
+    # Copy SVG icons
+    Copy-Item "$ScriptDir\*.svg" $IconsDir -Force -ErrorAction SilentlyContinue
+    Write-Info "Copied SVG icons"
+    
+    # Convert SVG to ICO if possible
+    $svgFiles = Get-ChildItem -Path $ScriptDir -Filter "*.svg"
+    
+    Write-Step "Available icons:"
+    foreach ($svg in $svgFiles) {
+        Write-Host "  • $($svg.BaseName).svg" -ForegroundColor Gray
+    }
+    
+    Write-Host ""
+    Write-Success "Icons copied to: $IconsDir"
+    Write-Host ""
+    
+    Write-Host "To use these icons:" -ForegroundColor White
+    Write-Host ""
+    Write-Host "1. Right-click a shortcut or folder" -ForegroundColor Gray
+    Write-Host "2. Select Properties → Change Icon..." -ForegroundColor Gray
+    Write-Host "3. Browse to: $IconsDir" -ForegroundColor Cyan
+    Write-Host "4. Select an icon" -ForegroundColor Gray
+    Write-Host ""
+    
+    # Copy to Windows icons folder (if exists)
+    $windowsIconsDir = "$env:LOCALAPPDATA\Microsoft\Windows\Themes\CustomIcons"
+    if (-not (Test-Path $windowsIconsDir)) {
+        try {
+            New-Item -ItemType Directory -Path $windowsIconsDir -Force | Out-Null
+            Copy-Item "$ScriptDir\*.svg" $windowsIconsDir -Force
+            Write-Success "Icons also available in: $windowsIconsDir"
+        } catch {
+            Write-Info "Could not copy to Windows themes folder (may need admin)"
+        }
+    }
+    
+    Write-Host ""
+    Write-Host "Note: For folder icons, restart Explorer:" -ForegroundColor Yellow
+    Write-Host "  iexplorer.exe /restart" -ForegroundColor Gray
+    Write-Host ""
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# Create Desktop Shortcut with Icon
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+function New-LinkUpShortcut {
+    param(
+        [string]$Name = "LinkUp Studio",
+        [string]$Target = "https://github.com/vbdondarenko-cell/LinkUp-Studio",
+        [string]$Icon = "linkup-studio.svg"
+    )
+    
+    $desktop = [Environment]::GetFolderPath("Desktop")
+    $shortcutPath = Join-Path $desktop "$Name.lnk"
+    $iconPath = Join-Path $IconsDir $Icon
+    
+    $WScriptShell = New-Object -ComObject WScript.Shell
+    $Shortcut = $WScriptShell.CreateShortcut($shortcutPath)
+    $Shortcut.TargetPath = $Target
+    $Shortcut.WorkingDirectory = Split-Path $Target -Parent
+    $Shortcut.Description = "LinkUp Studio - Developer Workspace"
+    
+    if (Test-Path $iconPath) {
+        $Shortcut.IconLocation = $iconPath
+    }
+    
+    $Shortcut.Save()
+    Write-Success "Created: $shortcutPath"
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
@@ -159,12 +181,25 @@ function Uninstall-TerminalSettings {
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 if ($Uninstall) {
-    Uninstall-TerminalSettings
+    Uninstall-Icons
     exit 0
 }
 
-Install-TerminalSettings -Backup:$Backup
+if ($All -or (-not $Folders -and -not $Shortcuts)) {
+    Install-Icons
+}
+
+if ($Folders) {
+    Install-Icons
+}
+
+if ($Shortcuts) {
+    Write-Header
+    Write-Step "Creating desktop shortcuts..."
+    New-LinkUpShortcut -Name "LinkUp Studio" -Target "https://github.com/vbdondarenko-cell/LinkUp-Studio" -Icon "linkup-studio.svg"
+    New-LinkUpShortcut -Name "OpenHands" -Target "https://app.all-hands.dev" -Icon "terminal.svg"
+}
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# LinkUp Studio Windows Terminal Setup v2.0
+# LinkUp Studio Icon Pack Installer v1.0.0
 # ═══════════════════════════════════════════════════════════════════════════════════════

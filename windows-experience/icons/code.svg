@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" rx="32" fill="#0d1117"/>
+  
+  <!-- Code Brackets -->
+  <g transform="translate(48, 48)" stroke="#58a6ff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M64 32 L16 128 L64 224"/>
+    <path d="M192 32 L240 128 L192 224"/>
+    <path d="M160 64 L96 192"/>
+  </g>
+</svg>

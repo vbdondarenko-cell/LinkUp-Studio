@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" rx="32" fill="#0d1117"/>
+  
+  <!-- Folder Shape -->
+  <path d="M48 72 L208 72 L208 192 C208 200.84 200.84 208 192 208 L64 208 C55.16 208 48 200.84 48 192 L48 72 Z" fill="#30363d"/>
+  <path d="M48 72 L208 72 L208 88 L48 88 Z" fill="#58a6ff"/>
+  <path d="M48 72 L128 72 L144 88 L48 88 Z" fill="#388bfd"/>
+</svg>

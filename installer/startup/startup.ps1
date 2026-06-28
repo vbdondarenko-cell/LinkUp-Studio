@@ -1,19 +1,47 @@
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# LinkUp Studio Fast Startup Script
+# LinkUp Studio Fast Startup Script v2.0
 # Optimized for < 10 second startup time after Windows login
 # ═══════════════════════════════════════════════════════════════════════════════════════
 # This script runs automatically from Windows Startup folder
-# Do not run manually - it will close immediately
+# Features: Parallel execution, GitHub integration, VS Code, Progress tracking
+# ═══════════════════════════════════════════════════════════════════════════════════════
 
 param(
-    [string]$ConfigFile = "$env:LOCALAPPDATA\LinkUpStudio\startup_config.json"
+    [string]$ConfigFile = "$env:LOCALAPPDATA\LinkUpStudio\startup_config.json",
+    [switch]$Silent,
+    [switch]$Debug
 )
 
 $ErrorActionPreference = "SilentlyContinue"
 $StartTime = Get-Date
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# Logging
+# Configuration Defaults
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+$DefaultConfig = @{
+    # URLs
+    BrowserURL = "https://app.all-hands.dev"
+    GitHubURL = "https://github.com"
+    
+    # Paths
+    ProjectPath = ""
+    VSCodePath = ""
+    
+    # Launch Options
+    LaunchTerminal = $true
+    LaunchOpenHands = $true
+    LaunchBrowser = $true
+    LaunchGitHub = $true
+    LaunchVSCode = $true
+    
+    # Timing
+    WaitForServices = $true
+    LaunchDelay = 300
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# Logging System
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 $LogDir = "$env:LOCALAPPDATA\LinkUpStudio"
@@ -21,25 +49,55 @@ if (-not (Test-Path $LogDir)) {
     New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
 }
 
-$LogFile = "$LogDir\startup.log"
+$LogFile = "$LogDir\startup_$(Get-Date -Format 'yyyyMMdd').log"
+$ProgressLog = "$LogDir\startup_progress.txt"
 
 function Write-Log {
-    param([string]$Message)
+    param(
+        [string]$Message,
+        [string]$Level = "INFO"
+    )
+    
     $timestamp = Get-Date -Format "HH:mm:ss.fff"
-    "$timestamp | $Message" | Add-Content -Path $LogFile -Encoding UTF8
+    $logEntry = "$timestamp | [$Level] | $Message"
+    
+    if (-not $Silent) {
+        $color = switch ($Level) {
+            "SUCCESS" { "Green" }
+            "ERROR" { "Red" }
+            "WARNING" { "Yellow" }
+            "DEBUG" { "Gray" }
+            default { "Cyan" }
+        }
+        Write-Host "[$timestamp] $Message" -ForegroundColor $color
+    }
+    
+    $logEntry | Add-Content -Path $LogFile -Encoding UTF8
+    
+    if ($Debug) {
+        $logEntry | Add-Content -Path "$LogDir\startup_debug.log" -Encoding UTF8
+    }
 }
 
-Write-Log "=== LinkUp Studio Startup Initiated ==="
+function Write-Progress {
+    param([string]$Message)
+    $Message | Add-Content -Path $ProgressLog -Encoding UTF8
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# Initialize
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Log "LinkUp Studio v2.0 - Developer Workspace Startup"
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Progress "START"
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
 # Load Configuration
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
-$Config = @{
-    BrowserURL = "https://app.all-hands.dev"
-    ProjectPath = ""
-    WaitForServices = $true
-}
+$Config = $DefaultConfig.Clone()
 
 if (Test-Path $ConfigFile) {
     try {
@@ -47,168 +105,299 @@ if (Test-Path $ConfigFile) {
         foreach ($key in $LoadedConfig.Keys) {
             $Config[$key] = $LoadedConfig[$key]
         }
-        Write-Log "Configuration loaded from: $ConfigFile"
+        Write-Log "Configuration loaded from: $ConfigFile" -Level "DEBUG"
     } catch {
-        Write-Log "Failed to load config, using defaults"
+        Write-Log "Failed to load config, using defaults" -Level "WARNING"
     }
 }
 
+Write-Log "Config: BrowserURL=$($Config.BrowserURL)" -Level "DEBUG"
+Write-Log "Config: GitHubURL=$($Config.GitHubURL)" -Level "DEBUG"
+Write-Log "Config: ProjectPath=$($Config.ProjectPath)" -Level "DEBUG"
+
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# OpenHands Detection
+# Helper Functions
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
-$OpenHandsPath = $Config.OpenHandsPath
-
-if (-not $OpenHandsPath) {
-    $OpenHandsPaths = @(
+function Get-OpenHandsPath {
+    $paths = @(
         "$env:LOCALAPPDATA\Programs\open-hands\openhands.exe",
         "$env:LOCALAPPDATA\open-hands\openhands.exe",
         "$env:ProgramFiles\OpenHands\openhands.exe",
+        "$env:ProgramFiles(x86)\OpenHands\openhands.exe",
         "$env:APPDATA\OpenHands\openhands.exe"
     )
     
-    foreach ($path in $OpenHandsPaths) {
+    foreach ($path in $paths) {
         if (Test-Path $path) {
-            $OpenHandsPath = $path
-            Write-Log "OpenHands detected: $path"
-            break
+            return $path
         }
     }
+    return $null
 }
 
-if (-not $OpenHandsPath) {
-    Write-Log "OpenHands not found, will try executable name"
-}
-
-# ═══════════════════════════════════════════════════════════════════════════════════════
-# Stage 1: Launch Windows Terminal (Immediate - 0ms)
-# ═══════════════════════════════════════════════════════════════════════════════════════
-
-Write-Log "STAGE 1: Launching Windows Terminal"
-
-try {
-    Start-Process -FilePath "wt.exe" -ArgumentList "-p `"Developer Dashboard`" --maximized" -WindowStyle Normal -PassThru | Out-Null
-    Write-Log "Windows Terminal launched"
-} catch {
-    Write-Log "Failed to launch Windows Terminal: $_"
-}
-
-# ═══════════════════════════════════════════════════════════════════════════════════════
-# Stage 2: Launch OpenHands (Parallel - 0ms)
-# ═══════════════════════════════════════════════════════════════════════════════════════
-
-Write-Log "STAGE 2: Launching OpenHands"
-
-if ($OpenHandsPath) {
-    try {
-        Start-Process -FilePath $OpenHandsPath -WindowStyle Normal -PassThru | Out-Null
-        Write-Log "OpenHands launched: $OpenHandsPath"
-    } catch {
-        Write-Log "Failed to launch OpenHands: $_"
-    }
-} else {
-    # Try executable names
-    try {
-        Start-Process -FilePath "openhands.exe" -WindowStyle Normal -PassThru | Out-Null
-        Write-Log "OpenHands launched (by name)"
-    } catch {
-        try {
-            Start-Process -FilePath "openhands-app.exe" -WindowStyle Normal -PassThru | Out-Null
-            Write-Log "OpenHands launched (openhands-app)"
-        } catch {
-            Write-Log "Could not launch OpenHands"
+function Get-VSCodePath {
+    $paths = @(
+        "$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe",
+        "$env:ProgramFiles\Microsoft VS Code\Code.exe",
+        "$env:ProgramFiles(x86)\Microsoft VS Code\Code.exe"
+    )
+    
+    foreach ($path in $paths) {
+        if (Test-Path $path) {
+            return $path
         }
     }
+    return $null
 }
 
-# ═══════════════════════════════════════════════════════════════════════════════════════
-# Stage 3: Wait for Services (Conditional - 500ms)
-# ═══════════════════════════════════════════════════════════════════════════════════════
-
-Write-Log "STAGE 3: Service stabilization delay"
-
-if ($Config.WaitForServices) {
-    Start-Sleep -Milliseconds 500
-    Write-Log "Services wait complete (500ms)"
-} else {
-    Start-Sleep -Milliseconds 200
-    Write-Log "Minimal delay complete (200ms)"
-}
-
-# ═══════════════════════════════════════════════════════════════════════════════════════
-# Stage 4: Launch Browser (500ms after start)
-# ═══════════════════════════════════════════════════════════════════════════════════════
-
-Write-Log "STAGE 4: Launching browser"
-
-$BrowserURL = $Config.BrowserURL
-if (-not $BrowserURL) {
-    $BrowserURL = "https://app.all-hands.dev"
-}
-
-try {
+function Get-BrowserPath {
     # Try Edge first (faster on Windows)
-    $EdgePath = "msedge.exe"
-    $EdgePaths = @(
+    $edgePaths = @(
         "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe",
         "$env:ProgramFiles\Microsoft\Edge\Application\msedge.exe"
     )
     
-    $launched = $false
-    foreach ($path in $EdgePaths) {
+    foreach ($path in $edgePaths) {
         if (Test-Path $path) {
-            Start-Process -FilePath $path -ArgumentList "--new-window", "--start-fullscreen", $BrowserURL -WindowStyle Normal -PassThru | Out-Null
-            Write-Log "Browser launched (Edge): $BrowserURL"
-            $launched = $true
-            break
+            return @{ Path = $path; Name = "Edge" }
         }
     }
     
-    if (-not $launched) {
-        # Fallback to default browser
-        Start-Process -FilePath $BrowserURL -WindowStyle Normal -PassThru | Out-Null
-        Write-Log "Browser launched (default): $BrowserURL"
+    # Try Chrome
+    $chromePaths = @(
+        "$env:LOCALAPPDATA\Google\Chrome\Application\chrome.exe",
+        "$env:ProgramFiles\Google\Chrome\Application\chrome.exe",
+        "$env:ProgramFiles(x86)\Google\Chrome\Application\chrome.exe"
+    )
+    
+    foreach ($path in $chromePaths) {
+        if (Test-Path $path) {
+            return @{ Path = $path; Name = "Chrome" }
+        }
     }
-} catch {
-    Write-Log "Failed to launch browser: $_"
+    
+    return @{ Path = $null; Name = "Default" }
+}
+
+function Launch-Application {
+    param(
+        [string]$Path,
+        [string]$Arguments = "",
+        [string]$Name = "Application"
+    )
+    
+    if (-not $Path) {
+        Write-Log "$Name path not specified" -Level "DEBUG"
+        return $false
+    }
+    
+    if ($Path -ne "default" -and -not (Test-Path $Path)) {
+        Write-Log "$Name not found at: $Path" -Level "WARNING"
+        return $false
+    }
+    
+    try {
+        if ($Path -eq "default") {
+            Start-Process -FilePath $Arguments -WindowStyle Normal
+        } else {
+            Start-Process -FilePath $Path -ArgumentList $Arguments -WindowStyle Normal
+        }
+        Write-Log "$Name launched successfully" -Level "SUCCESS"
+        return $true
+    } catch {
+        Write-Log "Failed to launch $Name : $_" -Level "ERROR"
+        return $false
+    }
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# Stage 5: Restore Project (700ms after start, if configured)
+# PHASE 1: Parallel Launch (0-500ms)
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Log "PHASE 1: Parallel Application Launch"
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Progress "PHASE1_START"
+
+# Detect applications
+$OpenHandsPath = Get-OpenHandsPath
+$VSCodePath = Get-VSCodePath
+$Browser = Get-BrowserPath
+
+if ($OpenHandsPath) {
+    Write-Log "OpenHands detected: $OpenHandsPath" -Level "DEBUG"
+} else {
+    Write-Log "OpenHands not found" -Level "WARNING"
+}
+
+if ($VSCodePath) {
+    Write-Log "VS Code detected: $VSCodePath" -Level "DEBUG"
+}
+
+Write-Log "Browser detected: $($Browser.Name)" -Level "DEBUG"
+
+# Launch Windows Terminal (always first)
+Write-Log "Launching Windows Terminal..." -Level "DEBUG"
+try {
+    Start-Process -FilePath "wt.exe" -ArgumentList "-p `"Developer Dashboard`" --maximized" -WindowStyle Normal
+    Write-Log "✓ Windows Terminal launched" -Level "SUCCESS"
+} catch {
+    Write-Log "✗ Failed to launch Windows Terminal" -Level "ERROR"
+}
+
+# Launch OpenHands (if enabled and found)
+if ($Config.LaunchOpenHands -and $OpenHandsPath) {
+    Write-Log "Launching OpenHands..." -Level "DEBUG"
+    try {
+        Start-Process -FilePath $OpenHandsPath -WindowStyle Normal
+        Write-Log "✓ OpenHands launched" -Level "SUCCESS"
+        Write-Progress "OPENHANDS"
+    } catch {
+        Write-Log "✗ Failed to launch OpenHands" -Level "ERROR"
+    }
+} elseif ($Config.LaunchOpenHands) {
+    Write-Log "OpenHands enabled but not found, skipping" -Level "WARNING"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# PHASE 2: Wait for Services
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+Write-Log "Waiting for services to stabilize..." -Level "DEBUG"
+$waitTime = if ($Config.WaitForServices) { $Config.LaunchDelay } else { 200 }
+Start-Sleep -Milliseconds $waitTime
+Write-Log "Services ready" -Level "DEBUG"
+Write-Progress "SERVICES_READY"
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# PHASE 3: Browser & GitHub (700ms)
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Log "PHASE 3: Browser Applications"
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Progress "PHASE3_START"
+
+# Launch OpenHands in browser
+if ($Config.LaunchBrowser) {
+    $browserArgs = "--new-window"
+    
+    if ($Browser.Name -eq "Edge") {
+        $browserArgs += " --start-fullscreen"
+    } elseif ($Browser.Name -eq "Chrome") {
+        $browserArgs += " --start-maximized"
+    }
+    
+    $browserArgs += " `"$($Config.BrowserURL)`""
+    
+    Write-Log "Launching $($Browser.Name) with OpenHands..." -Level "DEBUG"
+    try {
+        if ($Browser.Path) {
+            Start-Process -FilePath $Browser.Path -ArgumentList ($browserArgs -replace '\"', '"') -WindowStyle Normal
+        } else {
+            Start-Process -FilePath $Config.BrowserURL -WindowStyle Normal
+        }
+        Write-Log "✓ OpenHands (Browser) launched" -Level "SUCCESS"
+        Write-Progress "BROWSER_OPENHANDS"
+    } catch {
+        Write-Log "✗ Failed to launch browser" -Level "ERROR"
+    }
+}
+
+# Launch GitHub
+if ($Config.LaunchGitHub) {
+    Start-Sleep -Milliseconds 500
+    Write-Log "Launching GitHub..." -Level "DEBUG"
+    try {
+        if ($Browser.Path -and $Browser.Name -ne "Default") {
+            Start-Process -FilePath $Browser.Path -ArgumentList "--new-tab", $Config.GitHubURL -WindowStyle Normal
+        } else {
+            Start-Process -FilePath $Config.GitHubURL -WindowStyle Normal
+        }
+        Write-Log "✓ GitHub launched" -Level "SUCCESS"
+        Write-Progress "BROWSER_GITHUB"
+    } catch {
+        Write-Log "✗ Failed to launch GitHub" -Level "ERROR"
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# PHASE 4: VS Code & Project
+# ═══════════════════════════════════════════════════════════════════════════════════════
+
+if ($Config.LaunchVSCode -and $VSCodePath -and $Config.ProjectPath) {
+    Write-Log "═══════════════════════════════════════════════════════════════"
+    Write-Log "PHASE 4: VS Code & Project"
+    Write-Log "═══════════════════════════════════════════════════════════════"
+    Write-Progress "PHASE4_START"
+    
+    Start-Sleep -Milliseconds 300
+    
+    try {
+        if (Test-Path $Config.ProjectPath) {
+            Start-Process -FilePath $VSCodePath -ArgumentList "`"$($Config.ProjectPath)`"" -WindowStyle Normal
+            Write-Log "✓ VS Code launched with project: $($Config.ProjectPath)" -Level "SUCCESS"
+            Write-Progress "VSCODE_PROJECT"
+        } else {
+            Start-Process -FilePath $VSCodePath -WindowStyle Normal
+            Write-Log "✓ VS Code launched (no project)" -Level "SUCCESS"
+            Write-Progress "VSCODE"
+        }
+    } catch {
+        Write-Log "✗ Failed to launch VS Code" -Level "ERROR"
+    }
+} elseif ($Config.LaunchVSCode -and $VSCodePath) {
+    Start-Process -FilePath $VSCodePath -WindowStyle Normal
+    Write-Log "✓ VS Code launched" -Level "SUCCESS"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════════════════
+# PHASE 5: Open Project in Terminal
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 if ($Config.ProjectPath -and (Test-Path $Config.ProjectPath)) {
-    Write-Log "STAGE 5: Opening project"
-    
-    Start-Sleep -Milliseconds 200
-    
+    Write-Log "Opening project in Terminal..." -Level "DEBUG"
     try {
-        # Open in Windows Terminal
-        Start-Process -FilePath "wt.exe" -ArgumentList "new-tab; cd `"$($Config.ProjectPath)`"" -WindowStyle Normal -PassThru | Out-Null
-        Write-Log "Project opened: $($Config.ProjectPath)"
+        Start-Process -FilePath "wt.exe" -ArgumentList "new-tab; cd `"$($Config.ProjectPath)`"" -WindowStyle Normal
+        Write-Log "✓ Project opened in new terminal tab" -Level "SUCCESS"
+        Write-Progress "TERMINAL_PROJECT"
     } catch {
-        Write-Log "Failed to open project: $_"
+        Write-Log "✗ Failed to open project in terminal" -Level "ERROR"
     }
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# Calculate Total Startup Time
+# Finalize
 # ═══════════════════════════════════════════════════════════════════════════════════════
 
 $EndTime = Get-Date
 $Elapsed = ($EndTime - $StartTime).TotalSeconds
 
-Write-Log "=== Startup Complete: $([math]::Round($Elapsed, 2)) seconds ==="
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Log "STARTUP COMPLETE"
+Write-Log "═══════════════════════════════════════════════════════════════"
+Write-Log "Total time: $([math]::Round($Elapsed, 2)) seconds" -Level "SUCCESS"
+Write-Progress "COMPLETE:$Elapsed"
 
 if ($Elapsed -le 10) {
-    Write-Log "SUCCESS: Startup time within target (< 10s)"
+    Write-Log "✓ Target achieved: < 10 seconds" -Level "SUCCESS"
 } else {
-    Write-Log "WARNING: Startup exceeded target (10s)"
+    Write-Log "⚠ Target missed: > 10 seconds" -Level "WARNING"
 }
 
-# Exit cleanly (no window remains)
+Write-Log "═══════════════════════════════════════════════════════════════"
+
+# Clean up progress file after delay
+Start-Sleep -Seconds 5
+if (Test-Path $ProgressLog) {
+    Remove-Item $ProgressLog -Force -ErrorAction SilentlyContinue
+}
+
+# Exit cleanly
 exit 0
 
 # ═══════════════════════════════════════════════════════════════════════════════════════
-# LinkUp Studio Fast Startup v1.0.0
+# LinkUp Studio Fast Startup v2.0
+# Features: Parallel execution, GitHub integration, VS Code, Progress tracking
 # ═══════════════════════════════════════════════════════════════════════════════════════
