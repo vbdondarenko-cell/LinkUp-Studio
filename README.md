@@ -290,11 +290,11 @@ Inspired by:
 - [x] Quick Actions
 
 ### Phase 11 — Theme Engine
-- [ ] Theme Manager
-- [ ] Icon Manager
-- [ ] Wallpaper Manager
-- [ ] Font Manager
-- [ ] Color Manager
+- [x] Theme Manager
+- [x] Icon Manager
+- [x] Wallpaper Manager
+- [x] Font Manager
+- [x] Color Manager
 
 ### Phase 12 — Settings
 - [ ] System Settings
