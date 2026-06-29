@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Project Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="pm-app">
+        <!-- Sidebar -->
+        <aside class="pm-sidebar">
+            <div class="pm-sidebar-header">
+                <div class="pm-logo">
+                    <span class="logo-icon">◉</span>
+                    <span class="logo-text">Projects</span>
+                </div>
+            </div>
+
+            <nav class="pm-nav">
+                <a href="#" class="pm-nav-item active" data-view="all">
+                    <span class="nav-icon">◈</span>
+                    <span>All Projects</span>
+                    <span class="nav-count">6</span>
+                </a>
+                <a href="#" class="pm-nav-item" data-view="recent">
+                    <span class="nav-icon">◐</span>
+                    <span>Recent</span>
+                    <span class="nav-count">3</span>
+                </a>
+                <a href="#" class="pm-nav-item" data-view="favorites">
+                    <span class="nav-icon">★</span>
+                    <span>Favorites</span>
+                    <span class="nav-count">2</span>
+                </a>
+            </nav>
+
+            <div class="pm-nav-section">
+                <div class="section-header">
+                    <span>REPOSITORIES</span>
+                    <button class="btn-add" id="addRepoBtn" title="Add Repository">+</button>
+                </div>
+                <div class="repo-list" id="repoList">
+                    <div class="repo-item">
+                        <span class="repo-icon github">◐</span>
+                        <span class="repo-name">LinkUp-Studio</span>
+                    </div>
+                    <div class="repo-item">
+                        <span class="repo-icon github">◐</span>
+                        <span class="repo-name">MyApp</span>
+                    </div>
+                    <div class="repo-item">
+                        <span class="repo-icon github">◐</span>
+                        <span class="repo-name">API-Project</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pm-nav-section">
+                <div class="section-header">
+                    <span>TEMPLATES</span>
+                    <button class="btn-add" id="addTemplateBtn" title="Add Template">+</button>
+                </div>
+                <div class="template-list" id="templateList">
+                    <div class="template-item">
+                        <span class="template-icon">⬢</span>
+                        <span>Node.js Express</span>
+                    </div>
+                    <div class="template-item">
+                        <span class="template-icon">🐍</span>
+                        <span>Python Flask</span>
+                    </div>
+                    <div class="template-item">
+                        <span class="template-icon">⚛</span>
+                        <span>React App</span>
+                    </div>
+                    <div class="template-item">
+                        <span class="template-icon">◈</span>
+                        <span>VS Code Extension</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pm-sidebar-footer">
+                <a href="#" class="pm-nav-item" data-view="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="pm-main">
+            <!-- Header -->
+            <header class="pm-header">
+                <div class="header-search">
+                    <span class="search-icon">⌕</span>
+                    <input type="text" class="search-input" placeholder="Search projects..." id="searchInput">
+                    <span class="search-shortcut">Ctrl+P</span>
+                </div>
+                <div class="header-actions">
+                    <select class="view-select" id="viewSelect">
+                        <option value="grid">Grid</option>
+                        <option value="list">List</option>
+                        <option value="compact">Compact</option>
+                    </select>
+                    <button class="btn-primary" id="newProjectBtn">+ New Project</button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="pm-content">
+                <!-- All Projects View -->
+                <section class="pm-view active" id="all-view">
+                    <div class="projects-header">
+                        <h2>All Projects</h2>
+                        <div class="projects-sort">
+                            <select class="sort-select" id="sortSelect">
+                                <option value="name">Name</option>
+                                <option value="date">Last Modified</option>
+                                <option value="size">Size</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="projects-grid" id="projectsGrid">
+                        <!-- Project Card -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon node">⬢</div>
+                                <button class="favorite-btn">★</button>
+                            </div>
+                            <div class="project-info">
+                                <h3>LinkUp-Studio</h3>
+                                <p>D:\Projects\LinkUp-Studio</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="meta-item">
+                                    <span class="meta-icon">⎇</span>
+                                    main
+                                </span>
+                                <span class="meta-item">
+                                    <span class="meta-icon">◉</span>
+                                    142
+                                </span>
+                            </div>
+                            <div class="project-footer">
+                                <span class="last-modified">Modified 2 hours ago</span>
+                                <div class="project-actions">
+                                    <button class="action-btn" title="Open in VS Code">◇</button>
+                                    <button class="action-btn" title="Open in Terminal">⌥</button>
+                                    <button class="action-btn" title="More">⋮</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon python">🐍</div>
+                                <button class="favorite-btn">★</button>
+                            </div>
+                            <div class="project-info">
+                                <h3>DataAnalysis</h3>
+                                <p>D:\Projects\DataAnalysis</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="meta-item">
+                                    <span class="meta-icon">⎇</span>
+                                    main
+                                </span>
+                                <span class="meta-item">
+                                    <span class="meta-icon">◉</span>
+                                    28
+                                </span>
+                            </div>
+                            <div class="project-footer">
+                                <span class="last-modified">Modified yesterday</span>
+                                <div class="project-actions">
+                                    <button class="action-btn" title="Open in VS Code">◇</button>
+                                    <button class="action-btn" title="Open in Terminal">⌥</button>
+                                    <button class="action-btn" title="More">⋮</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon react">⚛</div>
+                                <button class="favorite-btn active">★</button>
+                            </div>
+                            <div class="project-info">
+                                <h3>MyWebsite</h3>
+                                <p>D:\Projects\MyWebsite</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="meta-item">
+                                    <span class="meta-icon">⎇</span>
+                                    main
+                                </span>
+                                <span class="meta-item">
+                                    <span class="meta-icon">◉</span>
+                                    56
+                                </span>
+                            </div>
+                            <div class="project-footer">
+                                <span class="last-modified">Modified 3 days ago</span>
+                                <div class="project-actions">
+                                    <button class="action-btn" title="Open in VS Code">◇</button>
+                                    <button class="action-btn" title="Open in Terminal">⌥</button>
+                                    <button class="action-btn" title="More">⋮</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon docker">🐳</div>
+                                <button class="favorite-btn">★</button>
+                            </div>
+                            <div class="project-info">
+                                <h3>Backend-API</h3>
+                                <p>D:\Projects\Backend-API</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="meta-item">
+                                    <span class="meta-icon">⎇</span>
+                                    develop
+                                </span>
+                                <span class="meta-item">
+                                    <span class="meta-icon">◉</span>
+                                    89
+                                </span>
+                            </div>
+                            <div class="project-footer">
+                                <span class="last-modified">Modified 1 week ago</span>
+                                <div class="project-actions">
+                                    <button class="action-btn" title="Open in VS Code">◇</button>
+                                    <button class="action-btn" title="Open in Terminal">⌥</button>
+                                    <button class="action-btn" title="More">⋮</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Add New Card -->
+                        <div class="project-card add-new" id="addProjectCard">
+                            <span class="add-icon">+</span>
+                            <span>New Project</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent View -->
+                <section class="pm-view" id="recent-view">
+                    <div class="projects-header">
+                        <h2>Recent Projects</h2>
+                    </div>
+                    <div class="projects-list" id="recentList">
+                        <div class="project-row">
+                            <div class="project-icon small node">⬢</div>
+                            <div class="project-info">
+                                <h4>LinkUp-Studio</h4>
+                                <p>D:\Projects\LinkUp-Studio</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="branch">⎇ main</span>
+                            </div>
+                            <span class="last-modified">2 hours ago</span>
+                            <div class="project-actions">
+                                <button class="action-btn" title="Open">→</button>
+                            </div>
+                        </div>
+                        <div class="project-row">
+                            <div class="project-icon small python">🐍</div>
+                            <div class="project-info">
+                                <h4>DataAnalysis</h4>
+                                <p>D:\Projects\DataAnalysis</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="branch">⎇ main</span>
+                            </div>
+                            <span class="last-modified">Yesterday</span>
+                            <div class="project-actions">
+                                <button class="action-btn" title="Open">→</button>
+                            </div>
+                        </div>
+                        <div class="project-row">
+                            <div class="project-icon small react">⚛</div>
+                            <div class="project-info">
+                                <h4>MyWebsite</h4>
+                                <p>D:\Projects\MyWebsite</p>
+                            </div>
+                            <div class="project-meta">
+                                <span class="branch">⎇ main</span>
+                            </div>
+                            <span class="last-modified">3 days ago</span>
+                            <div class="project-actions">
+                                <button class="action-btn" title="Open">→</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Favorites View -->
+                <section class="pm-view" id="favorites-view">
+                    <div class="projects-header">
+                        <h2>Favorites</h2>
+                    </div>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="project-header">
+                                <div class="project-icon react">⚛</div>
+                                <button class="favorite-btn active">★</button>
+                            </div>
+                            <div class="project-info">
+                                <h3>MyWebsite</h3>
+                                <p>D:\Projects\MyWebsite</p>
+                            </div>
+                            <div class="project-footer">
+                                <span class="last-modified">3 days ago</span>
+                                <div class="project-actions">
+                                    <button class="action-btn" title="Open in VS Code">◇</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings View -->
+                <section class="pm-view" id="settings-view">
+                    <div class="settings-container">
+                        <h2>Project Manager Settings</h2>
+
+                        <div class="settings-section">
+                            <h3>Default Paths</h3>
+                            <div class="setting-item">
+                                <label>Projects folder</label>
+                                <input type="text" class="setting-input" value="D:\Projects" id="projectsPath">
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Auto-open</h3>
+                            <div class="setting-item">
+                                <label>Open last project on startup</label>
+                                <input type="checkbox" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>Restore terminal tabs</label>
+                                <input type="checkbox" checked>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3>Git</h3>
+                            <div class="setting-item">
+                                <label>Auto-fetch</label>
+                                <input type="checkbox" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>Default branch name</label>
+                                <input type="text" class="setting-input small" value="main">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
