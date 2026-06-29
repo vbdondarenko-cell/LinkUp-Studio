@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Workspace Restore</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wsr-app">
+        <!-- Sidebar -->
+        <aside class="wsr-sidebar">
+            <div class="wsr-sidebar-header">
+                <div class="wsr-logo">
+                    <span class="logo-icon">◈</span>
+                    <span class="logo-text">Restore</span>
+                </div>
+            </div>
+
+            <nav class="wsr-nav">
+                <a href="#" class="wsr-nav-item active" data-view="sessions">
+                    <span class="nav-icon">◐</span>
+                    <span>Sessions</span>
+                </a>
+                <a href="#" class="wsr-nav-item" data-view="history">
+                    <span class="nav-icon">◈</span>
+                    <span>History</span>
+                </a>
+                <a href="#" class="wsr-nav-item" data-view="settings">
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="wsr-sidebar-footer">
+                <button class="btn-primary full" id="saveSessionBtn">+ Save Current Session</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="wsr-main">
+            <!-- Sessions View -->
+            <section class="wsr-view active" id="sessions-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◐ Saved Sessions</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" id="autoSaveBtn" title="Toggle Auto-save">
+                            <span class="auto-save-indicator active">◉</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sessions-list" id="sessionsList">
+                    <!-- Current Session -->
+                    <div class="session-card current">
+                        <div class="session-header">
+                            <div class="session-info">
+                                <h3>Current Session</h3>
+                                <span class="session-time">Active now</span>
+                            </div>
+                            <span class="session-badge current">LIVE</span>
+                        </div>
+                        <div class="session-components">
+                            <div class="component-item">
+                                <span class="component-icon">◉</span>
+                                <span>Projects</span>
+                                <span class="component-count">4</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">⌥</span>
+                                <span>Terminals</span>
+                                <span class="component-count">3</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">◐</span>
+                                <span>Browser</span>
+                                <span class="component-count">2</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">◎</span>
+                                <span>OpenHands</span>
+                                <span class="component-count">1</span>
+                            </div>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-primary" id="restoreCurrentBtn">Save as Snapshot</button>
+                        </div>
+                    </div>
+
+                    <!-- Saved Session 1 -->
+                    <div class="session-card">
+                        <div class="session-header">
+                            <div class="session-info">
+                                <h3>Morning Work</h3>
+                                <span class="session-time">Today, 9:00 AM</span>
+                            </div>
+                            <button class="favorite-btn">★</button>
+                        </div>
+                        <div class="session-components">
+                            <div class="component-item">
+                                <span class="component-icon">◉</span>
+                                <span>Projects</span>
+                                <span class="component-count">2</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">⌥</span>
+                                <span>Terminals</span>
+                                <span class="component-count">1</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">◐</span>
+                                <span>Browser</span>
+                                <span class="component-count">1</span>
+                            </div>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-primary restore-btn" data-session="1">Restore</button>
+                            <button class="btn-secondary">Delete</button>
+                        </div>
+                    </div>
+
+                    <!-- Saved Session 2 -->
+                    <div class="session-card">
+                        <div class="session-header">
+                            <div class="session-info">
+                                <h3>Debug Mode</h3>
+                                <span class="session-time">Yesterday, 3:45 PM</span>
+                            </div>
+                            <button class="favorite-btn active">★</button>
+                        </div>
+                        <div class="session-components">
+                            <div class="component-item">
+                                <span class="component-icon">◉</span>
+                                <span>Projects</span>
+                                <span class="component-count">3</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">⌥</span>
+                                <span>Terminals</span>
+                                <span class="component-count">5</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">🐳</span>
+                                <span>Docker</span>
+                                <span class="component-count">4</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">⛃</span>
+                                <span>Databases</span>
+                                <span class="component-count">2</span>
+                            </div>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-primary restore-btn" data-session="2">Restore</button>
+                            <button class="btn-secondary">Delete</button>
+                        </div>
+                    </div>
+
+                    <!-- Saved Session 3 -->
+                    <div class="session-card">
+                        <div class="session-header">
+                            <div class="session-info">
+                                <h3>Code Review</h3>
+                                <span class="session-time">2 days ago</span>
+                            </div>
+                            <button class="favorite-btn">★</button>
+                        </div>
+                        <div class="session-components">
+                            <div class="component-item">
+                                <span class="component-icon">◉</span>
+                                <span>Projects</span>
+                                <span class="component-count">1</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">◐</span>
+                                <span>Browser</span>
+                                <span class="component-count">3</span>
+                            </div>
+                            <div class="component-item">
+                                <span class="component-icon">◎</span>
+                                <span>OpenHands</span>
+                                <span class="component-count">1</span>
+                            </div>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-primary restore-btn" data-session="3">Restore</button>
+                            <button class="btn-secondary">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History View -->
+            <section class="wsr-view" id="history-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◈ Session History</h1>
+                    </div>
+                    <div class="view-actions">
+                        <select class="filter-select" id="historyFilter">
+                            <option value="all">All</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="history-timeline" id="historyTimeline">
+                    <div class="timeline-group">
+                        <div class="timeline-header">Today</div>
+                        <div class="timeline-items">
+                            <div class="history-item">
+                                <div class="history-time">9:00 AM</div>
+                                <div class="history-icon start">▶</div>
+                                <div class="history-content">
+                                    <h4>Session Started</h4>
+                                    <p>Morning Work session restored</p>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-time">11:30 AM</div>
+                                <div class="history-icon change">◈</div>
+                                <div class="history-content">
+                                    <h4>Project Added</h4>
+                                    <p>LinkUp-Studio added to workspace</p>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-time">2:00 PM</div>
+                                <div class="history-icon end">■</div>
+                                <div class="history-content">
+                                    <h4>Session Saved</h4>
+                                    <p>Current state saved as "Afternoon Work"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-group">
+                        <div class="timeline-header">Yesterday</div>
+                        <div class="timeline-items">
+                            <div class="history-item">
+                                <div class="history-time">9:15 AM</div>
+                                <div class="history-icon start">▶</div>
+                                <div class="history-content">
+                                    <h4>Session Started</h4>
+                                    <p>Debug Mode session restored</p>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-time">5:30 PM</div>
+                                <div class="history-icon end">■</div>
+                                <div class="history-content">
+                                    <h4>Session Ended</h4>
+                                    <p>Debug Mode session saved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-group">
+                        <div class="timeline-header">Last Week</div>
+                        <div class="timeline-items">
+                            <div class="history-item">
+                                <div class="history-time">Mon 10:00 AM</div>
+                                <div class="history-icon start">▶</div>
+                                <div class="history-content">
+                                    <h4>Session Started</h4>
+                                    <p>Code Review session restored</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section class="wsr-view" id="settings-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>⚙ Restore Settings</h1>
+                    </div>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h2>Auto-Restore</h2>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore last session on startup</label>
+                                <p>Automatically restore your previous workspace when LinkUp Studio starts</p>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore terminal tabs</label>
+                                <p>Restore all open terminal tabs with their working directories</p>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore browser tabs</label>
+                                <p>Restore open browser tabs and URLs</p>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore OpenHands</label>
+                                <p>Restore OpenHands conversations and context</p>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Auto-Save</h2>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Enable auto-save</label>
+                                <p>Automatically save your current session periodically</p>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Auto-save interval</label>
+                                <p>How often to save your current session</p>
+                            </div>
+                            <select class="setting-select">
+                                <option value="5">Every 5 minutes</option>
+                                <option value="15" selected>Every 15 minutes</option>
+                                <option value="30">Every 30 minutes</option>
+                                <option value="60">Every hour</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Maximum saved sessions</label>
+                                <p>Number of auto-saved sessions to keep</p>
+                            </div>
+                            <select class="setting-select">
+                                <option value="5">5 sessions</option>
+                                <option value="10" selected>10 sessions</option>
+                                <option value="20">20 sessions</option>
+                                <option value="50">50 sessions</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Applications</h2>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore VS Code windows</label>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore Windows Terminal</label>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore browser windows</label>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore Docker containers</label>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Restore database connections</label>
+                            </div>
+                            <input type="checkbox" checked class="setting-toggle">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Data Management</h2>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Session storage location</label>
+                            </div>
+                            <input type="text" class="setting-input" value="%APPDATA%\LinkUpStudio\sessions" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Clear all sessions</label>
+                                <p>Delete all saved sessions and history</p>
+                            </div>
+                            <button class="btn-danger" id="clearAllBtn">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div class="modal" id="restoreModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Restore Session</h2>
+                <button class="modal-close" id="closeRestoreBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to restore this session?</p>
+                <p class="modal-warning">This will close your current workspace and restore the selected session.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelRestoreBtn">Cancel</button>
+                <button class="btn-primary" id="confirmRestoreBtn">Restore</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
