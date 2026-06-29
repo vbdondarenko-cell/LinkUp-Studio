@@ -283,11 +283,11 @@ Inspired by:
 - [x] Restore Browser
 
 ### Phase 10 — Automation Engine
-- [ ] Automation System
-- [ ] Scripts
-- [ ] Hotkeys
-- [ ] Macros
-- [ ] Quick Actions
+- [x] Automation System
+- [x] Scripts
+- [x] Hotkeys
+- [x] Macros
+- [x] Quick Actions
 
 ### Phase 11 — Theme Engine
 - [ ] Theme Manager
