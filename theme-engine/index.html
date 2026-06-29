@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Theme Engine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="te-app">
+        <!-- Sidebar -->
+        <aside class="te-sidebar">
+            <div class="te-sidebar-header">
+                <div class="te-logo">
+                    <span class="logo-icon">◈</span>
+                    <span class="logo-text">Theme Engine</span>
+                </div>
+            </div>
+
+            <nav class="te-nav">
+                <a href="#" class="te-nav-item active" data-view="themes">
+                    <span class="nav-icon">◐</span>
+                    <span>Themes</span>
+                </a>
+                <a href="#" class="te-nav-item" data-view="icons">
+                    <span class="nav-icon">◇</span>
+                    <span>Icons</span>
+                </a>
+                <a href="#" class="te-nav-item" data-view="wallpapers">
+                    <span class="nav-icon">▣</span>
+                    <span>Wallpapers</span>
+                </a>
+                <a href="#" class="te-nav-item" data-view="fonts">
+                    <span class="nav-icon">◻</span>
+                    <span>Fonts</span>
+                </a>
+                <a href="#" class="te-nav-item" data-view="colors">
+                    <span class="nav-icon">◈</span>
+                    <span>Colors</span>
+                </a>
+                <a href="#" class="te-nav-item" data-view="export">
+                    <span class="nav-icon">◑</span>
+                    <span>Export/Import</span>
+                </a>
+            </nav>
+
+            <div class="te-sidebar-footer">
+                <button class="btn-primary full" id="newThemeBtn">+ Create Theme</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="te-main">
+            <!-- Themes View -->
+            <section class="te-view active" id="themes-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◐ Theme Manager</h1>
+                    </div>
+                    <div class="view-actions">
+                        <select class="filter-select" id="themeFilter">
+                            <option value="all">All Themes</option>
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="themes-grid">
+                    <!-- GitHub Dark -->
+                    <div class="theme-card active">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);">
+                            <div class="preview-bar" style="background: #30363d;"></div>
+                            <div class="preview-content">
+                                <div class="preview-line" style="background: #58a6ff;"></div>
+                                <div class="preview-line short" style="background: #8b949e;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>GitHub Dark</h3>
+                            <p>Default LinkUp Studio theme</p>
+                            <div class="theme-colors">
+                                <span style="background: #0d1117;"></span>
+                                <span style="background: #58a6ff;"></span>
+                                <span style="background: #3fb950;"></span>
+                                <span style="background: #f85149;"></span>
+                            </div>
+                        </div>
+                        <div class="theme-actions">
+                            <button class="btn-primary">Apply</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                        </div>
+                    </div>
+
+                    <!-- Dracula -->
+                    <div class="theme-card">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #282a36 0%, #44475a 100%);">
+                            <div class="preview-bar" style="background: #6272a4;"></div>
+                            <div class="preview-content">
+                                <div class="preview-line" style="background: #bd93f9;"></div>
+                                <div class="preview-line short" style="background: #6272a4;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Dracula</h3>
+                            <p>Classic Dracula theme</p>
+                            <div class="theme-colors">
+                                <span style="background: #282a36;"></span>
+                                <span style="background: #bd93f9;"></span>
+                                <span style="background: #50fa7b;"></span>
+                                <span style="background: #ff5555;"></span>
+                            </div>
+                        </div>
+                        <div class="theme-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                        </div>
+                    </div>
+
+                    <!-- One Dark -->
+                    <div class="theme-card">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #1e1f23 0%, #282c34 100%);">
+                            <div class="preview-bar" style="background: #3e4451;"></div>
+                            <div class="preview-content">
+                                <div class="preview-line" style="background: #61afef;"></div>
+                                <div class="preview-line short" style="background: #5c6370;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>One Dark</h3>
+                            <p>Atom One Dark theme</p>
+                            <div class="theme-colors">
+                                <span style="background: #1e1f23;"></span>
+                                <span style="background: #61afef;"></span>
+                                <span style="background: #98c379;"></span>
+                                <span style="background: #e06c75;"></span>
+                            </div>
+                        </div>
+                        <div class="theme-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                        </div>
+                    </div>
+
+                    <!-- Nord -->
+                    <div class="theme-card">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #2e3440 0%, #3b4252 100%);">
+                            <div class="preview-bar" style="background: #4c566a;"></div>
+                            <div class="preview-content">
+                                <div class="preview-line" style="background: #88c0d0;"></div>
+                                <div class="preview-line short" style="background: #d8dee9;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Nord</h3>
+                            <p>Arctic, north-bluish theme</p>
+                            <div class="theme-colors">
+                                <span style="background: #2e3440;"></span>
+                                <span style="background: #88c0d0;"></span>
+                                <span style="background: #a3be8c;"></span>
+                                <span style="background: #bf616a;"></span>
+                            </div>
+                        </div>
+                        <div class="theme-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                        </div>
+                    </div>
+
+                    <!-- Solarized Dark -->
+                    <div class="theme-card">
+                        <div class="theme-preview" style="background: linear-gradient(135deg, #002b36 0%, #073642 100%);">
+                            <div class="preview-bar" style="background: #586e75;"></div>
+                            <div class="preview-content">
+                                <div class="preview-line" style="background: #268bd2;"></div>
+                                <div class="preview-line short" style="background: #839496;"></div>
+                            </div>
+                        </div>
+                        <div class="theme-info">
+                            <h3>Solarized Dark</h3>
+                            <p>Ethan Schoonover's theme</p>
+                            <div class="theme-colors">
+                                <span style="background: #002b36;"></span>
+                                <span style="background: #268bd2;"></span>
+                                <span style="background: #859900;"></span>
+                                <span style="background: #dc322f;"></span>
+                            </div>
+                        </div>
+                        <div class="theme-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                        </div>
+                    </div>
+
+                    <!-- Add Theme Card -->
+                    <div class="theme-card add-new" id="addThemeCard">
+                        <span class="add-icon">+</span>
+                        <span>Create New Theme</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Icons View -->
+            <section class="te-view" id="icons-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◇ Icon Manager</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="Import">↑</button>
+                        <button class="btn-primary" id="importIconsBtn">Import Pack</button>
+                    </div>
+                </div>
+
+                <div class="icons-grid">
+                    <div class="icon-pack-card">
+                        <div class="pack-preview">
+                            <span>⬡</span><span>◎</span><span>◈</span><span>◇</span>
+                        </div>
+                        <h3>LinkUp Studio</h3>
+                        <p>Default icon pack</p>
+                        <button class="btn-primary">Apply</button>
+                    </div>
+
+                    <div class="icon-pack-card">
+                        <div class="pack-preview">
+                            <span>⬢</span><span>⬡</span><span>◉</span><span>◐</span>
+                        </div>
+                        <h3>Geometric</h3>
+                        <p>Minimal geometric icons</p>
+                        <button class="btn-secondary">Apply</button>
+                    </div>
+
+                    <div class="icon-pack-card">
+                        <div class="pack-preview">
+                            <span>◆</span><span>◇</span><span>○</span><span>●</span>
+                        </div>
+                        <h3>Classic</h3>
+                        <p>Classic shape icons</p>
+                        <button class="btn-secondary">Apply</button>
+                    </div>
+
+                    <div class="icon-pack-card">
+                        <div class="pack-preview">
+                            <span>▣</span><span>◻</span><span>▢</span><span>□</span>
+                        </div>
+                        <h3>Square</h3>
+                        <p>Square-based icons</p>
+                        <button class="btn-secondary">Apply</button>
+                    </div>
+
+                    <div class="icon-pack-card">
+                        <div class="pack-preview">
+                            <span>⬢</span><span>⬡</span><span>⬣</span><span>⬤</span>
+                        </div>
+                        <h3>Modern</h3>
+                        <p>Modern flat icons</p>
+                        <button class="btn-secondary">Apply</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wallpapers View -->
+            <section class="te-view" id="wallpapers-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>▣ Wallpaper Manager</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="Import">↑</button>
+                        <button class="btn-primary" id="importWallpaperBtn">Add Wallpaper</button>
+                    </div>
+                </div>
+
+                <div class="wallpapers-grid">
+                    <div class="wallpaper-card active">
+                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #0d1117, #161b22);">
+                            <span class="wallpaper-overlay">LinkUp Dark</span>
+                        </div>
+                        <div class="wallpaper-info">
+                            <h3>LinkUp Dark</h3>
+                            <p>Current wallpaper</p>
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="btn-primary">Apply</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="wallpaper-card">
+                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <span class="wallpaper-overlay">Gradient Purple</span>
+                        </div>
+                        <div class="wallpaper-info">
+                            <h3>Gradient Purple</h3>
+                            <p>Purple gradient</p>
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="wallpaper-card">
+                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                            <span class="wallpaper-overlay">Matrix Green</span>
+                        </div>
+                        <div class="wallpaper-info">
+                            <h3>Matrix Green</h3>
+                            <p>Green gradient</p>
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="wallpaper-card">
+                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);">
+                            <span class="wallpaper-overlay">Sunset</span>
+                        </div>
+                        <div class="wallpaper-info">
+                            <h3>Sunset</h3>
+                            <p>Red-orange gradient</p>
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="wallpaper-card">
+                        <div class="wallpaper-preview" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);">
+                            <span class="wallpaper-overlay">Night Sky</span>
+                        </div>
+                        <div class="wallpaper-info">
+                            <h3>Night Sky</h3>
+                            <p>Dark blue gradient</p>
+                        </div>
+                        <div class="wallpaper-actions">
+                            <button class="btn-secondary">Apply</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fonts View -->
+            <section class="te-view" id="fonts-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◻ Font Manager</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="Import">↑</button>
+                        <button class="btn-primary" id="importFontBtn">Add Font</button>
+                    </div>
+                </div>
+
+                <div class="fonts-grid">
+                    <div class="font-card active">
+                        <div class="font-preview" style="font-family: 'JetBrains Mono', monospace;">
+                            <span>JetBrains Mono</span>
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                        </div>
+                        <div class="font-info">
+                            <h3>JetBrains Mono</h3>
+                            <p>Current font</p>
+                        </div>
+                        <div class="font-actions">
+                            <button class="btn-primary">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="font-preview" style="font-family: 'Fira Code', monospace;">
+                            <span>Fira Code</span>
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                        </div>
+                        <div class="font-info">
+                            <h3>Fira Code</h3>
+                            <p>Popular coding font</p>
+                        </div>
+                        <div class="font-actions">
+                            <button class="btn-secondary">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="font-preview" style="font-family: 'Consolas', monospace;">
+                            <span>Consolas</span>
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                        </div>
+                        <div class="font-info">
+                            <h3>Consolas</h3>
+                            <p>Windows default</p>
+                        </div>
+                        <div class="font-actions">
+                            <button class="btn-secondary">Apply</button>
+                        </div>
+                    </div>
+
+                    <div class="font-card">
+                        <div class="font-preview" style="font-family: 'Source Code Pro', monospace;">
+                            <span>Source Code Pro</span>
+                            <p>The quick brown fox jumps over the lazy dog</p>
+                        </div>
+                        <div class="font-info">
+                            <h3>Source Code Pro</h3>
+                            <p>Adobe's font</p>
+                        </div>
+                        <div class="font-actions">
+                            <button class="btn-secondary">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors View -->
+            <section class="te-view" id="colors-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◈ Color Manager</h1>
+                    </div>
+                </div>
+
+                <div class="colors-container">
+                    <div class="colors-section">
+                        <h2>Accent Colors</h2>
+                        <div class="color-picker-grid">
+                            <div class="color-swatch active" style="background: #58a6ff;" data-color="#58a6ff">
+                                <span>Blue</span>
+                            </div>
+                            <div class="color-swatch" style="background: #3fb950;" data-color="#3fb950">
+                                <span>Green</span>
+                            </div>
+                            <div class="color-swatch" style="background: #f85149;" data-color="#f85149">
+                                <span>Red</span>
+                            </div>
+                            <div class="color-swatch" style="background: #d29922;" data-color="#d29922">
+                                <span>Yellow</span>
+                            </div>
+                            <div class="color-swatch" style="background: #a371f7;" data-color="#a371f7">
+                                <span>Purple</span>
+                            </div>
+                            <div class="color-swatch" style="background: #f778ba;" data-color="#f778ba">
+                                <span>Pink</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="colors-section">
+                        <h2>Custom Colors</h2>
+                        <div class="custom-color-picker">
+                            <input type="color" id="customColorInput" value="#58a6ff">
+                            <input type="text" class="color-input" id="customColorHex" value="#58a6ff" placeholder="#000000">
+                            <button class="btn-primary" id="addColorBtn">Add</button>
+                        </div>
+                        <div class="custom-colors-list" id="customColorsList">
+                            <div class="custom-color-item" style="background: #58a6ff;"></div>
+                            <div class="custom-color-item" style="background: #3fb950;"></div>
+                            <div class="custom-color-item" style="background: #f85149;"></div>
+                        </div>
+                    </div>
+
+                    <div class="colors-section">
+                        <h2>Color Palette</h2>
+                        <div class="palette-generator">
+                            <button class="btn-secondary" id="generatePaletteBtn">Generate Random Palette</button>
+                            <button class="btn-secondary" id="savePaletteBtn">Save Palette</button>
+                        </div>
+                        <div class="palette-preview" id="palettePreview">
+                            <div class="palette-color" style="background: #0d1117;"><span>#0d1117</span></div>
+                            <div class="palette-color" style="background: #58a6ff;"><span>#58a6ff</span></div>
+                            <div class="palette-color" style="background: #3fb950;"><span>#3fb950</span></div>
+                            <div class="palette-color" style="background: #f85149;"><span>#f85149</span></div>
+                            <div class="palette-color" style="background: #d29922;"><span>#d29922</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export/Import View -->
+            <section class="te-view" id="export-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◑ Export / Import</h1>
+                    </div>
+                </div>
+
+                <div class="export-container">
+                    <div class="export-section">
+                        <h2>Export Theme</h2>
+                        <p>Export your current theme settings to share or backup</p>
+                        <div class="export-options">
+                            <div class="export-option">
+                                <input type="checkbox" id="exportTheme" checked>
+                                <label for="exportTheme">Theme settings</label>
+                            </div>
+                            <div class="export-option">
+                                <input type="checkbox" id="exportIcons" checked>
+                                <label for="exportIcons">Icon pack</label>
+                            </div>
+                            <div class="export-option">
+                                <input type="checkbox" id="exportWallpaper" checked>
+                                <label for="exportWallpaper">Wallpaper</label>
+                            </div>
+                            <div class="export-option">
+                                <input type="checkbox" id="exportFonts" checked>
+                                <label for="exportFonts">Font settings</label>
+                            </div>
+                            <div class="export-option">
+                                <input type="checkbox" id="exportColors" checked>
+                                <label for="exportColors">Color palette</label>
+                            </div>
+                        </div>
+                        <button class="btn-primary" id="exportBtn">Export Theme</button>
+                    </div>
+
+                    <div class="export-section">
+                        <h2>Import Theme</h2>
+                        <p>Import a theme from a file</p>
+                        <div class="import-dropzone" id="importDropzone">
+                            <span>📁</span>
+                            <p>Drop theme file here or click to browse</p>
+                            <input type="file" id="importFile" accept=".json" hidden>
+                        </div>
+                        <button class="btn-secondary" id="importBtn">Import Theme</button>
+                    </div>
+
+                    <div class="export-section">
+                        <h2>Presets</h2>
+                        <p>Quick apply preset configurations</p>
+                        <div class="presets-grid">
+                            <div class="preset-card">
+                                <h3>Developer</h3>
+                                <p>Optimized for coding</p>
+                                <button class="btn-secondary">Apply</button>
+                            </div>
+                            <div class="preset-card">
+                                <h3>Minimal</h3>
+                                <p>Clean and simple</p>
+                                <button class="btn-secondary">Apply</button>
+                            </div>
+                            <div class="preset-card">
+                                <h3>Productive</h3>
+                                <p>Focus on efficiency</p>
+                                <button class="btn-secondary">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
