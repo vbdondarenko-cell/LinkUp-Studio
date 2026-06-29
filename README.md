@@ -276,11 +276,11 @@ Inspired by:
 - [x] Bookmarks
 
 ### Phase 9 — Workspace Restore
-- [ ] Session Restore
-- [ ] Auto-start OpenHands
-- [ ] Open Last Project
-- [ ] Restore Terminal
-- [ ] Restore Browser
+- [x] Session Restore
+- [x] Auto-start OpenHands
+- [x] Open Last Project
+- [x] Restore Terminal
+- [x] Restore Browser
 
 ### Phase 10 — Automation Engine
 - [ ] Automation System
