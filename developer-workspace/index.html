@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Developer Workspace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dev-app">
+        <!-- Sidebar -->
+        <aside class="dev-sidebar">
+            <div class="dev-sidebar-header">
+                <div class="dev-logo">
+                    <span class="logo-icon">⌥</span>
+                    <span class="logo-text">Dev Workspace</span>
+                </div>
+            </div>
+
+            <nav class="dev-nav">
+                <a href="#" class="dev-nav-item active" data-view="docker">
+                    <span class="nav-icon">🐳</span>
+                    <span>Docker</span>
+                    <span class="nav-badge">4</span>
+                </a>
+                <a href="#" class="dev-nav-item" data-view="nodejs">
+                    <span class="nav-icon">⬢</span>
+                    <span>Node.js</span>
+                </a>
+                <a href="#" class="dev-nav-item" data-view="python">
+                    <span class="nav-icon">🐍</span>
+                    <span>Python</span>
+                </a>
+                <a href="#" class="dev-nav-item" data-view="databases">
+                    <span class="nav-icon">⛃</span>
+                    <span>Databases</span>
+                    <span class="nav-badge">2</span>
+                </a>
+                <a href="#" class="dev-nav-item" data-view="terminal">
+                    <span class="nav-icon">▣</span>
+                    <span>Terminal</span>
+                </a>
+                <a href="#" class="dev-nav-item" data-view="packagemanagers">
+                    <span class="nav-icon">📦</span>
+                    <span>Packages</span>
+                </a>
+            </nav>
+
+            <div class="dev-sidebar-footer">
+                <div class="dev-status">
+                    <span class="status-dot online"></span>
+                    <span>All systems operational</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dev-main">
+            <!-- Docker View -->
+            <section class="dev-view active" id="docker-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>🐳 Docker</h1>
+                        <span class="status-badge running">Running</span>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" id="refreshDockerBtn" title="Refresh">
+                            <span>↻</span>
+                        </button>
+                        <button class="btn-primary" id="newContainerBtn">+ New Container</button>
+                    </div>
+                </div>
+
+                <div class="docker-grid">
+                    <!-- Containers -->
+                    <div class="docker-section">
+                        <h2>Containers</h2>
+                        <div class="docker-list" id="containersList">
+                            <div class="docker-item running">
+                                <div class="docker-status running"></div>
+                                <div class="docker-info">
+                                    <span class="docker-name">postgres_db</span>
+                                    <span class="docker-image">postgres:15</span>
+                                </div>
+                                <div class="docker-ports">
+                                    <span class="port">5432:5432</span>
+                                </div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Stop">■</button>
+                                    <button class="btn-icon-small" title="Restart">↻</button>
+                                    <button class="btn-icon-small" title="Logs">📜</button>
+                                </div>
+                            </div>
+
+                            <div class="docker-item running">
+                                <div class="docker-status running"></div>
+                                <div class="docker-info">
+                                    <span class="docker-name">redis_cache</span>
+                                    <span class="docker-image">redis:7-alpine</span>
+                                </div>
+                                <div class="docker-ports">
+                                    <span class="port">6379:6379</span>
+                                </div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Stop">■</button>
+                                    <button class="btn-icon-small" title="Restart">↻</button>
+                                    <button class="btn-icon-small" title="Logs">📜</button>
+                                </div>
+                            </div>
+
+                            <div class="docker-item stopped">
+                                <div class="docker-status stopped"></div>
+                                <div class="docker-info">
+                                    <span class="docker-name">nginx_web</span>
+                                    <span class="docker-image">nginx:latest</span>
+                                </div>
+                                <div class="docker-ports">
+                                    <span class="port">80:80</span>
+                                </div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Start">▶</button>
+                                    <button class="btn-icon-small" title="Remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Images -->
+                    <div class="docker-section">
+                        <h2>Images</h2>
+                        <div class="docker-list" id="imagesList">
+                            <div class="docker-item">
+                                <div class="docker-info">
+                                    <span class="docker-name">postgres</span>
+                                    <span class="docker-tag">15</span>
+                                </div>
+                                <div class="docker-size">200 MB</div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Run">▶</button>
+                                    <button class="btn-icon-small" title="Remove">×</button>
+                                </div>
+                            </div>
+
+                            <div class="docker-item">
+                                <div class="docker-info">
+                                    <span class="docker-name">redis</span>
+                                    <span class="docker-tag">7-alpine</span>
+                                </div>
+                                <div class="docker-size">30 MB</div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Run">▶</button>
+                                    <button class="btn-icon-small" title="Remove">×</button>
+                                </div>
+                            </div>
+
+                            <div class="docker-item">
+                                <div class="docker-info">
+                                    <span class="docker-name">node</span>
+                                    <span class="docker-tag">18-alpine</span>
+                                </div>
+                                <div class="docker-size">180 MB</div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Run">▶</button>
+                                    <button class="btn-icon-small" title="Remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Volumes -->
+                    <div class="docker-section">
+                        <h2>Volumes</h2>
+                        <div class="docker-list" id="volumesList">
+                            <div class="docker-item">
+                                <div class="docker-info">
+                                    <span class="docker-name">pg_data</span>
+                                </div>
+                                <div class="docker-size">500 MB</div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Inspect">👁</button>
+                                    <button class="btn-icon-small" title="Remove">×</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Docker Compose -->
+                    <div class="docker-section">
+                        <h2>Compose Projects</h2>
+                        <div class="docker-list" id="composeList">
+                            <div class="docker-item running">
+                                <div class="docker-status running"></div>
+                                <div class="docker-info">
+                                    <span class="docker-name">myapp</span>
+                                    <span class="docker-compose-file">docker-compose.yml</span>
+                                </div>
+                                <div class="docker-actions">
+                                    <button class="btn-icon-small" title="Restart">↻</button>
+                                    <button class="btn-icon-small" title="Stop">■</button>
+                                    <button class="btn-icon-small" title="Logs">📜</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Node.js View -->
+            <section class="dev-view" id="nodejs-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>⬢ Node.js</h1>
+                        <span class="version-badge">v18.17.0</span>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-primary" id="newNodeProjectBtn">+ New Project</button>
+                    </div>
+                </div>
+
+                <div class="nodejs-grid">
+                    <!-- Installed Packages -->
+                    <div class="dev-section">
+                        <h2>Dependencies</h2>
+                        <div class="package-list" id="dependenciesList">
+                            <div class="package-item">
+                                <span class="package-name">express</span>
+                                <span class="package-version">^4.18.2</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">mongoose</span>
+                                <span class="package-version">^7.5.0</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">dotenv</span>
+                                <span class="package-version">^16.3.1</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dev Dependencies -->
+                    <div class="dev-section">
+                        <h2>Dev Dependencies</h2>
+                        <div class="package-list" id="devDependenciesList">
+                            <div class="package-item">
+                                <span class="package-name">typescript</span>
+                                <span class="package-version">^5.2.2</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">eslint</span>
+                                <span class="package-version">^8.50.0</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">jest</span>
+                                <span class="package-version">^29.7.0</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scripts -->
+                    <div class="dev-section">
+                        <h2>Scripts</h2>
+                        <div class="script-list" id="scriptsList">
+                            <div class="script-item">
+                                <span class="script-name">dev</span>
+                                <span class="script-command">nodemon index.js</span>
+                                <button class="btn-icon-small" title="Run">▶</button>
+                            </div>
+                            <div class="script-item">
+                                <span class="script-name">start</span>
+                                <span class="script-command">node index.js</span>
+                                <button class="btn-icon-small" title="Run">▶</button>
+                            </div>
+                            <div class="script-item">
+                                <span class="script-name">build</span>
+                                <span class="script-command">tsc</span>
+                                <button class="btn-icon-small" title="Run">▶</button>
+                            </div>
+                            <div class="script-item">
+                                <span class="script-name">test</span>
+                                <span class="script-command">jest</span>
+                                <button class="btn-icon-small" title="Run">▶</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Package -->
+                    <div class="dev-section">
+                        <h2>Add Package</h2>
+                        <div class="add-package">
+                            <input type="text" class="package-input" placeholder="Package name..." id="npmPackageInput">
+                            <button class="btn-primary" id="installNpmBtn">Install</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Python View -->
+            <section class="dev-view" id="python-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>🐍 Python</h1>
+                        <span class="version-badge">3.11.5</span>
+                    </div>
+                    <div class="view-actions">
+                        <select class="venv-select" id="venvSelect">
+                            <option value="main">main</option>
+                            <option value="env1">env1</option>
+                        </select>
+                        <button class="btn-primary" id="newVenvBtn">+ New Environment</button>
+                    </div>
+                </div>
+
+                <div class="python-grid">
+                    <!-- Packages -->
+                    <div class="dev-section full">
+                        <h2>Installed Packages</h2>
+                        <div class="package-list" id="pipList">
+                            <div class="package-item">
+                                <span class="package-name">flask</span>
+                                <span class="package-version">2.3.3</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">django</span>
+                                <span class="package-version">4.2.5</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">requests</span>
+                                <span class="package-version">2.31.0</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">numpy</span>
+                                <span class="package-version">1.25.2</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                            <div class="package-item">
+                                <span class="package-name">pandas</span>
+                                <span class="package-version">2.0.3</span>
+                                <button class="btn-icon-small" title="Remove">×</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Package -->
+                    <div class="dev-section full">
+                        <h2>Add Package</h2>
+                        <div class="add-package">
+                            <input type="text" class="package-input" placeholder="Package name..." id="pipPackageInput">
+                            <button class="btn-primary" id="installPipBtn">pip install</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Databases View -->
+            <section class="dev-view" id="databases-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>⛃ Databases</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-primary" id="newDbBtn">+ New Connection</button>
+                    </div>
+                </div>
+
+                <div class="databases-grid">
+                    <!-- PostgreSQL -->
+                    <div class="database-card">
+                        <div class="db-header">
+                            <span class="db-icon">🐘</span>
+                            <span class="db-type">PostgreSQL</span>
+                            <span class="db-status connected">Connected</span>
+                        </div>
+                        <div class="db-info">
+                            <div class="db-item">
+                                <span class="db-label">Host:</span>
+                                <span class="db-value">localhost:5432</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">Database:</span>
+                                <span class="db-value">myapp_dev</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">User:</span>
+                                <span class="db-value">postgres</span>
+                            </div>
+                        </div>
+                        <div class="db-actions">
+                            <button class="btn-primary">Query Editor</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                            <button class="btn-icon" title="Disconnect">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Redis -->
+                    <div class="database-card">
+                        <div class="db-header">
+                            <span class="db-icon">🔴</span>
+                            <span class="db-type">Redis</span>
+                            <span class="db-status connected">Connected</span>
+                        </div>
+                        <div class="db-info">
+                            <div class="db-item">
+                                <span class="db-label">Host:</span>
+                                <span class="db-value">localhost:6379</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">Keys:</span>
+                                <span class="db-value">1,234</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">Memory:</span>
+                                <span class="db-value">2.5 MB</span>
+                            </div>
+                        </div>
+                        <div class="db-actions">
+                            <button class="btn-primary">Redis CLI</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                            <button class="btn-icon" title="Disconnect">×</button>
+                        </div>
+                    </div>
+
+                    <!-- MongoDB -->
+                    <div class="database-card">
+                        <div class="db-header">
+                            <span class="db-icon">🍃</span>
+                            <span class="db-type">MongoDB</span>
+                            <span class="db-status disconnected">Disconnected</span>
+                        </div>
+                        <div class="db-info">
+                            <div class="db-item">
+                                <span class="db-label">Host:</span>
+                                <span class="db-value">localhost:27017</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">Database:</span>
+                                <span class="db-value">myapp</span>
+                            </div>
+                            <div class="db-item">
+                                <span class="db-label">Collections:</span>
+                                <span class="db-value">12</span>
+                            </div>
+                        </div>
+                        <div class="db-actions">
+                            <button class="btn-primary">Connect</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terminal View -->
+            <section class="dev-view" id="terminal-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>▣ Terminal</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="New Tab">+</button>
+                        <button class="btn-icon" title="Clear">🗑</button>
+                    </div>
+                </div>
+
+                <div class="terminal-container">
+                    <div class="terminal-tabs">
+                        <div class="terminal-tab active">PowerShell</div>
+                        <div class="terminal-tab">bash</div>
+                        <div class="terminal-tab">docker</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-output" id="terminalOutput">
+                            <div class="terminal-line">LinkUp Studio Developer Workspace</div>
+                            <div class="terminal-line muted">Type commands below...</div>
+                            <div class="terminal-line prompt">PS D:\Projects\LinkUp-Studio> <span class="cursor">█</span></div>
+                        </div>
+                        <div class="terminal-input">
+                            <span class="prompt">$</span>
+                            <input type="text" class="terminal-cmd" placeholder="Enter command..." id="terminalInput">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Package Managers View -->
+            <section class="dev-view" id="packagemanagers-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>📦 Package Managers</h1>
+                    </div>
+                </div>
+
+                <div class="packages-grid">
+                    <div class="package-manager-card">
+                        <div class="pm-icon">⬢</div>
+                        <h3>npm</h3>
+                        <p>Node Package Manager</p>
+                        <div class="pm-stats">
+                            <span>8.21.1</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+
+                    <div class="package-manager-card">
+                        <div class="pm-icon">▼</div>
+                        <h3>yarn</h3>
+                        <p>Fast, reliable package manager</p>
+                        <div class="pm-stats">
+                            <span>1.22.19</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+
+                    <div class="package-manager-card">
+                        <div class="pm-icon">⬡</div>
+                        <h3>pnpm</h3>
+                        <p>Fast, disk space efficient</p>
+                        <div class="pm-stats">
+                            <span>8.10.0</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+
+                    <div class="package-manager-card">
+                        <div class="pm-icon">🐍</div>
+                        <h3>pip</h3>
+                        <p>Python Package Installer</p>
+                        <div class="pm-stats">
+                            <span>23.2.1</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+
+                    <div class="package-manager-card">
+                        <div class="pm-icon">🐳</div>
+                        <h3>Docker</h3>
+                        <p>Container Platform</p>
+                        <div class="pm-stats">
+                            <span>24.0.6</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+
+                    <div class="package-manager-card">
+                        <div class="pm-icon">⬢</div>
+                        <h3>Gradle</h3>
+                        <p>Build Automation</p>
+                        <div class="pm-stats">
+                            <span>8.3</span>
+                        </div>
+                        <button class="btn-primary">Open</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
