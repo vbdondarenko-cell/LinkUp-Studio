@@ -262,11 +262,11 @@ Inspired by:
 ### Phase 7 — Developer Workspace
 - [x] GitHub Integration
 - [x] Git Commands
-- [ ] Docker
-- [ ] Node.js
-- [ ] Python
-- [ ] Databases
-- [ ] Terminal
+- [x] Docker
+- [x] Node.js
+- [x] Python
+- [x] Databases
+- [x] Terminal
 
 ### Phase 8 — Project Manager
 - [ ] Projects Management
