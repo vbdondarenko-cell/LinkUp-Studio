@@ -269,11 +269,11 @@ Inspired by:
 - [x] Terminal
 
 ### Phase 8 — Project Manager
-- [ ] Projects Management
-- [ ] Repositories
-- [ ] Templates
-- [ ] Recent Projects
-- [ ] Bookmarks
+- [x] Projects Management
+- [x] Repositories
+- [x] Templates
+- [x] Recent Projects
+- [x] Bookmarks
 
 ### Phase 9 — Workspace Restore
 - [ ] Session Restore
