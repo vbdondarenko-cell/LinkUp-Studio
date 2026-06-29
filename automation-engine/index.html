@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Automation Engine</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ae-app">
+        <!-- Sidebar -->
+        <aside class="ae-sidebar">
+            <div class="ae-sidebar-header">
+                <div class="ae-logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Automation</span>
+                </div>
+            </div>
+
+            <nav class="ae-nav">
+                <a href="#" class="ae-nav-item active" data-view="dashboard">
+                    <span class="nav-icon">◈</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="ae-nav-item" data-view="scripts">
+                    <span class="nav-icon">▤</span>
+                    <span>Scripts</span>
+                    <span class="nav-count">5</span>
+                </a>
+                <a href="#" class="ae-nav-item" data-view="hotkeys">
+                    <span class="nav-icon">⌨</span>
+                    <span>Hotkeys</span>
+                </a>
+                <a href="#" class="ae-nav-item" data-view="macros">
+                    <span class="nav-icon">◐</span>
+                    <span>Macros</span>
+                </a>
+                <a href="#" class="ae-nav-item" data-view="scheduler">
+                    <span class="nav-icon">◉</span>
+                    <span>Scheduler</span>
+                </a>
+                <a href="#" class="ae-nav-item" data-view="logs">
+                    <span class="nav-icon">◑</span>
+                    <span>Logs</span>
+                </a>
+            </nav>
+
+            <div class="ae-sidebar-footer">
+                <button class="btn-primary full" id="newAutomationBtn">+ New Automation</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ae-main">
+            <!-- Dashboard View -->
+            <section class="ae-view active" id="dashboard-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>⚡ Automation Dashboard</h1>
+                    </div>
+                    <div class="view-actions">
+                        <select class="status-filter" id="statusFilter">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="paused">Paused</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Stats -->
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Total Automations</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">1,247</span>
+                            <span class="stat-label">Executions Today</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value">98%</span>
+                            <span class="stat-label">Success Rate</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-section">
+                        <h2>⚡ Quick Actions</h2>
+                        <div class="quick-actions-grid">
+                            <div class="quick-action-card" data-action="git-sync">
+                                <span class="qa-icon">◐</span>
+                                <span class="qa-title">Git Sync</span>
+                                <span class="qa-desc">Sync all repositories</span>
+                            </div>
+                            <div class="quick-action-card" data-action="build-all">
+                                <span class="qa-icon">◉</span>
+                                <span class="qa-title">Build All</span>
+                                <span class="qa-desc">Run all build commands</span>
+                            </div>
+                            <div class="quick-action-card" data-action="test-all">
+                                <span class="qa-icon">◎</span>
+                                <span class="qa-title">Test All</span>
+                                <span class="qa-desc">Run all tests</span>
+                            </div>
+                            <div class="quick-action-card" data-action="backup">
+                                <span class="qa-icon">◈</span>
+                                <span class="qa-title">Backup</span>
+                                <span class="qa-desc">Backup all projects</span>
+                            </div>
+                            <div class="quick-action-card" data-action="deploy">
+                                <span class="qa-icon">▲</span>
+                                <span class="qa-title">Deploy</span>
+                                <span class="qa-desc">Deploy to production</span>
+                            </div>
+                            <div class="quick-action-card" data-action="cleanup">
+                                <span class="qa-icon">◑</span>
+                                <span class="qa-title">Cleanup</span>
+                                <span class="qa-desc">Clean temp files</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="dashboard-section">
+                        <h2>◈ Recent Activity</h2>
+                        <div class="activity-list">
+                            <div class="activity-item success">
+                                <span class="activity-time">2 min ago</span>
+                                <span class="activity-name">Git Sync</span>
+                                <span class="activity-status">Success</span>
+                            </div>
+                            <div class="activity-item success">
+                                <span class="activity-time">15 min ago</span>
+                                <span class="activity-name">Build Project</span>
+                                <span class="activity-status">Success</span>
+                            </div>
+                            <div class="activity-item error">
+                                <span class="activity-time">1 hour ago</span>
+                                <span class="activity-name">Deploy</span>
+                                <span class="activity-status">Failed</span>
+                            </div>
+                            <div class="activity-item success">
+                                <span class="activity-time">2 hours ago</span>
+                                <span class="activity-name">Test Suite</span>
+                                <span class="activity-status">Success</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scripts View -->
+            <section class="ae-view" id="scripts-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>▤ Scripts</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="Import">↑</button>
+                        <button class="btn-primary" id="newScriptBtn">+ New Script</button>
+                    </div>
+                </div>
+
+                <div class="scripts-list">
+                    <!-- Script Card -->
+                    <div class="script-card">
+                        <div class="script-header">
+                            <div class="script-icon">⬢</div>
+                            <div class="script-info">
+                                <h3>build-project.js</h3>
+                                <p>Builds the current project</p>
+                            </div>
+                            <div class="script-status active">Active</div>
+                        </div>
+                        <div class="script-code">
+<pre>const { exec } = require('child_process');
+exec('npm run build', (err, stdout) => {
+    console.log(stdout);
+});</pre>
+                        </div>
+                        <div class="script-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Script Card -->
+                    <div class="script-card">
+                        <div class="script-header">
+                            <div class="script-icon">◐</div>
+                            <div class="script-info">
+                                <h3>git-sync.sh</h3>
+                                <p>Syncs all git repositories</p>
+                            </div>
+                            <div class="script-status active">Active</div>
+                        </div>
+                        <div class="script-code">
+<pre>#!/bin/bash
+for dir in */; do
+    cd "$dir"
+    git pull origin main
+    cd ..
+done</pre>
+                        </div>
+                        <div class="script-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <!-- Script Card -->
+                    <div class="script-card">
+                        <div class="script-header">
+                            <div class="script-icon">🐍</div>
+                            <div class="script-info">
+                                <h3>test-runner.py</h3>
+                                <p>Runs all test suites</p>
+                            </div>
+                            <div class="script-status paused">Paused</div>
+                        </div>
+                        <div class="script-code">
+<pre>import subprocess
+result = subprocess.run(
+    ['pytest', 'tests/'],
+    capture_output=True
+)
+print(result.stdout.decode())</pre>
+                        </div>
+                        <div class="script-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Settings">⚙</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hotkeys View -->
+            <section class="ae-view" id="hotkeys-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>⌨ Hotkeys</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-primary" id="newHotkeyBtn">+ New Hotkey</button>
+                    </div>
+                </div>
+
+                <div class="hotkeys-list">
+                    <div class="hotkey-item">
+                        <div class="hotkey-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd>
+                        </div>
+                        <div class="hotkey-info">
+                            <span class="hotkey-action">Git Sync</span>
+                            <span class="hotkey-desc">Sync all repositories</span>
+                        </div>
+                        <div class="hotkey-status active">Active</div>
+                        <div class="hotkey-actions">
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="hotkey-item">
+                        <div class="hotkey-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>
+                        </div>
+                        <div class="hotkey-info">
+                            <span class="hotkey-action">Build Project</span>
+                            <span class="hotkey-desc">Run build command</span>
+                        </div>
+                        <div class="hotkey-status active">Active</div>
+                        <div class="hotkey-actions">
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="hotkey-item">
+                        <div class="hotkey-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd>
+                        </div>
+                        <div class="hotkey-info">
+                            <span class="hotkey-action">Run Tests</span>
+                            <span class="hotkey-desc">Execute test suite</span>
+                        </div>
+                        <div class="hotkey-status active">Active</div>
+                        <div class="hotkey-actions">
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="hotkey-item">
+                        <div class="hotkey-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>
+                        </div>
+                        <div class="hotkey-info">
+                            <span class="hotkey-action">Deploy</span>
+                            <span class="hotkey-desc">Deploy to production</span>
+                        </div>
+                        <div class="hotkey-status paused">Paused</div>
+                        <div class="hotkey-actions">
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="hotkey-item">
+                        <div class="hotkey-keys">
+                            <kbd>Alt</kbd>+<kbd>1</kbd>
+                        </div>
+                        <div class="hotkey-info">
+                            <span class="hotkey-action">Open Terminal</span>
+                            <span class="hotkey-desc">Open new terminal tab</span>
+                        </div>
+                        <div class="hotkey-status active">Active</div>
+                        <div class="hotkey-actions">
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Macros View -->
+            <section class="ae-view" id="macros-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◐ Macros</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-primary" id="newMacroBtn">+ New Macro</button>
+                    </div>
+                </div>
+
+                <div class="macros-list">
+                    <div class="macro-card">
+                        <div class="macro-header">
+                            <h3>Morning Startup</h3>
+                            <div class="macro-status active">Active</div>
+                        </div>
+                        <div class="macro-steps">
+                            <div class="macro-step">
+                                <span class="step-num">1</span>
+                                <span class="step-action">Open Terminal</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">2</span>
+                                <span class="step-action">Navigate to projects</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">3</span>
+                                <span class="step-action">Git pull all</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">4</span>
+                                <span class="step-action">Open VS Code</span>
+                            </div>
+                        </div>
+                        <div class="macro-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="macro-card">
+                        <div class="macro-header">
+                            <h3>Git Commit & Push</h3>
+                            <div class="macro-status active">Active</div>
+                        </div>
+                        <div class="macro-steps">
+                            <div class="macro-step">
+                                <span class="step-num">1</span>
+                                <span class="step-action">Git add .</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">2</span>
+                                <span class="step-action">Git commit</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">3</span>
+                                <span class="step-action">Git push</span>
+                            </div>
+                        </div>
+                        <div class="macro-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="macro-card">
+                        <div class="macro-header">
+                            <h3>Deploy to Production</h3>
+                            <div class="macro-status paused">Paused</div>
+                        </div>
+                        <div class="macro-steps">
+                            <div class="macro-step">
+                                <span class="step-num">1</span>
+                                <span class="step-action">Run tests</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">2</span>
+                                <span class="step-action">Build project</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">3</span>
+                                <span class="step-action">Deploy to server</span>
+                            </div>
+                            <div class="macro-step">
+                                <span class="step-num">4</span>
+                                <span class="step-action">Notify team</span>
+                            </div>
+                        </div>
+                        <div class="macro-actions">
+                            <button class="btn-icon" title="Run">▶</button>
+                            <button class="btn-icon" title="Edit">✎</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scheduler View -->
+            <section class="ae-view" id="scheduler-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◉ Scheduler</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-primary" id="newScheduleBtn">+ New Schedule</button>
+                    </div>
+                </div>
+
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-time">
+                            <span class="time-value">09:00</span>
+                            <span class="time-repeat">Daily</span>
+                        </div>
+                        <div class="schedule-info">
+                            <h3>Morning Git Sync</h3>
+                            <p>Sync all repositories at start of day</p>
+                        </div>
+                        <div class="schedule-status active">Active</div>
+                        <div class="schedule-actions">
+                            <button class="btn-icon-small" title="Run Now">▶</button>
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">
+                            <span class="time-value">18:00</span>
+                            <span class="time-repeat">Weekdays</span>
+                        </div>
+                        <div class="schedule-info">
+                            <h3>Evening Backup</h3>
+                            <p>Backup all projects</p>
+                        </div>
+                        <div class="schedule-status active">Active</div>
+                        <div class="schedule-actions">
+                            <button class="btn-icon-small" title="Run Now">▶</button>
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">
+                            <span class="time-value">Every 15m</span>
+                            <span class="time-repeat">Interval</span>
+                        </div>
+                        <div class="schedule-info">
+                            <h3>Health Check</h3>
+                            <p>Check system health</p>
+                        </div>
+                        <div class="schedule-status active">Active</div>
+                        <div class="schedule-actions">
+                            <button class="btn-icon-small" title="Run Now">▶</button>
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item">
+                        <div class="schedule-time">
+                            <span class="time-value">Sunday</span>
+                            <span class="time-repeat">Weekly</span>
+                        </div>
+                        <div class="schedule-info">
+                            <h3>Weekly Cleanup</h3>
+                            <p>Clean temp files and logs</p>
+                        </div>
+                        <div class="schedule-status paused">Paused</div>
+                        <div class="schedule-actions">
+                            <button class="btn-icon-small" title="Run Now">▶</button>
+                            <button class="btn-icon-small" title="Edit">✎</button>
+                            <button class="btn-icon-small" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logs View -->
+            <section class="ae-view" id="logs-view">
+                <div class="view-header">
+                    <div class="view-title">
+                        <h1>◑ Automation Logs</h1>
+                    </div>
+                    <div class="view-actions">
+                        <button class="btn-icon" title="Download">↓</button>
+                        <button class="btn-icon" title="Clear">🗑</button>
+                    </div>
+                </div>
+
+                <div class="logs-container">
+                    <div class="log-filters">
+                        <select class="filter-select" id="logTypeFilter">
+                            <option value="all">All Types</option>
+                            <option value="script">Scripts</option>
+                            <option value="hotkey">Hotkeys</option>
+                            <option value="macro">Macros</option>
+                            <option value="schedule">Scheduled</option>
+                        </select>
+                        <select class="filter-select" id="logStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="success">Success</option>
+                            <option value="error">Error</option>
+                            <option value="warning">Warning</option>
+                        </select>
+                    </div>
+
+                    <div class="logs-list">
+                        <div class="log-item success">
+                            <span class="log-time">14:32:15</span>
+                            <span class="log-type">Script</span>
+                            <span class="log-name">build-project.js</span>
+                            <span class="log-message">Build completed successfully</span>
+                            <span class="log-duration">12.5s</span>
+                        </div>
+                        <div class="log-item success">
+                            <span class="log-time">14:30:00</span>
+                            <span class="log-type">Hotkey</span>
+                            <span class="log-name">Ctrl+Shift+G</span>
+                            <span class="log-message">Git sync completed</span>
+                            <span class="log-duration">5.2s</span>
+                        </div>
+                        <div class="log-item success">
+                            <span class="log-time">14:25:00</span>
+                            <span class="log-type">Scheduled</span>
+                            <span class="log-name">Health Check</span>
+                            <span class="log-message">All systems operational</span>
+                            <span class="log-duration">2.1s</span>
+                        </div>
+                        <div class="log-item error">
+                            <span class="log-time">14:20:00</span>
+                            <span class="log-type">Macro</span>
+                            <span class="log-name">Deploy</span>
+                            <span class="log-message">Connection timeout</span>
+                            <span class="log-duration">30.0s</span>
+                        </div>
+                        <div class="log-item warning">
+                            <span class="log-time">14:15:00</span>
+                            <span class="log-type">Script</span>
+                            <span class="log-name">backup.js</span>
+                            <span class="log-message">Low disk space warning</span>
+                            <span class="log-duration">45.0s</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
