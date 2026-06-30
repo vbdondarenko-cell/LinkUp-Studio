@@ -297,11 +297,11 @@ Inspired by:
 - [x] Color Manager
 
 ### Phase 12 — Settings
-- [ ] System Settings
-- [ ] Interface Settings
-- [ ] AI Settings
-- [ ] Workspace Settings
-- [ ] Performance Settings
+- [x] System Settings
+- [x] Interface Settings
+- [x] AI Settings
+- [x] Workspace Settings
+- [x] Performance Settings
 
 ### Phase 13 — Installer
 - [x] One-Click Installer
