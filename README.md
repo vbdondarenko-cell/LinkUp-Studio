@@ -305,10 +305,10 @@ Inspired by:
 
 ### Phase 13 — Installer
 - [x] One-Click Installer
-- [ ] Auto Updates
-- [ ] Restore
-- [ ] Uninstall
-- [ ] Backups
+- [x] Auto Updates
+- [x] Restore
+- [x] Uninstall
+- [x] Backups
 
 ### Phase 14 — Optimization
 - [ ] Performance
