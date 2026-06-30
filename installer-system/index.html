@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Installer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="installer-app">
+        <!-- Sidebar -->
+        <aside class="installer-sidebar">
+            <div class="installer-logo">
+                <span class="logo-icon">⬡</span>
+                <span class="logo-text">Installer</span>
+            </div>
+
+            <nav class="installer-nav">
+                <a href="#" class="installer-nav-item active" data-section="install">
+                    <span class="nav-icon">▼</span>
+                    <span>Install</span>
+                </a>
+                <a href="#" class="installer-nav-item" data-section="updates">
+                    <span class="nav-icon">↻</span>
+                    <span>Updates</span>
+                </a>
+                <a href="#" class="installer-nav-item" data-section="backup">
+                    <span class="nav-icon">◈</span>
+                    <span>Backup</span>
+                </a>
+                <a href="#" class="installer-nav-item" data-section="restore">
+                    <span class="nav-icon">◐</span>
+                    <span>Restore</span>
+                </a>
+                <a href="#" class="installer-nav-item" data-section="uninstall">
+                    <span class="nav-icon">×</span>
+                    <span>Uninstall</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="installer-main">
+            <!-- Install Section -->
+            <section class="installer-section active" id="install-section">
+                <h1>Install LinkUp Studio</h1>
+
+                <div class="install-status">
+                    <div class="status-icon installed">
+                        <span>✓</span>
+                    </div>
+                    <div class="status-text">
+                        <h2>LinkUp Studio is installed</h2>
+                        <p>Version 1.0.0 • Build 2024.01.15</p>
+                    </div>
+                </div>
+
+                <div class="install-info">
+                    <div class="info-card">
+                        <h3>Installation Path</h3>
+                        <p class="path">C:\Program Files\LinkUp Studio</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Data Path</h3>
+                        <p class="path">%APPDATA%\LinkUpStudio</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Start Menu</h3>
+                        <p class="path">C:\ProgramData\Microsoft\Windows\Start Menu</p>
+                    </div>
+                </div>
+
+                <div class="install-actions">
+                    <button class="btn-primary" id="repairInstallBtn">Repair Installation</button>
+                    <button class="btn-secondary" id="modifyInstallBtn">Modify</button>
+                </div>
+            </section>
+
+            <!-- Updates Section -->
+            <section class="installer-section" id="updates-section">
+                <h1>Updates</h1>
+
+                <div class="update-card current">
+                    <div class="update-info">
+                        <span class="version-badge">Current</span>
+                        <h2>Version 1.0.0</h2>
+                        <p>Installed • January 15, 2024</p>
+                    </div>
+                    <div class="update-status">✓</div>
+                </div>
+
+                <div class="available-updates">
+                    <h2>Available Updates</h2>
+                    <div class="update-card">
+                        <div class="update-info">
+                            <span class="version-badge new">New</span>
+                            <h2>Version 1.1.0</h2>
+                            <p>Expected release: February 2024</p>
+                            <div class="update-features">
+                                <span>• Performance improvements</span>
+                                <span>• New AI features</span>
+                                <span>• Bug fixes</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary">Notify Me</button>
+                    </div>
+                </div>
+
+                <div class="update-settings">
+                    <h2>Auto-Update Settings</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Automatically check for updates</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Automatically download updates</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Install updates automatically</label>
+                            <p>Updates will be installed when LinkUp Studio is closed</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Update channel</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="stable" selected>Stable</option>
+                            <option value="beta">Beta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="update-actions">
+                    <button class="btn-secondary" id="checkUpdatesBtn">Check for Updates</button>
+                    <button class="btn-secondary" id="viewChangelogBtn">View Changelog</button>
+                </div>
+            </section>
+
+            <!-- Backup Section -->
+            <section class="installer-section" id="backup-section">
+                <h1>Backup & Restore</h1>
+
+                <div class="backup-section">
+                    <h2>Create Backup</h2>
+                    <p>Create a backup of your settings, themes, and workspace data.</p>
+                    
+                    <div class="backup-options">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Include settings</label>
+                            </div>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Include themes</label>
+                            </div>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Include keyboard shortcuts</label>
+                            </div>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Include project shortcuts</label>
+                            </div>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>Include AI conversations</label>
+                            </div>
+                            <input type="checkbox">
+                        </div>
+                    </div>
+
+                    <div class="backup-actions">
+                        <button class="btn-primary" id="createBackupBtn">Create Backup</button>
+                    </div>
+                </div>
+
+                <div class="backups-list">
+                    <h2>Existing Backups</h2>
+                    <div class="backup-item">
+                        <div class="backup-info">
+                            <h3>Backup_2024-01-15</h3>
+                            <p>January 15, 2024 • 2.5 MB</p>
+                        </div>
+                        <div class="backup-actions">
+                            <button class="btn-secondary">Restore</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+                    <div class="backup-item">
+                        <div class="backup-info">
+                            <h3>Backup_2024-01-10</h3>
+                            <p>January 10, 2024 • 2.3 MB</p>
+                        </div>
+                        <div class="backup-actions">
+                            <button class="btn-secondary">Restore</button>
+                            <button class="btn-icon" title="Delete">×</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Restore Section -->
+            <section class="installer-section" id="restore-section">
+                <h1>Restore</h1>
+
+                <div class="restore-section">
+                    <h2>Restore from Backup</h2>
+                    <p>Select a backup file to restore your settings.</p>
+                    
+                    <div class="restore-dropzone" id="restoreDropzone">
+                        <span class="dropzone-icon">📁</span>
+                        <p>Drop backup file here or click to browse</p>
+                        <input type="file" id="restoreFile" accept=".zip" hidden>
+                    </div>
+
+                    <div class="restore-history">
+                        <h2>Restore History</h2>
+                        <div class="history-item">
+                            <span class="history-icon">↻</span>
+                            <div class="history-info">
+                                <h3>Backup Restored</h3>
+                                <p>January 15, 2024 • Settings, themes, shortcuts</p>
+                            </div>
+                        </div>
+                        <div class="history-item">
+                            <span class="history-icon">↻</span>
+                            <div class="history-info">
+                                <h3>Backup Restored</h3>
+                                <p>January 10, 2024 • Full restore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="restore-warning">
+                    <h3>⚠️ Warning</h3>
+                    <p>Restoring a backup will replace your current settings. Make sure to create a backup of your current settings first.</p>
+                </div>
+            </section>
+
+            <!-- Uninstall Section -->
+            <section class="installer-section" id="uninstall-section">
+                <h1>Uninstall</h1>
+
+                <div class="uninstall-warning">
+                    <div class="warning-icon">⚠</div>
+                    <h2>You are about to uninstall LinkUp Studio</h2>
+                    <p>This will remove all files, settings, and data associated with LinkUp Studio.</p>
+                </div>
+
+                <div class="uninstall-options">
+                    <h2>Options</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Keep user data</label>
+                            <p>Keep your settings, themes, and workspace data</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Remove from Start Menu</label>
+                        </div>
+                        <input type="checkbox" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Remove desktop shortcut</label>
+                        </div>
+                        <input type="checkbox" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Remove file associations</label>
+                        </div>
+                        <input type="checkbox" checked>
+                    </div>
+                </div>
+
+                <div class="uninstall-files">
+                    <h2>Files to be removed</h2>
+                    <div class="file-list">
+                        <div class="file-item">
+                            <span>Program Files\LinkUp Studio</span>
+                            <span class="file-size">45 MB</span>
+                        </div>
+                        <div class="file-item">
+                            <span>AppData\Local\LinkUp Studio</span>
+                            <span class="file-size">120 MB</span>
+                        </div>
+                        <div class="file-item">
+                            <span>Desktop shortcut</span>
+                            <span class="file-size">2 KB</span>
+                        </div>
+                    </div>
+                    <div class="total-size">
+                        Total: <strong>165 MB</strong>
+                    </div>
+                </div>
+
+                <div class="uninstall-actions">
+                    <button class="btn-danger" id="uninstallBtn">Uninstall LinkUp Studio</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Progress Modal -->
+    <div class="modal" id="progressModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="progressTitle">Installing...</h2>
+            </div>
+            <div class="modal-body">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text" id="progressText">Preparing installation...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Action</h2>
+                <button class="modal-close" id="closeConfirmBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmText">Are you sure you want to continue?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelConfirmBtn">Cancel</button>
+                <button class="btn-primary" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
