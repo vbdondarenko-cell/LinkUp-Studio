@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="opt-app">
+        <!-- Sidebar -->
+        <aside class="opt-sidebar">
+            <div class="opt-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Optimization</span>
+            </div>
+
+            <nav class="opt-nav">
+                <a href="#" class="opt-nav-item active" data-section="performance">
+                    <span class="nav-icon">◈</span>
+                    <span>Performance</span>
+                </a>
+                <a href="#" class="opt-nav-item" data-section="security">
+                    <span class="nav-icon">◐</span>
+                    <span>Security</span>
+                </a>
+                <a href="#" class="opt-nav-item" data-section="memory">
+                    <span class="nav-icon">◉</span>
+                    <span>Memory</span>
+                </a>
+                <a href="#" class="opt-nav-item" data-section="startup">
+                    <span class="nav-icon">▣</span>
+                    <span>Startup</span>
+                </a>
+                <a href="#" class="opt-nav-item" data-section="monitoring">
+                    <span class="nav-icon">◎</span>
+                    <span>Monitoring</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="opt-main">
+            <!-- Performance Section -->
+            <section class="opt-section active" id="performance-section">
+                <h1>Performance</h1>
+
+                <div class="perf-overview">
+                    <div class="perf-score">
+                        <div class="score-circle good">
+                            <span class="score-value">85</span>
+                            <span class="score-label">Good</span>
+                        </div>
+                        <div class="score-details">
+                            <h2>System Performance</h2>
+                            <p>LinkUp Studio is running optimally</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="perf-metrics">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-icon">◈</span>
+                            <span class="metric-title">CPU Usage</span>
+                        </div>
+                        <div class="metric-chart">
+                            <div class="chart-bars">
+                                <div class="chart-bar" style="height: 45%;"></div>
+                                <div class="chart-bar" style="height: 32%;"></div>
+                                <div class="chart-bar" style="height: 58%;"></div>
+                                <div class="chart-bar" style="height: 41%;"></div>
+                                <div class="chart-bar" style="height: 67%;"></div>
+                                <div class="chart-bar" style="height: 52%;"></div>
+                                <div class="chart-bar" style="height: 38%;"></div>
+                            </div>
+                        </div>
+                        <div class="metric-value">12% <span class="metric-avg">Avg: 15%</span></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-icon">◉</span>
+                            <span class="metric-title">Memory</span>
+                        </div>
+                        <div class="metric-chart">
+                            <div class="chart-bars">
+                                <div class="chart-bar" style="height: 55%;"></div>
+                                <div class="chart-bar" style="height: 58%;"></div>
+                                <div class="chart-bar" style="height: 52%;"></div>
+                                <div class="chart-bar" style="height: 61%;"></div>
+                                <div class="chart-bar" style="height: 59%;"></div>
+                                <div class="chart-bar" style="height: 57%;"></div>
+                                <div class="chart-bar" style="height: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="metric-value">456 MB <span class="metric-avg">of 8 GB</span></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-icon">◐</span>
+                            <span class="metric-title">Disk I/O</span>
+                        </div>
+                        <div class="metric-chart">
+                            <div class="chart-bars">
+                                <div class="chart-bar" style="height: 25%;"></div>
+                                <div class="chart-bar" style="height: 45%;"></div>
+                                <div class="chart-bar" style="height: 18%;"></div>
+                                <div class="chart-bar" style="height: 62%;"></div>
+                                <div class="chart-bar" style="height: 35%;"></div>
+                                <div class="chart-bar" style="height: 22%;"></div>
+                                <div class="chart-bar" style="height: 28%;"></div>
+                            </div>
+                        </div>
+                        <div class="metric-value">5 MB/s <span class="metric-avg">Read: 3 MB/s</span></div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <span class="metric-icon">◑</span>
+                            <span class="metric-title">Network</span>
+                        </div>
+                        <div class="metric-chart">
+                            <div class="chart-bars">
+                                <div class="chart-bar" style="height: 30%;"></div>
+                                <div class="chart-bar" style="height: 55%;"></div>
+                                <div class="chart-bar" style="height: 42%;"></div>
+                                <div class="chart-bar" style="height: 68%;"></div>
+                                <div class="chart-bar" style="height: 35%;"></div>
+                                <div class="chart-bar" style="height: 48%;"></div>
+                                <div class="chart-bar" style="height: 38%;"></div>
+                            </div>
+                        </div>
+                        <div class="metric-value">1.2 MB/s <span class="metric-avg">↓ 0.8 MB/s</span></div>
+                    </div>
+                </div>
+
+                <div class="optimization-tips">
+                    <h2>Optimization Tips</h2>
+                    <div class="tip-item">
+                        <span class="tip-icon good">✓</span>
+                        <div class="tip-content">
+                            <h3>Hardware acceleration enabled</h3>
+                            <p>GPU rendering is active for better performance</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon good">✓</span>
+                        <div class="tip-content">
+                            <h3>Memory usage is optimal</h3>
+                            <p>Current memory usage is within normal range</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <span class="tip-icon warning">!</span>
+                        <div class="tip-content">
+                            <h3>Reduce animations</h3>
+                            <p>Enabling reduced motion can improve performance</p>
+                            <button class="btn-secondary btn-small">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security Section -->
+            <section class="opt-section" id="security-section">
+                <h1>Security</h1>
+
+                <div class="security-status">
+                    <div class="status-icon good">
+                        <span>✓</span>
+                    </div>
+                    <div class="status-info">
+                        <h2>System Secure</h2>
+                        <p>All security checks passed</p>
+                    </div>
+                </div>
+
+                <div class="security-checks">
+                    <h2>Security Status</h2>
+                    <div class="check-item">
+                        <div class="check-status good">✓</div>
+                        <div class="check-info">
+                            <h3>API Keys Encrypted</h3>
+                            <p>All API keys are stored securely</p>
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-status good">✓</div>
+                        <div class="check-info">
+                            <h3>Data at Rest Encrypted</h3>
+                            <p>Local data is encrypted</p>
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-status good">✓</div>
+                        <div class="check-info">
+                            <h3>Secure Connections</h3>
+                            <p>All connections use HTTPS</p>
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <div class="check-status good">✓</div>
+                        <div class="check-info">
+                            <h3>Auto-logout Enabled</h3>
+                            <p>Sessions auto-expire after inactivity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-settings">
+                    <h2>Security Settings</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Encrypt local data</label>
+                            <p>Encrypt data stored on disk</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Secure API key storage</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Auto-logout timeout (minutes)</label>
+                        </div>
+                        <input type="number" class="setting-input small" value="30">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Two-factor authentication</label>
+                            <p>Require 2FA for sensitive operations</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Memory Section -->
+            <section class="opt-section" id="memory-section">
+                <h1>Memory Optimization</h1>
+
+                <div class="memory-overview">
+                    <div class="memory-usage">
+                        <div class="usage-ring">
+                            <svg viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--border-default)" stroke-width="8"/>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-fg)" stroke-width="8" 
+                                    stroke-dasharray="283" stroke-dashoffset="150" transform="rotate(-90 50 50)"/>
+                            </svg>
+                            <div class="usage-text">
+                                <span class="usage-value">53%</span>
+                                <span class="usage-label">Used</span>
+                            </div>
+                        </div>
+                        <div class="usage-details">
+                            <h2>Memory Usage</h2>
+                            <div class="usage-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Used</span>
+                                    <span class="stat-value">4.2 GB</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Available</span>
+                                    <span class="stat-value">3.8 GB</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Cached</span>
+                                    <span class="stat-value">1.2 GB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memory-breakdown">
+                    <h2>Memory Breakdown</h2>
+                    <div class="breakdown-item">
+                        <div class="breakdown-info">
+                            <span class="breakdown-name">LinkUp Studio</span>
+                            <span class="breakdown-size">456 MB</span>
+                        </div>
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 15%; background: var(--accent-fg);"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-info">
+                            <span class="breakdown-name">Windows Terminal</span>
+                            <span class="breakdown-size">128 MB</span>
+                        </div>
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 4%; background: var(--success-fg);"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-info">
+                            <span class="breakdown-name">VS Code</span>
+                            <span class="breakdown-size">312 MB</span>
+                        </div>
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 10%; background: var(--warning-fg);"></div>
+                        </div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-info">
+                            <span class="breakdown-name">OpenHands</span>
+                            <span class="breakdown-size">89 MB</span>
+                        </div>
+                        <div class="breakdown-bar">
+                            <div class="breakdown-fill" style="width: 3%; background: var(--accent-fg);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="memory-actions">
+                    <h2>Memory Optimization</h2>
+                    <div class="action-card" onclick="optimizeMemory()">
+                        <span class="action-icon">◉</span>
+                        <div class="action-info">
+                            <h3>Clear Memory Cache</h3>
+                            <p>Free up cached data</p>
+                        </div>
+                        <button class="btn-primary">Optimize</button>
+                    </div>
+                    <div class="action-card">
+                        <span class="action-icon">▣</span>
+                        <div class="action-info">
+                            <h3>Clear Browser Cache</h3>
+                            <p>Clear webview cache</p>
+                        </div>
+                        <button class="btn-secondary">Clear</button>
+                    </div>
+                    <div class="action-card">
+                        <span class="action-icon">◐</span>
+                        <div class="action-info">
+                            <h3>Reduce Memory Limit</h3>
+                            <p>Limit memory usage</p>
+                        </div>
+                        <button class="btn-secondary">Set Limit</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Startup Section -->
+            <section class="opt-section" id="startup-section">
+                <h1>Startup Optimization</h1>
+
+                <div class="startup-impact">
+                    <h2>Startup Impact</h2>
+                    <div class="impact-chart">
+                        <div class="impact-bar">
+                            <div class="impact-fill" style="width: 85%;"></div>
+                        </div>
+                        <span class="impact-label">Medium Impact</span>
+                    </div>
+                    <p>LinkUp Studio adds <strong>2.3 seconds</strong> to startup time</p>
+                </div>
+
+                <div class="startup-apps">
+                    <h2>Startup Applications</h2>
+                    <div class="app-item">
+                        <div class="app-info">
+                            <span class="app-icon">⬡</span>
+                            <div class="app-details">
+                                <h3>LinkUp Studio</h3>
+                                <p>LinkUp Studio - Premium Developer Workspace</p>
+                            </div>
+                        </div>
+                        <div class="app-toggle">
+                            <input type="checkbox" class="setting-toggle" checked>
+                        </div>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-info">
+                            <span class="app-icon">🐳</span>
+                            <div class="app-details">
+                                <h3>Docker Desktop</h3>
+                                <p>Docker Inc.</p>
+                            </div>
+                        </div>
+                        <div class="app-toggle">
+                            <input type="checkbox" class="setting-toggle">
+                        </div>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-info">
+                            <span class="app-icon">⬢</span>
+                            <div class="app-details">
+                                <h3>Node.js</h3>
+                                <p>Node.js Foundation</p>
+                            </div>
+                        </div>
+                        <div class="app-toggle">
+                            <input type="checkbox" class="setting-toggle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="startup-settings">
+                    <h2>Startup Settings</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Launch on Windows startup</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Minimize to system tray</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Start minimized</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Preload applications</label>
+                            <p>Preload apps on startup for faster access</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monitoring Section -->
+            <section class="opt-section" id="monitoring-section">
+                <h1>System Monitoring</h1>
+
+                <div class="monitoring-overview">
+                    <div class="monitor-stat">
+                        <span class="monitor-value">99.9%</span>
+                        <span class="monitor-label">Uptime</span>
+                    </div>
+                    <div class="monitor-stat">
+                        <span class="monitor-value">1.2s</span>
+                        <span class="monitor-label">Avg Response</span>
+                    </div>
+                    <div class="monitor-stat">
+                        <span class="monitor-value">0</span>
+                        <span class="monitor-label">Errors Today</span>
+                    </div>
+                </div>
+
+                <div class="system-info">
+                    <h2>System Information</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>OS</h3>
+                            <p>Windows 11 Pro</p>
+                            <span class="info-version">22H2 Build 22621</span>
+                        </div>
+                        <div class="info-card">
+                            <h3>Processor</h3>
+                            <p>Intel Core i7-12700K</p>
+                            <span class="info-version">3.6 GHz • 12 Cores</span>
+                        </div>
+                        <div class="info-card">
+                            <h3>Memory</h3>
+                            <p>8 GB DDR5</p>
+                            <span class="info-version">3200 MHz</span>
+                        </div>
+                        <div class="info-card">
+                            <h3>Storage</h3>
+                            <p>512 GB NVMe SSD</p>
+                            <span class="info-version">Samsung 980 Pro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="logs-section">
+                    <h2>System Logs</h2>
+                    <div class="logs-filters">
+                        <select class="filter-select">
+                            <option value="all">All Logs</option>
+                            <option value="error">Errors</option>
+                            <option value="warning">Warnings</option>
+                            <option value="info">Info</option>
+                        </select>
+                        <button class="btn-secondary">Export Logs</button>
+                    </div>
+                    <div class="logs-list">
+                        <div class="log-item info">
+                            <span class="log-time">14:32:15</span>
+                            <span class="log-type">INFO</span>
+                            <span class="log-message">Application started successfully</span>
+                        </div>
+                        <div class="log-item info">
+                            <span class="log-time">14:32:16</span>
+                            <span class="log-type">INFO</span>
+                            <span class="log-message">Session restored from backup</span>
+                        </div>
+                        <div class="log-item warning">
+                            <span class="log-time">14:33:00</span>
+                            <span class="log-type">WARN</span>
+                            <span class="log-message">High memory usage detected</span>
+                        </div>
+                        <div class="log-item info">
+                            <span class="log-time">14:34:00</span>
+                            <span class="log-type">INFO</span>
+                            <span class="log-message">Memory optimization completed</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
