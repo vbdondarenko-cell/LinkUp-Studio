@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkUp Studio - Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="settings-app">
+        <!-- Sidebar -->
+        <aside class="settings-sidebar">
+            <div class="settings-logo">
+                <span class="logo-icon">⚙</span>
+                <span class="logo-text">Settings</span>
+            </div>
+
+            <nav class="settings-nav">
+                <a href="#" class="settings-nav-item active" data-section="general">
+                    <span class="nav-icon">◈</span>
+                    <span>General</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="appearance">
+                    <span class="nav-icon">◐</span>
+                    <span>Appearance</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="ai">
+                    <span class="nav-icon">◎</span>
+                    <span>AI</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="workspace">
+                    <span class="nav-icon">◉</span>
+                    <span>Workspace</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="performance">
+                    <span class="nav-icon">▣</span>
+                    <span>Performance</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="shortcuts">
+                    <span class="nav-icon">⌨</span>
+                    <span>Shortcuts</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="integrations">
+                    <span class="nav-icon">◑</span>
+                    <span>Integrations</span>
+                </a>
+                <a href="#" class="settings-nav-item" data-section="about">
+                    <span class="nav-icon">○</span>
+                    <span>About</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="settings-main">
+            <!-- General Settings -->
+            <section class="settings-section active" id="general-section">
+                <h1>General Settings</h1>
+
+                <div class="settings-group">
+                    <h2>Startup</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Launch on Windows startup</label>
+                            <p>Automatically start LinkUp Studio when Windows starts</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Restore last session</label>
+                            <p>Restore your previous workspace when LinkUp Studio starts</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Show splash screen</label>
+                            <p>Display splash screen on startup</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Updates</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Auto-check for updates</label>
+                            <p>Automatically check for updates on startup</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Update channel</label>
+                            <p>Choose which updates to receive</p>
+                        </div>
+                        <select class="setting-select">
+                            <option value="stable" selected>Stable</option>
+                            <option value="beta">Beta</option>
+                            <option value="insider">Insider</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Language & Region</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Language</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="en" selected>English</option>
+                            <option value="uk">Українська</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Date format</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="dmy" selected>DD/MM/YYYY</option>
+                            <option value="mdy">MM/DD/YYYY</option>
+                            <option value="ymd">YYYY-MM-DD</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appearance Settings -->
+            <section class="settings-section" id="appearance-section">
+                <h1>Appearance</h1>
+
+                <div class="settings-group">
+                    <h2>Theme</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Color theme</label>
+                            <p>Select your preferred color theme</p>
+                        </div>
+                        <select class="setting-select">
+                            <option value="github-dark" selected>GitHub Dark</option>
+                            <option value="dracula">Dracula</option>
+                            <option value="nord">Nord</option>
+                            <option value="solarized-dark">Solarized Dark</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Icon theme</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="linkup" selected>LinkUp Studio</option>
+                            <option value="geometric">Geometric</option>
+                            <option value="classic">Classic</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Accent color</label>
+                        </div>
+                        <div class="accent-colors">
+                            <button class="accent-color active" style="background: #58a6ff;" data-color="#58a6ff"></button>
+                            <button class="accent-color" style="background: #3fb950;" data-color="#3fb950"></button>
+                            <button class="accent-color" style="background: #f85149;" data-color="#f85149"></button>
+                            <button class="accent-color" style="background: #d29922;" data-color="#d29922"></button>
+                            <button class="accent-color" style="background: #a371f7;" data-color="#a371f7"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Fonts</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Font family</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="jetbrains" selected>JetBrains Mono</option>
+                            <option value="fira">Fira Code</option>
+                            <option value="consolas">Consolas</option>
+                            <option value="source">Source Code Pro</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Font size</label>
+                        </div>
+                        <div class="font-size-control">
+                            <input type="range" class="setting-slider" min="10" max="20" value="14">
+                            <span class="font-size-value">14px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Layout</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Sidebar position</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="left" selected>Left</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Tab bar position</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="top" selected>Top</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Settings -->
+            <section class="settings-section" id="ai-section">
+                <h1>AI Settings</h1>
+
+                <div class="settings-group">
+                    <h2>OpenHands</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>API Endpoint</label>
+                        </div>
+                        <input type="text" class="setting-input" value="https://app.all-hands.dev" readonly>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>API Key</label>
+                        </div>
+                        <div class="setting-password">
+                            <input type="password" class="setting-input" value="••••••••••••••••" id="apiKeyInput">
+                            <button class="btn-icon" id="showApiKeyBtn" title="Show">👁</button>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Connection status</label>
+                        </div>
+                        <span class="status-badge connected">Connected</span>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Model Configuration</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>AI Model</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="claude" selected>Claude 3.5 Sonnet</option>
+                            <option value="gpt4">GPT-4</option>
+                            <option value="gemini">Gemini Pro</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Temperature</label>
+                            <p>Controls randomness (0 = focused, 1 = creative)</p>
+                        </div>
+                        <div class="font-size-control">
+                            <input type="range" class="setting-slider" min="0" max="100" value="70">
+                            <span class="font-size-value">0.7</span>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Max tokens</label>
+                        </div>
+                        <input type="number" class="setting-input small" value="4096">
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>AI Behavior</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Auto-save AI conversations</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>AI suggestions</label>
+                            <p>Show AI-powered suggestions while coding</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Code completion</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workspace Settings -->
+            <section class="settings-section" id="workspace-section">
+                <h1>Workspace Settings</h1>
+
+                <div class="settings-group">
+                    <h2>Projects</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Default projects folder</label>
+                        </div>
+                        <div class="setting-path">
+                            <input type="text" class="setting-input" value="D:\Projects" readonly>
+                            <button class="btn-icon" title="Browse">📁</button>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Recent projects limit</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="10">10 projects</option>
+                            <option value="20" selected>20 projects</option>
+                            <option value="50">50 projects</option>
+                            <option value="100">100 projects</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Terminal</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Default shell</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="pwsh" selected>PowerShell</option>
+                            <option value="cmd">CMD</option>
+                            <option value="bash">Bash (WSL)</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Shell theme</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="github-dark" selected>GitHub Dark</option>
+                            <option value="dracula">Dracula</option>
+                            <option value="solarized">Solarized</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Font size</label>
+                        </div>
+                        <div class="font-size-control">
+                            <input type="range" class="setting-slider" min="10" max="24" value="14">
+                            <span class="font-size-value">14px</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>File Explorer</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Show hidden files</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Confirm before delete</label>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Settings -->
+            <section class="settings-section" id="performance-section">
+                <h1>Performance</h1>
+
+                <div class="settings-group">
+                    <h2>Resources</h2>
+                    <div class="performance-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Memory Usage</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill" style="width: 45%;"></div>
+                            </div>
+                            <span class="stat-value">345 MB</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">CPU Usage</span>
+                            <div class="stat-bar">
+                                <div class="stat-fill cpu" style="width: 12%;"></div>
+                            </div>
+                            <span class="stat-value">12%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Optimization</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Hardware acceleration</label>
+                            <p>Use GPU for rendering (requires restart)</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Reduced motion</label>
+                            <p>Minimize animations</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle">
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Auto-save interval</label>
+                        </div>
+                        <select class="setting-select">
+                            <option value="1">1 minute</option>
+                            <option value="5">5 minutes</option>
+                            <option value="15" selected>15 minutes</option>
+                            <option value="30">30 minutes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h2>Caching</h2>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Cache size</label>
+                            <p>Current cache: 256 MB</p>
+                        </div>
+                        <button class="btn-secondary">Clear Cache</button>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <label>Indexing</label>
+                            <p>Enable file indexing for faster search</p>
+                        </div>
+                        <input type="checkbox" class="setting-toggle" checked>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Keyboard Shortcuts -->
+            <section class="settings-section" id="shortcuts-section">
+                <h1>Keyboard Shortcuts</h1>
+
+                <div class="shortcuts-list">
+                    <div class="shortcut-item">
+                        <span class="shortcut-category">General</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Open Command Palette</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+                        </div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Quick Open</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>P</kbd>
+                        </div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Settings</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>,</kbd>
+                        </div>
+                    </div>
+
+                    <div class="shortcut-item">
+                        <span class="shortcut-category">Terminal</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">New Terminal</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>`</kbd>
+                        </div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Toggle Terminal</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>`</kbd>
+                        </div>
+                    </div>
+
+                    <div class="shortcut-item">
+                        <span class="shortcut-category">View</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Toggle Sidebar</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd>+<kbd>B</kbd>
+                        </div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-info">
+                            <span class="shortcut-name">Toggle Fullscreen</span>
+                        </div>
+                        <div class="shortcut-keys">
+                            <kbd>F11</kbd>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="shortcuts-actions">
+                    <button class="btn-secondary" id="resetShortcutsBtn">Reset to Defaults</button>
+                    <button class="btn-secondary" id="exportShortcutsBtn">Export</button>
+                    <button class="btn-secondary" id="importShortcutsBtn">Import</button>
+                </div>
+            </section>
+
+            <!-- Integrations -->
+            <section class="settings-section" id="integrations-section">
+                <h1>Integrations</h1>
+
+                <div class="integrations-list">
+                    <div class="integration-item">
+                        <div class="integration-icon github">◐</div>
+                        <div class="integration-info">
+                            <h3>GitHub</h3>
+                            <p>Connect your GitHub account</p>
+                        </div>
+                        <div class="integration-status connected">Connected</div>
+                        <button class="btn-secondary">Configure</button>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-icon gitlab">◈</div>
+                        <div class="integration-info">
+                            <h3>GitLab</h3>
+                            <p>Not connected</p>
+                        </div>
+                        <div class="integration-status">Disconnected</div>
+                        <button class="btn-primary">Connect</button>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-icon docker">🐳</div>
+                        <div class="integration-info">
+                            <h3>Docker</h3>
+                            <p>Docker Desktop is running</p>
+                        </div>
+                        <div class="integration-status connected">Active</div>
+                        <button class="btn-secondary">Configure</button>
+                    </div>
+
+                    <div class="integration-item">
+                        <div class="integration-icon slack">◉</div>
+                        <div class="integration-info">
+                            <h3>Slack</h3>
+                            <p>Not connected</p>
+                        </div>
+                        <div class="integration-status">Disconnected</div>
+                        <button class="btn-primary">Connect</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section class="settings-section" id="about-section">
+                <h1>About</h1>
+
+                <div class="about-content">
+                    <div class="about-logo">⬡</div>
+                    <h2>LinkUp Studio</h2>
+                    <p class="version">Version 1.0.0</p>
+                    <p class="description">Premium Developer Workspace for Windows</p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <span class="info-label">Build</span>
+                            <span class="info-value">2024.01.15</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Electron</span>
+                            <span class="info-value">v28.0.0</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Node.js</span>
+                            <span class="info-value">v18.17.0</span>
+                        </div>
+                    </div>
+
+                    <div class="about-links">
+                        <a href="#" class="about-link">Documentation</a>
+                        <a href="#" class="about-link">Report Issue</a>
+                        <a href="#" class="about-link">GitHub Repository</a>
+                        <a href="#" class="about-link">Changelog</a>
+                    </div>
+
+                    <div class="about-actions">
+                        <button class="btn-secondary" id="checkUpdatesBtn">Check for Updates</button>
+                        <button class="btn-secondary" id="openLogsBtn">Open Logs Folder</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
